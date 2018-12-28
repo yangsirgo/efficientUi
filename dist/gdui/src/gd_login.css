@@ -1,0 +1,207 @@
+/*色彩*/
+.gd-login {
+  background-color: #F2F2F6;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  min-height: 720px;
+  min-width: 800px;
+  overflow: auto;
+}
+.gd-login .gd-login-box {
+  position: absolute;
+  top: calc(50% - 260px);
+  width: 100%;
+  z-index: 1;
+}
+.gd-login .gd-login-box .gd-login-logo-box {
+  margin: 0 auto;
+  overflow: hidden;
+}
+.gd-login .gd-login-box .gd-login-logo-box .gd-login-logos {
+  position: relative;
+  transition: left 0.5s;
+  font-size: 0;
+}
+.gd-login .gd-login-box .gd-login-logo-box .gd-login-logos .gd-login-prod-name {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-size: 26px;
+}
+.gd-login .gd-login-box .gd-login-logo-box .gd-login-logos .gd-login-logoitem {
+  margin: 0 60px;
+  opacity: 0.2;
+  transform: scale(0.8);
+  cursor: pointer;
+  width: 74px;
+  transition: opacity 0.5s;
+  display: inline-block;
+}
+.gd-login .gd-login-box .gd-login-logo-box .gd-login-logos .gd-login-logoitem:hover {
+  opacity: 0.5;
+}
+.gd-login .gd-login-box .gd-login-logo-box .gd-login-logos img {
+  width: 100%;
+}
+.gd-login .gd-login-box .gd-login-logo-box .gd-login-logos .gd-login-logo-active {
+  opacity: 1 !important;
+  transform: scale(1);
+  cursor: default;
+}
+.gd-login .gd-login-box .gd-login-form {
+  width: 246px;
+  margin: 0 auto;
+  margin-top: 40px;
+}
+.gd-login .gd-login-box .gd-login-form .gd-login-form-row {
+  margin-bottom: 20px;
+  position: relative;
+}
+.gd-login .gd-login-box .gd-login-form .gd-login-form-row:last-child {
+  margin-bottom: 0;
+}
+.gd-login .gd-login-box .gd-login-form .gd-login-input {
+  height: 40px;
+  position: relative;
+}
+.gd-login .gd-login-box .gd-login-form .gd-login-input i {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.gd-login .gd-login-box .gd-login-form .gd-login-input .icon-user,
+.gd-login .gd-login-box .gd-login-form .gd-login-input .icon-access {
+  left: 10px;
+  color: #E1E1E1;
+}
+.gd-login .gd-login-box .gd-login-form .gd-login-input .icon-close,
+.gd-login .gd-login-box .gd-login-form .gd-login-input .icon-showpassword,
+.gd-login .gd-login-box .gd-login-form .gd-login-input .icon-hidden {
+  right: 10px;
+  user-select: none;
+  cursor: pointer;
+  color: #CFD6E1;
+}
+.gd-login .gd-login-box .gd-login-form .gd-login-input .icon-close:hover,
+.gd-login .gd-login-box .gd-login-form .gd-login-input .icon-showpassword:hover,
+.gd-login .gd-login-box .gd-login-form .gd-login-input .icon-hidden:hover {
+  color: #b0bbcd;
+}
+.gd-login .gd-login-box .gd-login-form .gd-login-input input {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  outline: none;
+  border: 1px solid transparent;
+  background-color: white;
+  border-radius: 3px;
+  padding: 0 30px;
+  color: #333333;
+}
+.gd-login .gd-login-box .gd-login-form .gd-login-submit {
+  width: 100%;
+  height: 40px;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  background: none;
+  border-radius: 3px;
+  overflow: hidden;
+  color: white;
+  position: relative;
+}
+.gd-login .gd-login-box .gd-login-form .gd-login-submit:hover .gd-login-submit-bg {
+  background: linear-gradient(to right, #46a5ee, #59AEF0, #46a5ee, #59AEF0);
+}
+.gd-login .gd-login-box .gd-login-form .gd-login-submit .gd-login-submit-bg {
+  background: linear-gradient(to right, #59AEF0, #50a9ef, #59AEF0, #50a9ef);
+  position: absolute;
+  display: block;
+  width: 300%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+.gd-login .gd-login-box .gd-login-form .gd-login-submit .gd-login-submit-bg.gd-login-bg-move {
+  animation: submit 2s linear infinite;
+}
+@keyframes submit {
+  from {
+    left: 0;
+  }
+  to {
+    left: -200%;
+  }
+}
+.gd-login .gd-login-box .gd-login-form .gd-login-submit .gd-login-submit-text {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  text-align: center;
+  z-index: 1;
+  font-size: 16px;
+  line-height: 40px;
+}
+.gd-login .gd-login-box .gd-login-form .gd-login-msg {
+  color: #FF8C7E;
+  text-align: center;
+}
+.gd-login .gd-login-cover-slider {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.gd-login .gd-login-cover-box {
+  height: 100%;
+  position: absolute;
+  font-size: 0;
+  transition: left 0.5s;
+}
+.gd-login .gd-login-cover-box .gd-login-cover-item {
+  height: 100%;
+  position: relative;
+  bottom: 100px;
+  display: inline-block;
+}
+.gd-login .gd-login-cover-box img {
+  width: 90%;
+  transform: perspective(2000px) rotateX(80deg) translateX(-50%);
+  box-shadow: 30px 60px 115px -10px #b5b4b4;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform-origin: left bottom;
+}
+/*动画*/
+.gd-animate-shake {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-name: gdShake;
+}
+@keyframes gdShake {
+  from,
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translate3d(-5px, 0, 0);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translate3d(3px, 0, 0);
+  }
+}
+/*# sourceMappingURL=gd_login.css.map */

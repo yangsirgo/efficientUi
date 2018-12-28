@@ -1,0 +1,140 @@
+@import './gd_variables';
+.gd-hoverbox {
+    position: fixed;
+    background-color: @bgColor4;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.20);
+    border-radius: 2px;
+    padding: 5px 0;
+    visibility: hidden;
+    min-width: 50px;
+    min-height: 16px;
+    .gd-hoverbox-item {
+        line-height: 14px;
+        min-width: 160px;
+        padding: 7px 10px;
+        box-sizing: border-box;
+        float: left;
+        clear: both;
+        transition: background-color .3s;
+        &[disabled] {
+            cursor: not-allowed;
+            color: @grayColor5;
+            * {
+                cursor: not-allowed;
+            }
+        }
+        >.gd-checkbox {
+            width: 100%;
+        }
+        >i {
+            width: 14px;
+            height: 14px;
+            line-height: 14px;
+            vertical-align: middle;
+            font-size: 14px;
+            color: @iconColor;
+            margin-right: 10px;
+            display: inline-block;
+        }
+        &:not([disabled]):hover {
+            background-color: @grayColor8;
+        }
+    }
+    &.gd-hoverbox-right {
+        visibility: visible;
+        animation: gdHoverboxXShow .2s;
+        transform-origin: -6px 0;
+        .gd-hoverbox-trangle {
+            width: 10px;
+            height: 100%;
+            top: 0;
+            left: -10px;
+            i {
+                border-top: 6px solid transparent;
+                border-right: 6px solid white;
+                border-bottom: 6px solid transparent;
+                right: 0;
+            }
+        }
+    }
+    &.gd-hoverbox-left {
+        visibility: visible;
+        animation: gdHoverboxXShow .2s;
+        transform-origin: calc(~"100% + 6px") 0;
+        .gd-hoverbox-trangle {
+            width: 12px;
+            height: 100%;
+            top: 0;
+            right: -12px;
+            i {
+                border-top: 6px solid transparent;
+                border-left: 6px solid white;
+                border-bottom: 6px solid transparent;
+            }
+        }
+    }
+    &.gd-hoverbox-bottom {
+        visibility: visible;
+        animation: gdHoverboxYShow .2s;
+        transform-origin: center -6px;
+        .gd-hoverbox-trangle {
+            width: 100%;
+            height: 10px;
+            top: -10px;
+            left: 0;
+            i {
+                border-left: 6px solid transparent;
+                border-bottom: 6px solid white;
+                border-right: 6px solid transparent;
+                bottom: 0;
+            }
+        }
+    }
+    &.gd-hoverbox-top {
+        visibility: visible;
+        animation: gdHoverboxYShow .2s;
+        transform-origin: center calc(~"100% + 6px");
+        .gd-hoverbox-trangle {
+            width: 100%;
+            height: 10px;
+            bottom: -10px;
+            left: 0;
+            i {
+                border-left: 6px solid transparent;
+                border-top: 6px solid white;
+                border-right: 6px solid transparent;
+            }
+        }
+    }
+    .gd-hoverbox-trangle {
+        position: absolute;
+        i {
+            display: block;
+            position: absolute;
+            width: 0;
+            height: 0;
+        }
+    }
+    .gd-tree {
+        border: none;
+        padding: 0;
+    }
+}
+
+@keyframes gdHoverboxYShow {
+    from {
+        transform: scaleY(0);
+    }
+    to {
+        transform: scaleY(1);
+    }
+}
+
+@keyframes gdHoverboxXShow {
+    from {
+        transform: scaleX(0);
+    }
+    to {
+        transform: scaleX(1);
+    }
+}

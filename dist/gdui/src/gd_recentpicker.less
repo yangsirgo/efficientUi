@@ -1,0 +1,53 @@
+@import "./gd_variables";
+.gd-recentpicker {
+    width: 200px;
+    display: inline-block;
+    vertical-align: middle;
+    &.gd-recentpicker {
+        width: 300px;
+    }
+    .gd-select {
+        width: 100%;
+    }
+    .gd-recentpicker-custom {
+        .icon-right {
+            color: @iconColor;
+            float: right;
+        }
+    }
+    .gd-recentpicker-datepanel {
+        float: right; // transform-origin: 0 center;
+        // &.gd-datepanel-expand-left {
+        //     transform-origin: right center;
+        // }
+        // &.gd-datepanel-expand-enter-active {
+        //     animation: gdDateRecentPanelShow .1s;
+        // }
+        // &.gd-datepanel-expand-leave-active {
+        //     animation: gdDateRecentPanelHide .1s;
+        // }
+        .gd-datepanel,
+        .gd-date-range-box {
+            border-radius: 0;
+            box-shadow: none;
+        }
+    }
+}
+
+@keyframes gdDateRecentPanelShow {
+    from {
+        width: scaleX(0);
+    }
+    to {
+        transform: scaleX(1);
+    }
+}
+
+@keyframes gdDateRecentPanelHide {
+    from {
+        transform: scaleX(1);
+    }
+    to {
+        transform: scaleX(0);
+    }
+}

@@ -1,0 +1,41 @@
+{
+  "name": "gdui",
+  "version": "1.0.0",
+  "description": "Goldencis Component",
+  "homepage": "http://www.neiwang.cn/",
+  "main": "webpack.config.js",
+  "scripts": {
+    "start": "npm run dev",
+    "dev": "webpack-dev-server --open --config webpack.dev.config",
+    "build": "webpack && gulp",
+    "buildDev": "webpack --config webpack.dev.config && gulp",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Goldencis",
+  "license": "LGPL",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.6.1",
+    "css-loader": "^0.28.11",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^5.0.0",
+    "gulp-clean-css": "^3.9.3",
+    "gulp-concat": "^2.6.1",
+    "gulp-header": "^2.0.5",
+    "gulp-less": "^4.0.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-uglify": "^3.0.0",
+    "gulp-watch": "^5.0.0",
+    "less": "^3.0.1",
+    "less-loader": "^4.1.0",
+    "style-loader": "^0.20.3",
+    "vue": "^2.5.16",
+    "vue-loader": "^14.2.2",
+    "vue-template-compiler": "^2.5.16",
+    "webpack": "^4.4.1",
+    "webpack-cli": "^3.1.1",
+    "webpack-dev-server": "^3.1.1"
+  }
+}

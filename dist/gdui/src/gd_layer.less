@@ -1,0 +1,231 @@
+@import './gd_variables';
+.gd-layer {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    &.gd-layer-hide {
+        .gd-layer-body {
+            animation: gdLayerBodyHide 0.3s forwards;
+        }
+        .gd-layer-shade {
+            animation: gdShadeHide 0.3s forwards;
+        }
+    }
+    &.gd-layer-hide-center {
+        .gd-layer-body {
+            animation: gdLayerBodyHideCenter 0.3s forwards;
+            transform-origin: top;
+        }
+        .gd-layer-shade {
+            animation: gdShadeHide 0.3s forwards;
+        }
+    }
+    .gd-layer-shade {
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.3);
+        animation: gdShadeShow 0.3s;
+        @keyframes gdShadeShow {
+            from {
+                background-color: rgba(0, 0, 0, 0);
+            }
+            to {
+                background-color: rgba(0, 0, 0, 0.3);
+            }
+        }
+        @keyframes gdShadeHide {
+            from {
+                background-color: rgba(0, 0, 0, 0.3);
+            }
+            to {
+                background-color: rgba(0, 0, 0, 0);
+            }
+        }
+    }
+    .gd-layer-body {
+        position: fixed;
+        box-sizing: border-box;
+        box-shadow: 0 7px 20px 0 rgba(0, 0, 0, 0.15);
+        border-radius: 2px;
+        background-color: white;
+        color: @grayColor1;
+        visibility: hidden;
+        .gd-layer-header {
+            font-size: 18px;
+            line-height: 55px;
+            height: 56px;
+            cursor: move;
+            user-select: none;
+            border-bottom: 1px solid @grayColor7;
+            box-sizing: border-box;
+            .gd-layer-title {
+                width: calc(~'100% - 40px');
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                word-break: break-all;
+                float: left;
+                text-indent: 20px;
+            }
+            .gd-layer-close {
+                float: right;
+                width: 40px;
+                height: 100%;
+                cursor: pointer !important;
+                font-size: 20px;
+                text-align: center;
+                color: @grayColor2;
+                &:hover {
+                    color: darken(@grayColor2, 5%);
+                }
+            }
+        }
+        .gd-layer-close-btn {
+            position: absolute;
+            right: -10px;
+            top: -10px;
+            background-color: @dangerColor;
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            text-align: center;
+            color: white;
+            border-radius: 50%;
+            cursor: pointer;
+            &:hover {
+                background-color: darken(@dangerColor, 5%)
+            }
+        }
+        .gd-layer-content {
+            font-size: 14px;
+            height: calc(~'100% - 118px');
+            overflow: auto;
+        }
+        .gd-layer-footer {
+            padding: 0 40px;
+            text-align: right;
+            height: 62px;
+            border-top: 1px solid @grayColor7;
+            box-sizing: border-box;
+            user-select: none;
+            >* {
+                vertical-align: middle;
+                display: inline-block;
+                margin-left: 16px;
+                &:nth-child(1) {
+                    margin-left: 0;
+                }
+            }
+            &::before {
+                content: ' ';
+                display: inline-block;
+                vertical-align: middle;
+                height: 100%;
+                width: 0;
+            }
+        }
+        &.gd-layer-shake {
+            animation: gdBodyShake 0.2s;
+        }
+        &.gd-layer-show {
+            animation: gdLayerBodyShow 0.3s;
+        }
+        @keyframes gdLayerBodyShow {
+            from {
+                transform: scale(0);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+        @keyframes gdLayerBodyHide {
+            from {
+                transform: scale(1, 1);
+            }
+            to {
+                transform: scale(1, 0);
+            }
+        }
+        &.gd-layer-show-center {
+            animation: gdLayerBodyShowCenter 0.3s both;
+            transform-origin: top left;
+        }
+        @keyframes gdLayerBodyShowCenter {
+            from {
+                transform: scale(0) translate(-50%, -50%);
+            }
+            to {
+                transform: scale(1) translate(-50%, -50%);
+            }
+        }
+        @keyframes gdLayerBodyHideCenter {
+            from {
+                transform: scale(1, 1) translate(-50%, -50%);
+            }
+            to {
+                transform: scale(1, 0) translate(-50%, -50%);
+            }
+        }
+        @keyframes gdBodyShake {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.02);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+    }
+    &.gd-confirm {
+        .gd-layer-body {
+            visibility: hidden;
+            .gd-confirm-header {
+                height: 40px;
+                cursor: move;
+                margin-bottom: 10px;
+            }
+            .gd-confirm-content {
+                height: auto;
+                text-align: center;
+                min-width: 300px;
+                padding: 0 60px;
+                box-sizing: border-box;
+                line-height: 24px;
+                max-width: 500px;
+                max-height: 500px;
+                overflow: auto;
+            }
+            .gd-confirm-footer {
+                padding: 50px 20px 28px 20px;
+                text-align: center;
+                >* {
+                    vertical-align: middle;
+                    display: inline-block;
+                    margin: 0 8px;
+                }
+                &::before {
+                    content: ' ';
+                    display: inline-block;
+                    vertical-align: middle;
+                    height: 100%;
+                    width: 0;
+                }
+            }
+            .gd-layer-confirm-text {
+                display: inline-block;
+                white-space: nowrap;
+            }
+        }
+    }
+}
+
+.gd-cursor-move {
+    cursor: move !important;
+    * {
+        cursor: move !important;
+    }
+}

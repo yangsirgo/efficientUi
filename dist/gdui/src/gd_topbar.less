@@ -1,0 +1,108 @@
+@import './gd_variables';
+.gd-topbar {
+    position: fixed;
+    left: 56px;
+    right: 0;
+    height: 56px;
+    background-color: #fdfdfd;
+    box-sizing: border-box;
+    padding: 0 30px;
+    box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.04);
+    font-size: 14px;
+    z-index: 999;
+    .gd-topbar-name {
+        display: inline-block;
+        line-height: 56px;
+        .gd-topbar-name-item {
+            color: @grayColor3;
+            display: inline-block;
+            >* {
+                display: inline-block;
+                vertical-align: middle;
+            }
+            i {
+                margin: 0 5px;
+            }
+        }
+    }
+    .gd-topbar-toolbox {
+        float: right;
+        height: 100%;
+        font-size: 14px;
+        &::after {
+            content: " ";
+            display: inline-block;
+            vertical-align: middle;
+            height: 100%;
+        }
+        >* {
+            margin-right: 20px;
+        }
+    }
+    .gd-topbar-tool {
+        cursor: pointer;
+        position: relative;
+        font-size: 0;
+        display: inline-block;
+        vertical-align: middle;
+        .gd-topbar-badge {
+            display: inline-block;
+            position: relative;
+            vertical-align: middle;
+            .gd-topbar-tool-icon {
+                vertical-align: top;
+            }
+        }
+        .gd-topbar-tool-badge {
+            position: absolute;
+            background-color: @dangerColor;
+            font-size: 12px;
+            line-height: 16px;
+            height: 16px;
+            color: white;
+            text-align: center;
+            box-sizing: border-box;
+            top: -10px;
+            left: calc(~"100% - 10px");
+            z-index: 1;
+            &::before,
+            &::after {
+                content: " ";
+                height: 16px;
+                width: 16px;
+                position: absolute;
+                background-color: @dangerColor;
+                border-radius: 50%;
+                display: inline-block;
+                z-index: -1;
+            }
+            &::before {
+                left: -8px;
+            }
+            &::after {
+                right: -8px;
+            }
+        }
+        .gd-topbar-tool-text {
+            color: @grayColor1;
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 5px;
+            font-size: 14px;
+        }
+        .gd-topbar-tool-icon {
+            font-size: 28px;
+            line-height: 28px;
+            color: @iconColor;
+            transition: all 0.3s;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        &:hover,
+        &.gd-hover {
+            .gd-topbar-tool-icon {
+                color: @primaryColor;
+            }
+        }
+    }
+}

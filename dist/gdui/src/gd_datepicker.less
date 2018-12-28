@@ -1,0 +1,199 @@
+@import './gd_variables';
+.gd-datepicker {
+    display: inline-block;
+    vertical-align: middle;
+    width: 200px;
+    &.gd-datepicker-lg {
+        width: 300px;
+    }
+    .gd-iconinput {
+        width: 100%;
+        .gd-input {
+            width: 100%;
+        }
+        .icon-time {
+            pointer-events: none;
+        }
+    }
+    .gd-datepanel,
+    .gd-date-range-box {
+        position: fixed;
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+        transform-origin: center 0;
+        &.gd-datepanel-drop-top {
+            transform-origin: center bottom;
+        }
+        &.gd-datepanel-drop-enter-active {
+            animation: gdDatePanelShow 0.1s both;
+        }
+        &.gd-datepanel-drop-leave-active {
+            animation: gdDatePanelHide 0.1s both;
+        }
+    }
+}
+
+.gd-datepanel {
+    background-color: @bgColor4;
+    color: @grayColor1;
+    width: 196px;
+    padding: 20px;
+    user-select: none;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 2px;
+    .gd-datepanel-navbar {
+        overflow: hidden;
+        .gd-datepanel-navbtn {
+            color: @iconColor;
+        }
+        .gd-datepanel-navtext {
+            width: calc(~'50% - 56px');
+            font-weight: bold;
+        }
+    }
+    .gd-datepanel-daybox,
+    .gd-datepanel-monthbox,
+    .gd-datepanel-yearbox {
+        overflow: hidden;
+        min-height: 196px;
+    }
+    .gd-datepanel-daylabel,
+    .gd-datepanel-day,
+    .gd-datepanel-navbtn,
+    .gd-datepanel-navtext {
+        width: calc(~'100% / 7');
+    }
+    .gd-datepanel-month,
+    .gd-datepanel-year {
+        width: calc(~'100% / 3');
+    }
+    .gd-datepanel-daylabel,
+    .gd-datepanel-day,
+    .gd-datepanel-month,
+    .gd-datepanel-year,
+    .gd-datepanel-navbtn,
+    .gd-datepanel-navtext {
+        height: 28px;
+        border-radius: 2px;
+        font-size: 12px;
+        float: left;
+        line-height: 28px;
+        text-align: center;
+    }
+    .gd-datepanel-day,
+    .gd-datepanel-month,
+    .gd-datepanel-year,
+    .gd-datepanel-navbtn,
+    .gd-datepanel-navtext {
+        cursor: pointer;
+        &:hover {
+            background-color: @grayColor8;
+        }
+        &[disabled='disabled'] {
+            cursor: not-allowed;
+            color: @grayColor5 !important;
+            background-color: @grayColor8 !important;
+        }
+    }
+    .gd-datepanel-daylabel,
+    .gd-datepanel-day {
+        color: @grayColor4;
+    }
+    .gd-datepanel-day.gd-day-inmonth {
+        color: @grayColor1;
+    }
+    .gd-datepanel-timebox {
+        margin-top: 10px;
+    }
+    .gd-timeruler {
+        width: 100%;
+        height: 50px;
+        background-color: transparent;
+        .gd-timeruler-seg {
+            &:after {
+                display: none;
+            }
+        }
+        .gd-timeruler-labelbox {
+            .gd-timeruler-label {
+                visibility: hidden;
+                &:first-child,
+                &:last-child {
+                    visibility: visible;
+                }
+            }
+        }
+        .gd-timeruler-bar {
+            left: 0;
+            right: 0;
+        }
+    }
+    .gd-date-disabled {
+        background-color: @grayColor8 !important;
+        color: @grayColor4 !important;
+        cursor: not-allowed;
+    }
+    .gd-date-active {
+        background-color: @primaryColor !important;
+        color: white !important;
+    }
+}
+
+.gd-date-range-box {
+    display: inline-block;
+    overflow: hidden;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 2px;
+    .gd-datepanel-box {
+        white-space: nowrap;
+        font-size: 0;
+        &:after {
+            content: ' ';
+            clear: both;
+            display: block;
+        }
+    }
+    .gd-datepanel {
+        padding: 0;
+        box-shadow: none;
+        position: static;
+        display: inline-block;
+        &:first-child {
+            margin-right: 6px;
+        }
+        &:last-child {
+            margin-left: 6px;
+        }
+        .gd-date-between {
+            background-color: lighten(@primaryColor, 30%);
+        }
+    }
+}
+
+.gd-date-footer {
+    text-align: center;
+    font-size: 0;
+    margin-top: 20px;
+    button {
+        margin: 0 6px;
+    }
+}
+
+@keyframes gdDatePanelShow {
+    from {
+        transform: scaleY(0);
+    }
+    to {
+        transform: scaleY(1);
+    }
+}
+
+@keyframes gdDatePanelHide {
+    from {
+        transform: scaleY(1);
+    }
+    to {
+        transform: scaleY(0);
+    }
+}

@@ -1,0 +1,838 @@
+@import './gd_variables';
+html,
+body {
+    height: 100%;
+}
+
+body {
+    font-size: 14px;
+    font-family: 'Arial', 'PingFang SC', 'Microsoft YaHei', 'Segoe UI', Helvetica, 'FreeSans', 'Arimo', 'sans-serif';
+    color: @grayColor1;
+}
+
+/*右侧内容区*/
+
+.gd-right-content {
+    position: absolute;
+    top: 56px;
+    bottom: 0;
+    left: 56px;
+    right: 0;
+    background: @bgColor3;
+    overflow: auto;
+}
+
+/*icon*/
+
+[class*='icon-'] {
+    font-family: 'iconfont';
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/*vue*/
+
+[v-cloak] {
+    display: none !important;
+}
+
+/*禁用鼠标*/
+
+[disabled=disabled] {
+    cursor: not-allowed !important;
+}
+
+/*chrome下滚动条样式*/
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    background-color: @bgColor4;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    background-color: @bgColor4;
+}
+
+::-webkit-scrollbar-thumb {
+    //box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    background-color: @grayColor5;
+}
+
+/* 去除ie浏览器默认input框删除按钮和眼睛*/
+
+::-ms-clear,
+::-ms-reveal {
+    display: none;
+}
+
+/*vue过渡样式*/
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.4s;
+}
+
+.fade-enter,
+.fade-leave-active {
+    opacity: 0;
+}
+
+/*修改默认样式*/
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style: none;
+}
+
+button {
+    cursor: pointer;
+}
+
+input[type='checkbox'],
+input[type='radio'] {
+    box-sizing: border-box;
+    padding: 0;
+}
+
+template {
+    display: none;
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+    /* WebKit browsers */
+    color: @grayColor5;
+}
+
+input:-moz-placeholder,
+textarea:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: @grayColor5;
+}
+
+input::-moz-placeholder,
+textarea::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: @grayColor5;
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+    /* Internet Explorer 10+ */
+    color: @grayColor5;
+}
+
+/*必填标签*/
+
+.gd-label-required {
+    &:before {
+        content: "*";
+        display: inline-block;
+        color: red;
+        font-size: 16px;
+        width: 10px;
+        height: 20px;
+        position: relative;
+        left: -5px;
+        top: 3px;
+        font-size: 16px;
+    }
+}
+
+/*色彩*/
+
+.gd-primary-color {
+    color: @primaryColor;
+}
+
+.gd-success-color {
+    color: @successColor;
+}
+
+.gd-warning-color {
+    color: @warningColor;
+}
+
+.gd-error-color {
+    color: @errorColor;
+}
+
+.gd-danger-color {
+    color: @dangerColor;
+}
+
+.gd-icon-color {
+    color: @iconColor;
+}
+
+.gd-icon-dark-color {
+    color: @iconDarkColor;
+}
+
+.gd-gray1-color {
+    color: @grayColor1;
+}
+
+.gd-gray2-color {
+    color: @grayColor2;
+}
+
+.gd-gray3-color {
+    color: @grayColor3;
+}
+
+.gd-gray4-color {
+    color: @grayColor4;
+}
+
+.gd-gray5-color {
+    color: @grayColor5;
+}
+
+.gd-gray6-color {
+    color: @grayColor6;
+}
+
+.gd-gray7-color {
+    color: @grayColor7;
+}
+
+.gd-gray8-color {
+    color: @grayColor8;
+}
+
+/*文字大小*/
+
+.gd-text-0 {
+    font-size: 0 !important;
+}
+
+.gd-text-xs {
+    font-size: 12px !important;
+}
+
+.gd-text-sm {
+    font-size: 14px !important;
+}
+
+.gd-text-md {
+    font-size: 16px !important;
+}
+
+.gd-text-lg {
+    font-size: 18px !important;
+}
+
+.gd-text-xl {
+    font-size: 20px !important;
+}
+
+.gd-text-xxl {
+    font-size: 22px !important;
+}
+
+.gd-text-xxxl {
+    font-size: 24px !important;
+}
+
+/*文字对齐*/
+
+.gd-text-left {
+    text-align: left !important;
+}
+
+.gd-text-center {
+    text-align: center !important;
+}
+
+.gd-text-right {
+    text-align: right !important;
+}
+
+.gd-text-top {
+    vertical-align: top !important;
+}
+
+.gd-text-middle {
+    vertical-align: middle !important;
+}
+
+.gd-text-bottom {
+    vertical-align: bottom !important;
+}
+
+/*浮动*/
+
+.gd-fl {
+    float: left !important;
+}
+
+.gd-fr {
+    float: right !important;
+}
+
+.gd-nbfc {
+    overflow: hidden;
+}
+
+.gd-clearfix {
+    clear: both;
+}
+
+/* 显示 */
+
+.gd-block {
+    display: block;
+}
+
+.gd-inline {
+    display: inline;
+}
+
+.gd-inline-block {
+    display: inline-block;
+}
+
+.gd-hide {
+    visibility: hidden;
+}
+
+.gd-visible {
+    visibility: visible;
+}
+
+.gd-none {
+    display: none;
+}
+
+/*位置*/
+
+.gd-relative {
+    position: relative;
+}
+
+.gd-absolute {
+    position: absolute;
+}
+
+.gd-fixed {
+    position: fixed;
+}
+
+/*居中*/
+
+.gd-center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.gd-vmiddle {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/*盒子模型*/
+
+.gd-border-box {
+    box-sizing: border-box;
+}
+
+/*文字换行相关*/
+
+.gd-text-ellipsis {
+    word-wrap: normal;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.gd-text-break {
+    word-wrap: break-word;
+}
+
+.gd-text-nowrap {
+    white-space: nowrap;
+}
+
+/*文字粗细*/
+
+.gd-font-bold {
+    font-weight: bold;
+}
+
+.gd-font-normal {
+    font-weight: normal;
+}
+
+/*鼠标*/
+
+.gd-cursor-pointer {
+    cursor: pointer;
+}
+
+/*外边距*/
+
+.gd-margin-left-0 {
+    margin-left: 0 !important;
+}
+
+.gd-margin-right-0 {
+    margin-right: 0 !important;
+}
+
+.gd-margin-top-0 {
+    margin-top: 0 !important;
+}
+
+.gd-margin-bottom-0 {
+    margin-bottom: 0 !important;
+}
+
+.gd-margin-h-0 {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+.gd-margin-v-0 {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+.gd-margin-0 {
+    margin: 0 !important;
+}
+
+.gd-margin-left-xs {
+    margin-left: 5px !important;
+}
+
+.gd-margin-right-xs {
+    margin-right: 5px !important;
+}
+
+.gd-margin-top-xs {
+    margin-top: 5px !important;
+}
+
+.gd-margin-bottom-xs {
+    margin-bottom: 5px !important;
+}
+
+.gd-margin-h-xs {
+    margin-left: 5px !important;
+    margin-right: 5px !important;
+}
+
+.gd-margin-v-xs {
+    margin-top: 5px !important;
+    margin-bottom: 5px !important;
+}
+
+.gd-margin-left-sm {
+    margin-left: 10px !important;
+}
+
+.gd-margin-right-sm {
+    margin-right: 10px !important;
+}
+
+.gd-margin-top-sm {
+    margin-top: 10px !important;
+}
+
+.gd-margin-bottom-sm {
+    margin-bottom: 10px !important;
+}
+
+.gd-margin-h-sm {
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+}
+
+.gd-margin-v-sm {
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+}
+
+.gd-margin-left-md {
+    margin-left: 15px !important;
+}
+
+.gd-margin-right-md {
+    margin-right: 15px !important;
+}
+
+.gd-margin-top-md {
+    margin-top: 15px !important;
+}
+
+.gd-margin-bottom-md {
+    margin-bottom: 15px !important;
+}
+
+.gd-margin-h-md {
+    margin-left: 15px !important;
+    margin-right: 15px !important;
+}
+
+.gd-margin-v-md {
+    margin-top: 15px !important;
+    margin-bottom: 15px !important;
+}
+
+.gd-margin-left-lg {
+    margin-left: 20px !important;
+}
+
+.gd-margin-right-lg {
+    margin-right: 20px !important;
+}
+
+.gd-margin-top-lg {
+    margin-top: 20px !important;
+}
+
+.gd-margin-bottom-lg {
+    margin-bottom: 20px !important;
+}
+
+.gd-margin-h-lg {
+    margin-left: 20px !important;
+    margin-right: 20px !important;
+}
+
+.gd-margin-v-lg {
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;
+}
+
+.gd-margin-left-xl {
+    margin-left: 25px !important;
+}
+
+.gd-margin-right-xl {
+    margin-right: 25px !important;
+}
+
+.gd-margin-top-xl {
+    margin-top: 25px !important;
+}
+
+.gd-margin-bottom-xl {
+    margin-bottom: 25px !important;
+}
+
+.gd-margin-h-xl {
+    margin-left: 25px !important;
+    margin-right: 25px !important;
+}
+
+.gd-margin-v-xl {
+    margin-top: 25px !important;
+    margin-bottom: 25px !important;
+}
+
+.gd-margin-left-xxl {
+    margin-left: 30px !important;
+}
+
+.gd-margin-right-xxl {
+    margin-right: 30px !important;
+}
+
+.gd-margin-top-xxl {
+    margin-top: 30px !important;
+}
+
+.gd-margin-bottom-xxl {
+    margin-bottom: 30px !important;
+}
+
+.gd-margin-h-xxl {
+    margin-left: 30px !important;
+    margin-right: 30px !important;
+}
+
+.gd-margin-v-xxl {
+    margin-top: 30px !important;
+    margin-bottom: 30px !important;
+}
+
+.gd-margin-left-xxxl {
+    margin-left: 35px !important;
+}
+
+.gd-margin-right-xxxl {
+    margin-right: 35px !important;
+}
+
+.gd-margin-top-xxxl {
+    margin-top: 35px !important;
+}
+
+.gd-margin-bottom-xxxl {
+    margin-bottom: 35px !important;
+}
+
+.gd-margin-h-xxxl {
+    margin-left: 35px !important;
+    margin-right: 35px !important;
+}
+
+.gd-margin-v-xxxl {
+    margin-top: 35px !important;
+    margin-bottom: 35px !important;
+}
+
+/*内边距*/
+
+.gd-padding-left-0 {
+    padding-left: 0 !important;
+}
+
+.gd-padding-right-0 {
+    padding-right: 0 !important;
+}
+
+.gd-padding-top-0 {
+    padding-top: 0 !important;
+}
+
+.gd-padding-bottom-0 {
+    padding-bottom: 0 !important;
+}
+
+.gd-padding-h-0 {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.gd-padding-v-0 {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.gd-padding-0 {
+    padding: 0 !important;
+}
+
+.gd-padding-left-xs {
+    padding-left: 5px !important;
+}
+
+.gd-padding-right-xs {
+    padding-right: 5px !important;
+}
+
+.gd-padding-top-xs {
+    padding-top: 5px !important;
+}
+
+.gd-padding-bottom-xs {
+    padding-bottom: 5px !important;
+}
+
+.gd-padding-h-xs {
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+}
+
+.gd-padding-v-xs {
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+}
+
+.gd-padding-xs {
+    padding: 5px !important;
+}
+
+.gd-padding-left-sm {
+    padding-left: 10px !important;
+}
+
+.gd-padding-right-sm {
+    padding-right: 10px !important;
+}
+
+.gd-padding-top-sm {
+    padding-top: 10px !important;
+}
+
+.gd-padding-bottom-sm {
+    padding-bottom: 10px !important;
+}
+
+.gd-padding-h-sm {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+}
+
+.gd-padding-v-sm {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+}
+
+.gd-padding-sm {
+    padding: 10px !important;
+}
+
+.gd-padding-left-md {
+    padding-left: 15px !important;
+}
+
+.gd-padding-right-md {
+    padding-right: 15px !important;
+}
+
+.gd-padding-top-md {
+    padding-top: 15px !important;
+}
+
+.gd-padding-bottom-md {
+    padding-bottom: 15px !important;
+}
+
+.gd-padding-h-md {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+}
+
+.gd-padding-v-md {
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
+}
+
+.gd-padding-md {
+    padding: 15px !important;
+}
+
+.gd-padding-left-lg {
+    padding-left: 20px !important;
+}
+
+.gd-padding-right-lg {
+    padding-right: 20px !important;
+}
+
+.gd-padding-top-lg {
+    padding-top: 20px !important;
+}
+
+.gd-padding-bottom-lg {
+    padding-bottom: 20px !important;
+}
+
+.gd-padding-h-lg {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+}
+
+.gd-padding-v-lg {
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+}
+
+.gd-padding-lg {
+    padding: 20px !important;
+}
+
+.gd-padding-left-xl {
+    padding-left: 25px !important;
+}
+
+.gd-padding-right-xl {
+    padding-right: 25px !important;
+}
+
+.gd-padding-top-xl {
+    padding-top: 25px !important;
+}
+
+.gd-padding-bottom-xl {
+    padding-bottom: 25px !important;
+}
+
+.gd-padding-h-xl {
+    padding-left: 25px !important;
+    padding-right: 25px !important;
+}
+
+.gd-padding-v-xl {
+    padding-top: 25px !important;
+    padding-bottom: 25px !important;
+}
+
+.gd-padding-xl {
+    padding: 25px !important;
+}
+
+.gd-padding-left-xxl {
+    padding-left: 30px !important;
+}
+
+.gd-padding-right-xxl {
+    padding-right: 30px !important;
+}
+
+.gd-padding-top-xxl {
+    padding-top: 30px !important;
+}
+
+.gd-padding-bottom-xxl {
+    padding-bottom: 30px !important;
+}
+
+.gd-padding-h-xxl {
+    padding-left: 30px !important;
+    padding-right: 30px !important;
+}
+
+.gd-padding-v-xxl {
+    padding-top: 30px !important;
+    padding-bottom: 30px !important;
+}
+
+.gd-padding-xxl {
+    padding: 30px !important;
+}
+
+.gd-padding-left-xxxl {
+    padding-left: 35px !important;
+}
+
+.gd-padding-right-xxxl {
+    padding-right: 35px !important;
+}
+
+.gd-padding-top-xxxl {
+    padding-top: 35px !important;
+}
+
+.gd-padding-bottom-xxxl {
+    padding-bottom: 35px !important;
+}
+
+.gd-padding-h-xxxl {
+    padding-left: 35px !important;
+    padding-right: 35px !important;
+}
+
+.gd-padding-v-xxxl {
+    padding-top: 35px !important;
+    padding-bottom: 35px !important;
+}
+
+.gd-padding-xxxl {
+    padding: 35px !important;
+}

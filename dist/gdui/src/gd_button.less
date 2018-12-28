@@ -1,0 +1,110 @@
+@charset "utf-8";
+@import './gd_variables';
+[class*='gd-btn'] {
+    cursor: pointer;
+    outline: none;
+    border: none;
+    min-width: 80px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    padding: 0 10px;
+    box-sizing: border-box;
+    color: white;
+    background-color: @primaryColor;
+    border-radius: 2px;
+    display: inline-block;
+    font-size: 14px;
+    &[disabled] {
+        background-color: @grayColor6;
+        cursor: not-allowed;
+    }
+    &:not([disabled]):hover,
+    &.gd-hover:not([disabled]) {
+        transition: all .3s;
+        background-color: darken( @primaryColor, 5%);
+    }
+    &:not([disabled]):active {
+        transition: background-color .1s;
+        background-color: darken( @primaryColor, 8%);
+    }
+    &.gd-btn-danger {
+        background-color: @dangerColor;
+        &[disabled] {
+            background-color: @grayColor6;
+        }
+        &:not([disabled]):hover,
+        &.gd-hover:not([disabled]) {
+            background-color: darken( @dangerColor, 5%);
+        }
+        &:not([disabled]):active {
+            transition: background-color .1s;
+            background-color: darken( @dangerColor, 8%);
+        }
+    }
+    &.gd-btn-cancel {
+        background-color: @grayColor8;
+        color: @grayColor2;
+        &[disabled] {
+            background-color: @grayColor8;
+            opacity: 0.4;
+        }
+        &:not([disabled]):hover,
+        &.gd-hover:not([disabled]) {
+            background-color: darken( @grayColor8, 5%);
+        }
+        &:not([disabled]):active {
+            transition: background-color .1s;
+            background-color: darken( @grayColor8, 8%);
+        }
+    }
+    &.gd-btn-icon {
+        width: 28px;
+        height: 28px;
+        min-width: 28px;
+        line-height: 26px;
+        background: @bgColor4;
+        border: 1px solid @grayColor7;
+        color: @iconDarkColor;
+        padding: 0;
+        &[disabled] {
+            &::before {
+                opacity: 0.2;
+            }
+        }
+        &:not([disabled]):hover,
+        &.gd-hover:not([disabled]) {
+            background-color: @primaryColor;
+            border-color: @primaryColor;
+            color: white;
+        }
+        &:not([disabled]):active {
+            transition: background-color .1s;
+            background-color: darken( @primaryColor, 5%);
+        }
+    }
+    &.gd-btn-alone {
+        width: 28px;
+        height: 28px;
+        min-width: 28px;
+        line-height: 28px;
+        background: none;
+        border: none;
+        color: @iconColor;
+        padding: 0;
+        &[disabled] {
+            &::before {
+                opacity: 0.4;
+            }
+        }
+        &:not([disabled]):hover,
+        &.gd-hover:not([disabled]) {
+            background-color: white;
+            color: darken(@iconColor, 5%);
+        }
+        &:not([disabled]):active {
+            transition: background-color .1s;
+            color: darken( @iconColor, 10%);
+        }
+    }
+}

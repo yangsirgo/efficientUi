@@ -1,0 +1,443 @@
+@import './gd_variables';
+//input
+.gd-input,
+.gd-iconinput input {
+    width: 200px;
+    height: 32px;
+    box-sizing: border-box;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    outline: none;
+    border: @grayColor6 1px solid;
+    border-radius: 2px;
+    padding: 0 8px;
+    color: @grayColor1;
+    background-color: @bgColor4;
+    &:focus {
+        border-color: @primaryColor;
+        box-shadow: 0 0 1px @primaryColor;
+        &:focus ~ i {
+            color: @primaryColor;
+        }
+    }
+    &.gd-input-lg {
+        width: 380px;
+    }
+    &.gd-input-error {
+        border: 1px solid @errorColor !important;
+        &:focus {
+            box-shadow: 0 0 1px @errorColor !important;
+        }
+    }
+    &:disabled {
+        background-color: @grayColor8;
+        border-color: @grayColor6;
+        cursor: not-allowed;
+    }
+}
+
+//搜索框部分 图标定位
+.gd-iconinput {
+    position: relative;
+    display: inline-block;
+    input {
+        padding-right: 25px;
+    }
+    &.gd-iconinput-lg {
+        input {
+            width: 380px;
+        }
+    }
+    [class*='icon-'] {
+        position: absolute;
+        right: 5px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: @iconColor;
+        transition: color 0.3s;
+        &:hover {
+            color: @primaryColor;
+        }
+    }
+}
+
+.gd-textarea {
+    box-sizing: border-box;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    outline: none;
+    border: @grayColor6 1px solid;
+    border-radius: 2px;
+    padding: 8px;
+    color: @grayColor1;
+    background-color: @bgColor4;
+    width: 200px;
+    height: 100px;
+    resize: none;
+    &:focus {
+        border-color: @primaryColor;
+        box-shadow: 0 0 1px @primaryColor;
+    }
+    &.gd-textarea-lg {
+        width: 380px;
+    }
+    &.gd-textarea-error {
+        border-color: @errorColor;
+        &:focus {
+            box-shadow: 0 0 1px @errorColor;
+        }
+    }
+    &:disabled {
+        background-color: @grayColor8;
+        border-color: @grayColor6;
+        cursor: not-allowed;
+    }
+}
+
+.gd-radio {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    input {
+        display: none;
+        & + i {
+            display: block;
+            float: left;
+            width: 14px;
+            height: 14px;
+            position: relative;
+            top: 0px;
+            left: 0px;
+            background-color: @bgColor4;
+            border: 1px solid @grayColor5;
+            border-radius: 50%;
+            transition-property: border, opacity, transform;
+            transition-duration: 0.2s;
+            margin-right: 5px;
+            cursor: pointer;
+            &:after {
+                position: absolute;
+                width: 8px;
+                height: 8px;
+                left: 3px;
+                top: 3px;
+                display: table;
+                content: ' ';
+                background: @primaryColor;
+                opacity: 0;
+                transform: scale(0);
+                border-radius: 50%;
+                transition-property: border, opacity, transform;
+                transition-duration: 0.2s;
+            }
+            &:hover {
+                border: 1px solid @primaryColor;
+            }
+        }
+        &:checked {
+            & + i {
+                border: 1px solid @primaryColor;
+                &::after {
+                    opacity: 1;
+                    transform: scale(1);
+                    transition-property: border, opacity, transform;
+                    transition-duration: 0.2s;
+                }
+            }
+        }
+        &[disabled] {
+            & + i {
+                border-color: @grayColor6;
+                background-color: @grayColor8;
+                cursor: not-allowed;
+                &::after {
+                    background-color: @grayColor5;
+                }
+            }
+        }
+    }
+}
+
+.gd-switch {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    width: 32px;
+    height: 18px;
+    text-align: left;
+    input {
+        display: none;
+        &[disabled] + i {
+            cursor: not-allowed;
+        }
+        &[disabled] + i:before {
+            opacity: 0.4;
+            background: @grayColor6;
+            cursor: not-allowed;
+        }
+        &[disabled] + i:after {
+            opacity: 0.4;
+            background: @bgColor4;
+        }
+        &:checked + i:before {
+            border-color: @primaryColor;
+            box-shadow: @primaryColor 0 0 0 16px inset;
+            background-color: @primaryColor;
+            transition: background-color 0.4s;
+        }
+        &:checked[disabled] + i:before {
+            border-color: @primaryColor;
+            box-shadow: @primaryColor 0 0 0 16px inset;
+            background-color: @primaryColor;
+            transition: background-color 0.4s;
+            opacity: 0.4;
+        }
+        &:checked[disabled] + i:after {
+            opacity: 0.4;
+            background: @bgColor4;
+        }
+        &:checked + i:after {
+            left: 16px;
+        }
+    }
+    i {
+        width: 100%;
+        height: 18px;
+        position: absolute;
+        border: 0;
+        background: none;
+        outline: 0;
+        cursor: pointer;
+        &:before {
+            content: ' ';
+            width: 100%;
+            height: 18px;
+            background-color: @grayColor6;
+            border-radius: 100px;
+            display: inline-block;
+            position: relative;
+            vertical-align: top;
+            box-sizing: content-box;
+            box-shadow: @grayColor7 0 0 0 0 inset;
+            transition: border 0.4s, background-color 0.4s;
+            background-clip: content-box;
+        }
+        &:after {
+            content: '';
+            width: 14px;
+            height: 14px;
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            border-radius: 100%;
+            background-color: @bgColor4;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+            transition: left 0.2s;
+        }
+    }
+}
+
+.gd-checkbox {
+    display: inline-block;
+    vertical-align: middle;
+    white-space: nowrap;
+    position: relative;
+    user-select: none;
+    height: 16px;
+    line-height: 16px;
+    input ~ i {
+        display: block;
+        float: left;
+        width: 14px;
+        height: 14px;
+        position: relative;
+        top: 0;
+        left: 0;
+        border: 1px solid @grayColor5;
+        border-collapse: separate;
+        border-radius: 2px;
+        background-color: @bgColor4;
+        transition: border-color 0.2s, background-color 0.2s, box-shadow 0.2s;
+        margin-right: 10px;
+        cursor: pointer;
+        &:hover {
+            border-color: @primaryColor;
+        }
+    }
+    input {
+        display: none;
+        &[type='checkbox'] + i:after {
+            content: '';
+            display: table;
+            width: 4px;
+            height: 8px;
+            position: absolute;
+            top: 1px;
+            left: 4px;
+            border: 2px solid white;
+            border-top: 0;
+            border-left: 0;
+            transform: rotate(45deg) scale(1);
+            transition: all 0.2s;
+        }
+        &[type='checkbox']:checked.js-not-all + i {
+            border-color: @primaryColor;
+            opacity: 0.4;
+            background: @primaryColor;
+        }
+        &[type='checkbox']:checked + i {
+            border-color: @primaryColor;
+            background-color: @primaryColor;
+            &::after {
+                display: table;
+            }
+        }
+        &[type='checkbox'][disabled] + i {
+            border-color: @grayColor6;
+            background-color: @grayColor8;
+            cursor: not-allowed;
+        }
+        &[type='checkbox'][disabled] + i:after {
+            animation-name: none;
+            border-color: @grayColor8;
+        }
+        &[type='checkbox']:checked[disabled] + i {
+            background-color: @grayColor8;
+            border-color: @grayColor6;
+        }
+        &[type='checkbox']:checked[disabled] + i:after {
+            animation-name: none;
+            border-color: @grayColor6;
+        }
+    } // 半选状态
+    & .gd-checkbox-half {
+        & input[type='checkbox'] + i:after {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border: none;
+            background-color: @primaryColor;
+            position: absolute;
+            left: 3px;
+            top: 3px;
+            display: inline-block;
+            transform: rotate(0);
+            transition: all 0s;
+        }
+        &:hover {
+            > i {
+                border-color: @primaryColor;
+            }
+        }
+        & > i {
+            background-color: @bgColor4;
+            border-color: @primaryColor;
+        }
+        & > input[disabled] {
+            & + i {
+                background-color: @grayColor7;
+                border-color: @grayColor5;
+                opacity: 0.4;
+            }
+            & + i:after {
+                border-color: @grayColor5;
+            }
+        }
+    }
+}
+
+.gd-select {
+    width: 200px;
+    height: 32px;
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    font-size: 14px;
+    &.gd-select-lg {
+        width: 380px;
+    }
+    .gd-select-input {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        cursor: pointer;
+        * {
+            cursor: pointer;
+        }
+        .gd-input {
+            width: 100%;
+            height: 100%;
+            padding-right: 24px;
+            vertical-align: top;
+        }
+        i {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 5px;
+            color: @grayColor6;
+            pointer-events: none;
+        }
+    }
+    .gd-select-drop {
+        background: @bgColor4;
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+        border-radius: 2px;
+        overflow: hidden;
+        position: fixed;
+        transform-origin: center 0;
+        max-height: 380px;
+        overflow: auto;
+        color: @grayColor1;
+        &.gd-select-drop-top {
+            transform-origin: center bottom;
+        }
+        .gd-option {
+            cursor: pointer;
+            transition: background-color 0.3s;
+            box-sizing: border-box;
+            padding: 8px 10px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            user-select: none;
+            line-height: 14px;
+            &.gd-active {
+                color: @primaryColor;
+            }
+            &:hover {
+                background-color: @grayColor8;
+            }
+            .gd-checkbox {
+                width: 100%;
+                cursor: pointer;
+                * {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+    .gd-drop-enter-active {
+        animation: gdSelectShow 0.1s both;
+    }
+    .gd-drop-leave-active {
+        animation: gdSelectHide 0.1s both;
+    }
+}
+
+@keyframes gdSelectShow {
+    from {
+        transform: scaleY(0);
+    }
+    to {
+        transform: scaleY(1);
+    }
+}
+
+@keyframes gdSelectHide {
+    from {
+        transform: scaleY(1);
+    }
+    to {
+        transform: scaleY(0);
+    }
+}

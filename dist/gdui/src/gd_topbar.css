@@ -1,0 +1,107 @@
+/*色彩*/
+.gd-topbar {
+  position: fixed;
+  left: 56px;
+  right: 0;
+  height: 56px;
+  background-color: #fdfdfd;
+  box-sizing: border-box;
+  padding: 0 30px;
+  box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.04);
+  font-size: 14px;
+  z-index: 999;
+}
+.gd-topbar .gd-topbar-name {
+  display: inline-block;
+  line-height: 56px;
+}
+.gd-topbar .gd-topbar-name .gd-topbar-name-item {
+  color: #999999;
+  display: inline-block;
+}
+.gd-topbar .gd-topbar-name .gd-topbar-name-item > * {
+  display: inline-block;
+  vertical-align: middle;
+}
+.gd-topbar .gd-topbar-name .gd-topbar-name-item i {
+  margin: 0 5px;
+}
+.gd-topbar .gd-topbar-toolbox {
+  float: right;
+  height: 100%;
+  font-size: 14px;
+}
+.gd-topbar .gd-topbar-toolbox::after {
+  content: " ";
+  display: inline-block;
+  vertical-align: middle;
+  height: 100%;
+}
+.gd-topbar .gd-topbar-toolbox > * {
+  margin-right: 20px;
+}
+.gd-topbar .gd-topbar-tool {
+  cursor: pointer;
+  position: relative;
+  font-size: 0;
+  display: inline-block;
+  vertical-align: middle;
+}
+.gd-topbar .gd-topbar-tool .gd-topbar-badge {
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+}
+.gd-topbar .gd-topbar-tool .gd-topbar-badge .gd-topbar-tool-icon {
+  vertical-align: top;
+}
+.gd-topbar .gd-topbar-tool .gd-topbar-tool-badge {
+  position: absolute;
+  background-color: #EC5949;
+  font-size: 12px;
+  line-height: 16px;
+  height: 16px;
+  color: white;
+  text-align: center;
+  box-sizing: border-box;
+  top: -10px;
+  left: calc(100% - 10px);
+  z-index: 1;
+}
+.gd-topbar .gd-topbar-tool .gd-topbar-tool-badge::before,
+.gd-topbar .gd-topbar-tool .gd-topbar-tool-badge::after {
+  content: " ";
+  height: 16px;
+  width: 16px;
+  position: absolute;
+  background-color: #EC5949;
+  border-radius: 50%;
+  display: inline-block;
+  z-index: -1;
+}
+.gd-topbar .gd-topbar-tool .gd-topbar-tool-badge::before {
+  left: -8px;
+}
+.gd-topbar .gd-topbar-tool .gd-topbar-tool-badge::after {
+  right: -8px;
+}
+.gd-topbar .gd-topbar-tool .gd-topbar-tool-text {
+  color: #333333;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 5px;
+  font-size: 14px;
+}
+.gd-topbar .gd-topbar-tool .gd-topbar-tool-icon {
+  font-size: 28px;
+  line-height: 28px;
+  color: #CFD6E1;
+  transition: all 0.3s;
+  display: inline-block;
+  vertical-align: middle;
+}
+.gd-topbar .gd-topbar-tool:hover .gd-topbar-tool-icon,
+.gd-topbar .gd-topbar-tool.gd-hover .gd-topbar-tool-icon {
+  color: #59AEF0;
+}
+/*# sourceMappingURL=gd_topbar.css.map */

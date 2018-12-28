@@ -1,0 +1,108 @@
+@import "./gd_variables";
+/*占位符*/
+
+.gd-none-data,
+.gd-none-data-xs,
+.gd-none-search,
+.gd-none-search-xs,
+.gd-select-user,
+.gd-select-user-xs,
+.gd-select-file,
+.gd-select-file-xs {
+    display: inline-block;
+    width: 110px;
+    height: 100px;
+    background-size: 60px;
+    background-repeat: no-repeat;
+    background-position: top center;
+    position: relative;
+    font-style: normal;
+    text-align: left;
+    &::before {
+        position: absolute;
+        bottom: 10px;
+        width: 100%;
+        text-align: center;
+        color: @iconColor;
+        font-size: 18px;
+    }
+}
+
+.gd-none-data-xs,
+.gd-none-search-xs,
+.gd-select-user-xs,
+.gd-select-file-xs {
+    display: inline-block;
+    width: 90px;
+    height: 70px;
+    background-size: 40px;
+    &::before {
+        font-size: 14px;
+    }
+}
+
+.gd-none-data,
+.gd-none-data-xs {
+    background-image: url(../images/none_data.svg);
+    &::before {
+        content: '\6682\65e0\6570\636e';
+    }
+}
+
+.gd-none-search,
+.gd-none-search-xs {
+    background-image: url(../images/none_search.svg);
+    &::before {
+        content: '未搜索到结果';
+    }
+}
+
+.gd-select-user,
+.gd-select-user-xs {
+    background-image: url(../images/select_user.svg);
+    &::before {
+        content: '选择用户';
+    }
+}
+
+.gd-select-file,
+.gd-select-file-xs {
+    background-image: url(../images/select_file.svg);
+    &::before {
+        content: '选择文件';
+    }
+}
+
+/*标记*/
+
+.gd-mark {
+    display: inline-block;
+    line-height: 26px;
+    min-width: 26px;
+    padding: 0 5px;
+    color: @grayColor3;
+    background-color: @grayColor7;
+    box-sizing: border-box;
+    border-radius: 2px;
+    text-align: center;
+}
+
+.gd-mark-danger {
+    color: @dangerColor;
+    background-color: lighten(@dangerColor, 30%);
+}
+
+.gd-mark-success {
+    color: @successColor;
+    background-color: lighten(@successColor, 20%);
+}
+
+.gd-mark-error {
+    color: @errorColor;
+    background-color: lighten(@errorColor, 20%);
+}
+
+.gd-mark-warning {
+    color: @warningColor;
+    background-color: lighten(@warningColor, 20%);
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./js/resource.js"></script>
+    <style>
+        #app {
+            height: 870px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<div id="app" v-cloak>
+    <h2>Time 相对时间</h2>
+    <div>
+        <gd-time :time="time1"></gd-time>
+        <br>
+        <gd-time :time="time2" type="date"></gd-time>
+        <br>
+        <gd-time :time="time3" type="datetime"></gd-time>
+        <br>
+        <gd-time :time="time3" type="datetime" :format="format"></gd-time>
+        <br>
+        <gd-time :time="time4" type="datetime" :format="format1"></gd-time>
+    </div>
+</div>
+</body>
+</html>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            time1: (new Date()).getTime() - 60 * 3 * 1000,
+            time2: (new Date()).getTime() - 60*60*24 * 3 * 1000,
+            time3: (new Date()).getTime() - 60*60*24 * 4 * 1000,
+            time4: (new Date()).getTime() - 60*60*24 * 4 * 1000,
+            currentTime: (new Date()).getTime(),
+            format:'yyyy年MM月dd日 hh:mm:ss',
+            format1:'yyyy年MM月dd日 hh:mm:ss'
+        }
+    });
+    setInterval(function () {
+        app.time4 = +new Date();
+        log(app.time4);
+    },1000)
+</script>

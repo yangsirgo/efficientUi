@@ -1,0 +1,51 @@
+/*色彩*/
+.gd-toolbar {
+  height: 56px;
+  position: relative;
+  padding: 0 30px;
+  background-color: #F7F7F9;
+}
+.gd-toolbar::after {
+  content: " ";
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+.gd-toolbar > .gd-btn-icon,
+.gd-toolbar > .gd-toolbar-text {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+.gd-toolbar .gd-toolbar-right-item {
+  float: right;
+  height: 100%;
+  margin-left: 10px;
+  font-size: 0;
+}
+.gd-toolbar .gd-toolbar-right-item > * {
+  font-size: 14px;
+}
+.gd-toolbar .gd-toolbar-right-item > *:not(:first-child) {
+  margin-left: 10px;
+}
+.gd-toolbar .gd-toolbar-right-item::after {
+  content: " ";
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+.gd-toolbar .gd-toolbar-right-item > * {
+  display: inline-block;
+  vertical-align: middle;
+}
+.gd-toolbar .gd-toolbar-right-item > [class*='gd-btn'] {
+  height: 28px;
+  line-height: 28px;
+}
+.gd-toolbar .gd-iconinput input[type=text],
+.gd-toolbar .gd-input,
+.gd-toolbar .gd-select {
+  height: 28px;
+}
+/*# sourceMappingURL=gd_toolbar.css.map */

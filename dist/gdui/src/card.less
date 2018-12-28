@@ -1,0 +1,55 @@
+@import "gd_variables.less";
+.gd-card {
+    background: #fff;
+    border-radius: 4px;
+    font-size: 14px;
+    position: relative;
+    transition: all .2s ease-in-out;
+    &:hover {
+        box-shadow: 0 1px 6px rgba(0,0,0,.2);
+        border-color: #eee;
+    }
+    .gd-card-head-border {
+        border-bottom: 1px solid @grayColor8;
+    }
+    .gd-card-extra {
+        position: absolute;
+        right: 16px;
+        top: 15px;
+    }
+    .gd-card-head {
+        padding: 14px 16px;
+        line-height: 1;
+        p {
+            margin: 0;
+            display: inline-block;
+            width: 100%;
+            height: 20px;
+            line-height: 20px;
+            font-size: 16px;
+            color: #333;
+            //font-weight: 700;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            i {
+                color: @grayColor3;
+            }
+            span {
+                color: @grayColor1;
+                padding-left: 8px;
+                vertical-align: text-bottom;
+            }
+        }
+    }
+    .gd-card-body {
+        padding: 20px;
+    }
+}
+.gd-card-bordered {
+    border: 1px solid @grayColor7;
+}
+
+.gd-card-dis-hover:hover {
+    box-shadow: none;
+}

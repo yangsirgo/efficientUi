@@ -1,0 +1,227 @@
+@import './gd_variables';
+.gd-msg {
+    position: fixed;
+    right: 20px;
+    width: 320px;
+    min-height: 60px;
+    box-sizing: border-box;
+    border-left: 3px solid @primaryColor;
+    background: white;
+    box-shadow: 0 7px 20px 0 rgba(0, 0, 0, 0.15);
+    border-radius: 2px;
+    font-size: 0;
+    line-height: 18px;
+    padding: 20px;
+    padding-left: 40px;
+    top: 80px;
+    animation: gdMsgShow .6s;
+    .gd-msg-icon {
+        font-size: 16px;
+        float: left;
+        margin-right: 20px;
+        ~.gd-msg-text {
+            margin-left: 36px;
+        }
+    }
+    .gd-msg-close {
+        font-size: 16px;
+        float: right;
+        color: @iconColor;
+        cursor: pointer;
+        margin-left: 10px;
+        &:hover {
+            color: darken(@iconColor, 5%);
+        }
+    }
+    .gd-msg-time {
+        font-size: 14px;
+        float: right;
+        margin-left: 10px;
+        width: 38px;
+        text-align: right;
+    }
+    .gd-msg-text {
+        font-size: 14px;
+        vertical-align: top;
+        max-height: 300px;
+        overflow: auto;
+    }
+    .gd-msg-btn-box {
+        text-align: center;
+        margin-top: 20px;
+        button {
+            margin: 0 5px;
+        }
+    }
+    &.gd-msg-success {
+        color: @successColor;
+        border-color: @successColor;
+        padding-left: 20px;
+    }
+    &.gd-msg-warning {
+        color: @warningColor;
+        border-color: @warningColor;
+        padding-left: 20px;
+    }
+    &.gd-msg-error {
+        color: @errorColor;
+        border-color: @errorColor;
+        padding-left: 20px;
+    }
+    @keyframes gdMsgShow {
+        from,
+        60%,
+        75%,
+        90%,
+        to {
+            animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+        }
+        from {
+            opacity: 0;
+            transform: translate3d(3000px, 0, 0);
+        }
+        60% {
+            opacity: 1;
+            transform: translate3d(-25px, 0, 0);
+        }
+        75% {
+            transform: translate3d(10px, 0, 0);
+        }
+        90% {
+            transform: translate3d(-5px, 0, 0);
+        }
+        to {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+}
+
+.gd-info {
+    position: fixed;
+    min-width: 260px;
+    min-height: 50px;
+    padding: 15px;
+    box-sizing: border-box;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    background-color: rgba(0, 0, 0, 0.6);
+    font-size: 0;
+    border-radius: 2px;
+    animation: gdInfoShow .2s;
+    transform-origin: 0 0;
+    &.gd-info-hide {
+        animation: gdInfoHide .2s;
+    }
+    .gd-info-icon {
+        display: inline-block;
+        font-size: 20px;
+        line-height: 20px;
+        margin-right: 10px;
+        vertical-align: middle;
+    }
+    .gd-info-text {
+        font-size: 14px;
+        display: inline-block;
+        max-width: 600px;
+        vertical-align: middle;
+        line-height: 20px;
+    }
+    @keyframes gdInfoShow {
+        from {
+            opacity: 0;
+            transform: scale(0) translate(-50%, -50%);
+        }
+        to {
+            transform: scale(1) translate(-50%, -50%);
+            opacity: 1;
+        }
+    }
+    @keyframes gdInfoHide {
+        from {
+            transform: scale(1) translate(-50%, -50%);
+            opacity: 1;
+        }
+        to {
+            transform: scale(0) translate(-50%, -50%);
+            opacity: 0;
+        }
+    }
+}
+
+.gd-tooltip {
+    position: fixed;
+    z-index: 99999;
+    font-size: 0;
+    visibility: hidden;
+    &.gd-tooltip-show {
+        visibility: visible;
+        animation: gdTipShow .2s;
+    }
+    .gd-tooltip-text {
+        color: white;
+        background-color: rgba(102, 102, 102, 0.8);
+        padding: 0 10px;
+        border-radius: 2px;
+        display: inline-block;
+        font-size: 12px;
+        line-height: 26px;
+        vertical-align: middle;
+        white-space: nowrap;
+        word-break: break-all;
+        overflow: hidden;
+    }
+    [class*="gd-tooltip-trangle"] {
+        width: 0;
+        height: 0;
+        position: absolute;
+    }
+    .gd-tooltip-trangle-top {
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        border-top: 6px solid rgba(102, 102, 102, 0.8);
+        left: calc(~"50% - 5px");
+        bottom: -6px;
+    }
+    .gd-tooltip-trangle-bottom {
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-bottom: 5px solid rgba(102, 102, 102, 0.8);
+        left: calc(~"50% - 5px");
+        top: -5px;
+    }
+    .gd-tooltip-trangle-left {
+        border-top: 5px solid transparent;
+        border-left: 5px solid rgba(102, 102, 102, 0.8);
+        border-bottom: 5px solid transparent;
+        vertical-align: middle;
+        top: calc(~"50% - 5px");
+        right: -5px;
+    }
+    .gd-tooltip-trangle-right {
+        border-top: 5px solid transparent;
+        border-right: 5px solid rgba(102, 102, 102, 0.8);
+        border-bottom: 5px solid transparent;
+        vertical-align: middle;
+        top: calc(~"50% - 5px");
+        left: -5px;
+    }
+    @keyframes gdTipShow {
+        from {
+            transform: scale(0)
+        }
+        to {
+            transform: scale(1)
+        }
+    }
+}
+
+// ie下的对齐纠正
+_:-ms-lang(x),
+.gd-msg .gd-msg-icon,
+.gd-msg .gd-msg-close,
+.gd-msg .gd-msg-time {
+    position: relative;
+    top: 2px;
+}

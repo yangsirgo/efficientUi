@@ -1,0 +1,50 @@
+@import "./gd_variables";
+.gd-toolbar {
+    height: 56px;
+    position: relative;
+    padding: 0 30px;
+    background-color: @bgColor3;
+    &::after {
+        content: " ";
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+    }
+    >.gd-btn-icon,
+    >.gd-toolbar-text {
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 5px;
+    }
+    .gd-toolbar-right-item {
+        float: right;
+        height: 100%;
+        margin-left: 10px;
+        font-size: 0;
+        >* {
+            font-size: 14px;
+            &:not(:first-child) {
+                margin-left: 10px;
+            }
+        }
+        &::after {
+            content: " ";
+            display: inline-block;
+            height: 100%;
+            vertical-align: middle;
+        }
+        >* {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        >[class*='gd-btn'] {
+            height: 28px;
+            line-height: 28px;
+        }
+    }
+    .gd-iconinput input[type=text],
+    .gd-input,
+    .gd-select {
+        height: 28px;
+    }
+}

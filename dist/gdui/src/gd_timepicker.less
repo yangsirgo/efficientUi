@@ -1,0 +1,152 @@
+@import './gd_variables';
+.gd-timepicker {
+    display: inline-block;
+    vertical-align: middle;
+    width: 200px;
+    .gd-iconinput {
+        width: 100%;
+        .gd-input {
+            width: 100%;
+        }
+        .icon-time {
+            pointer-events: none;
+        }
+    }
+    .gd-timeruler {
+        position: fixed;
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    }
+}
+
+.gd-timeruler {
+    background-color: @bgColor4;
+    vertical-align: top;
+    width: 610px;
+    height: 86px;
+    position: relative;
+    user-select: none;
+    transform-origin: center 0;
+    .gd-timeruler-bar {
+        position: absolute;
+        left: 20px;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 10px;
+        background-color: @grayColor7;
+        cursor: pointer;
+    }
+    .gd-timeruler-seg {
+        float: left;
+        height: 100%;
+        position: relative;
+        &:after {
+            content: ' ';
+            background-color: @bgColor4;
+            width: 1px;
+            height: 50%;
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        &:last-child {
+            &:after {
+                display: none;
+            }
+        }
+    }
+    &:after {
+        content: ' ';
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+    }
+    .gd-timeruler-mark {
+        position: absolute;
+        height: 100%;
+        width: 36px;
+        cursor: default;
+    }
+    .gd-timeruler-mark-trangle {
+        width: 0;
+        height: 0;
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        border-bottom: 8px solid @primaryColor;
+    }
+    .gd-timeruler-mark-label {
+        font-size: 12px;
+        color: @grayColor1;
+        line-height: 12px;
+        position: absolute;
+        pointer-events: none;
+        text-align: center;
+        top: -16px;
+        left: 50%;
+        transform: translateX(-50%);
+        user-select: none;
+    }
+    .gd-timeruler-labelbox {
+        display: flex;
+        justify-content: space-between;
+        bottom: -20px;
+        position: absolute;
+        width: 100%;
+        user-select: none;
+    }
+    .gd-timeruler-label {
+        font-size: 12px;
+        color: @grayColor4;
+        line-height: 12px;
+        width: 32px;
+        &:last-child {
+            width: 0;
+            text-indent: -32px;
+        }
+    }
+    .gd-timeruler-rangebar {
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 100%;
+        background-color: @primaryColor;
+    }
+    &.gd-timeruler-drop-top {
+        transform-origin: center bottom;
+    }
+    &.gd-timeruler-drop-enter-active {
+        animation: gdTimeRulerShow 0.1s both;
+    }
+    &.gd-timeruler-drop-leave-active {
+        animation: gdTimeRulerHide 0.1s both;
+    }
+}
+
+body.gd-timeruler-move {
+    * {
+        cursor: e-resize !important;
+    }
+}
+
+@keyframes gdTimeRulerShow {
+    from {
+        transform: scaleY(0);
+    }
+    to {
+        transform: scaleY(1);
+    }
+}
+
+@keyframes gdTimeRulerHide {
+    from {
+        transform: scaleY(1);
+    }
+    to {
+        transform: scaleY(0);
+    }
+}

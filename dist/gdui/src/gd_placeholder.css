@@ -1,0 +1,111 @@
+/*色彩*/
+/*占位符*/
+.gd-none-data,
+.gd-none-data-xs,
+.gd-none-search,
+.gd-none-search-xs,
+.gd-select-user,
+.gd-select-user-xs,
+.gd-select-file,
+.gd-select-file-xs {
+  display: inline-block;
+  width: 110px;
+  height: 100px;
+  background-size: 60px;
+  background-repeat: no-repeat;
+  background-position: top center;
+  position: relative;
+  font-style: normal;
+  text-align: left;
+}
+.gd-none-data::before,
+.gd-none-data-xs::before,
+.gd-none-search::before,
+.gd-none-search-xs::before,
+.gd-select-user::before,
+.gd-select-user-xs::before,
+.gd-select-file::before,
+.gd-select-file-xs::before {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
+  color: #CFD6E1;
+  font-size: 18px;
+}
+.gd-none-data-xs,
+.gd-none-search-xs,
+.gd-select-user-xs,
+.gd-select-file-xs {
+  display: inline-block;
+  width: 90px;
+  height: 70px;
+  background-size: 40px;
+}
+.gd-none-data-xs::before,
+.gd-none-search-xs::before,
+.gd-select-user-xs::before,
+.gd-select-file-xs::before {
+  font-size: 14px;
+}
+.gd-none-data,
+.gd-none-data-xs {
+  background-image: url(../images/none_data.svg);
+}
+.gd-none-data::before,
+.gd-none-data-xs::before {
+  content: '\6682\65e0\6570\636e';
+}
+.gd-none-search,
+.gd-none-search-xs {
+  background-image: url(../images/none_search.svg);
+}
+.gd-none-search::before,
+.gd-none-search-xs::before {
+  content: '未搜索到结果';
+}
+.gd-select-user,
+.gd-select-user-xs {
+  background-image: url(../images/select_user.svg);
+}
+.gd-select-user::before,
+.gd-select-user-xs::before {
+  content: '选择用户';
+}
+.gd-select-file,
+.gd-select-file-xs {
+  background-image: url(../images/select_file.svg);
+}
+.gd-select-file::before,
+.gd-select-file-xs::before {
+  content: '选择文件';
+}
+/*标记*/
+.gd-mark {
+  display: inline-block;
+  line-height: 26px;
+  min-width: 26px;
+  padding: 0 5px;
+  color: #999999;
+  background-color: #EEEEEE;
+  box-sizing: border-box;
+  border-radius: 2px;
+  text-align: center;
+}
+.gd-mark-danger {
+  color: #EC5949;
+  background-color: #fad7d4;
+}
+.gd-mark-success {
+  color: #63BFB1;
+  background-color: #abddd5;
+}
+.gd-mark-error {
+  color: #FF8C7E;
+  background-color: #ffe7e4;
+}
+.gd-mark-warning {
+  color: #FFBC5B;
+  background-color: #ffe6c1;
+}
+/*# sourceMappingURL=gd_placeholder.css.map */

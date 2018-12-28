@@ -1,0 +1,41 @@
+/*色彩*/
+.gd-recentpicker {
+  width: 200px;
+  display: inline-block;
+  vertical-align: middle;
+}
+.gd-recentpicker.gd-recentpicker {
+  width: 300px;
+}
+.gd-recentpicker .gd-select {
+  width: 100%;
+}
+.gd-recentpicker .gd-recentpicker-custom .icon-right {
+  color: #CFD6E1;
+  float: right;
+}
+.gd-recentpicker .gd-recentpicker-datepanel {
+  float: right;
+}
+.gd-recentpicker .gd-recentpicker-datepanel .gd-datepanel,
+.gd-recentpicker .gd-recentpicker-datepanel .gd-date-range-box {
+  border-radius: 0;
+  box-shadow: none;
+}
+@keyframes gdDateRecentPanelShow {
+  from {
+    width: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+@keyframes gdDateRecentPanelHide {
+  from {
+    transform: scaleX(1);
+  }
+  to {
+    transform: scaleX(0);
+  }
+}
+/*# sourceMappingURL=gd_recentpicker.css.map */

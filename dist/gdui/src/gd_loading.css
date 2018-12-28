@@ -1,0 +1,29 @@
+/*色彩*/
+.gd-loading {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.gd-loading .gd-loading-body {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.gd-loading .gd-loading-body .gd-loading-img {
+  background-image: url(../images/loading.gif);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 70px;
+  height: 70px;
+  margin: 0 auto;
+}
+.gd-loading .gd-loading-body .gd-loading-text {
+  color: white;
+  font-size: 14px;
+  text-align: center;
+}
+/*# sourceMappingURL=gd_loading.css.map */

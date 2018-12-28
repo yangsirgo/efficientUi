@@ -1,0 +1,95 @@
+[
+    {
+        "name": "资源",
+        "level": "0",
+        "childrenNum": "85",
+        "parentDisplayOrder": "-1",
+        "displayOrder": "0",
+        "pId": null,
+        "id": "Resource"
+    },
+    {
+        "name": "主机",
+        "level": "1",
+        "childrenNum": "19",
+        "displayOrder": "0",
+        "pId": "Resource",
+        "id": "host"
+    },
+    {
+        "name": "Linux",
+        "level": "2",
+        "childrenNum": "9",
+        "displayOrder": "2",
+        "pId": "host",
+        "id": "LinuxServer"
+    },
+    {
+        "name": "Windows",
+        "level": "2",
+        "childrenNum": "10",
+        "displayOrder": "10",
+        "pId": "host",
+        "id": "WindowsServer"
+    },
+    {
+        "name": "网络设备",
+        "level": "1",
+        "childrenNum": "23",
+        "displayOrder": "20",
+        "pId": "Resource",
+        "id": "networkdevice"
+    },
+    {
+        "name": "安全设备",
+        "level": "1",
+        "childrenNum": "2",
+        "displayOrder": "25",
+        "pId": "Resource",
+        "id": "safedevice"
+    },
+    {
+        "name": "链路",
+        "level": "1",
+        "childrenNum": "41",
+        "displayOrder": "50",
+        "pId": "Resource",
+        "id": "linkgroup"
+    },
+    {
+        "name": "路由器",
+        "level": "2",
+        "childrenNum": "8",
+        "parentDisplayOrder": "20",
+        "displayOrder": "0",
+        "pId": "networkdevice",
+        "id": "router"
+    },
+    {
+        "name": "交换机",
+        "level": "2",
+        "childrenNum": "15",
+        "parentDisplayOrder": "20",
+        "displayOrder": "10",
+        "pId": "networkdevice",
+        "id": "switch"
+    },
+    {
+        "name": "防火墙",
+        "level": "2",
+        "childrenNum": "2",
+        "parentDisplayOrder": "25",
+        "displayOrder": "1",
+        "pId": "safedevice",
+        "id": "firewall"
+    },
+    {
+        "name": "以太网链路",
+        "level": "2",
+        "childrenNum": "41",
+        "parentDisplayOrder": "50",
+        "displayOrder": "1",
+        "pId": "linkgroup",
+        "id": "link"
+    }
+]

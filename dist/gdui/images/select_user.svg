@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.3 (51167) - http://www.bohemiancoding.com/sketch -->
+    <title>选择用户</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <circle id="path-1" cx="29.3770492" cy="18.8360656" r="17.8360656"></circle>
+        <rect id="path-2" x="41.9180328" y="39.7704918" width="22" height="22" rx="2"></rect>
+        <rect id="path-3" x="46.1147541" y="51.3606557" width="7" height="2" rx="1"></rect>
+        <rect id="path-4" x="49.3114754" y="50.3114754" width="11" height="2" rx="1"></rect>
+    </defs>
+    <g id="组件" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard-2">
+            <g id="Group-7">
+                <path d="M52.9323019,41.4942443 C47.4192171,34.4909881 39.1809357,30.3278689 30.278944,30.3278689 C14.5721029,30.3278689 1.74038987,43.2073371 1.03091454,59.3900396 L52.9323019,41.4942443 Z" id="Oval-5" stroke="#CFD6E1" stroke-width="2"></path>
+                <g id="Oval-5">
+                    <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                    <circle stroke="#CFD6E1" stroke-width="2" cx="29.3770492" cy="18.8360656" r="16.8360656"></circle>
+                </g>
+                <g id="Rectangle">
+                    <use fill="#F6F6F8" fill-rule="evenodd" xlink:href="#path-2"></use>
+                    <rect stroke="#CFD6E1" stroke-width="2" x="42.9180328" y="40.7704918" width="20" height="20" rx="2"></rect>
+                </g>
+                <g id="Rectangle-17" transform="translate(49.614754, 52.360656) rotate(-315.000000) translate(-49.614754, -52.360656) ">
+                    <use fill="#CDD4DF" fill-rule="evenodd" xlink:href="#path-3"></use>
+                    <rect stroke="#CFD6E1" stroke-width="1" x="46.6147541" y="51.8606557" width="6" height="1" rx="0.5"></rect>
+                </g>
+                <g id="Rectangle-19" transform="translate(54.811475, 51.311475) rotate(-45.000000) translate(-54.811475, -51.311475) ">
+                    <use fill="#CDD4DF" fill-rule="evenodd" xlink:href="#path-4"></use>
+                    <rect stroke="#CFD6E1" stroke-width="1" x="49.8114754" y="50.8114754" width="10" height="1" rx="0.5"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

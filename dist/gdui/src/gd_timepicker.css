@@ -1,0 +1,145 @@
+/*色彩*/
+.gd-timepicker {
+  display: inline-block;
+  vertical-align: middle;
+  width: 200px;
+}
+.gd-timepicker .gd-iconinput {
+  width: 100%;
+}
+.gd-timepicker .gd-iconinput .gd-input {
+  width: 100%;
+}
+.gd-timepicker .gd-iconinput .icon-time {
+  pointer-events: none;
+}
+.gd-timepicker .gd-timeruler {
+  position: fixed;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+.gd-timeruler {
+  background-color: #FFFFFF;
+  vertical-align: top;
+  width: 610px;
+  height: 86px;
+  position: relative;
+  user-select: none;
+  transform-origin: center 0;
+}
+.gd-timeruler .gd-timeruler-bar {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 10px;
+  background-color: #EEEEEE;
+  cursor: pointer;
+}
+.gd-timeruler .gd-timeruler-seg {
+  float: left;
+  height: 100%;
+  position: relative;
+}
+.gd-timeruler .gd-timeruler-seg:after {
+  content: ' ';
+  background-color: #FFFFFF;
+  width: 1px;
+  height: 50%;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.gd-timeruler .gd-timeruler-seg:last-child:after {
+  display: none;
+}
+.gd-timeruler:after {
+  content: ' ';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+.gd-timeruler .gd-timeruler-mark {
+  position: absolute;
+  height: 100%;
+  width: 36px;
+  cursor: default;
+}
+.gd-timeruler .gd-timeruler-mark-trangle {
+  width: 0;
+  height: 0;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 8px solid #59AEF0;
+}
+.gd-timeruler .gd-timeruler-mark-label {
+  font-size: 12px;
+  color: #333333;
+  line-height: 12px;
+  position: absolute;
+  pointer-events: none;
+  text-align: center;
+  top: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  user-select: none;
+}
+.gd-timeruler .gd-timeruler-labelbox {
+  display: flex;
+  justify-content: space-between;
+  bottom: -20px;
+  position: absolute;
+  width: 100%;
+  user-select: none;
+}
+.gd-timeruler .gd-timeruler-label {
+  font-size: 12px;
+  color: #B1B1B1;
+  line-height: 12px;
+  width: 32px;
+}
+.gd-timeruler .gd-timeruler-label:last-child {
+  width: 0;
+  text-indent: -32px;
+}
+.gd-timeruler .gd-timeruler-rangebar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background-color: #59AEF0;
+}
+.gd-timeruler.gd-timeruler-drop-top {
+  transform-origin: center bottom;
+}
+.gd-timeruler.gd-timeruler-drop-enter-active {
+  animation: gdTimeRulerShow 0.1s both;
+}
+.gd-timeruler.gd-timeruler-drop-leave-active {
+  animation: gdTimeRulerHide 0.1s both;
+}
+body.gd-timeruler-move * {
+  cursor: e-resize !important;
+}
+@keyframes gdTimeRulerShow {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+@keyframes gdTimeRulerHide {
+  from {
+    transform: scaleY(1);
+  }
+  to {
+    transform: scaleY(0);
+  }
+}
+/*# sourceMappingURL=gd_timepicker.css.map */

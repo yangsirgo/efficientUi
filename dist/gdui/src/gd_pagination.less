@@ -1,0 +1,105 @@
+@import './gd_variables';
+//表格
+.gd-pagination {
+    height: 50px;
+    box-sizing: border-box;
+    color: @grayColor3;
+    z-index: 2;
+    background: @bgColor3;
+    padding: 0 10px;
+    &:after {
+        content: ' ';
+        display: inline-block;
+        vertical-align: middle;
+        height: 100%;
+        width: 0;
+    }
+    .gd-pagination-info {
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .gd-pagination-page {
+        float: right;
+        height: 100%;
+        user-select: none;
+        &:after {
+            content: ' ';
+            display: inline-block;
+            vertical-align: middle;
+            height: 100%;
+            width: 0;
+        }
+        .gd-pagination-page-per {
+            display: inline-block;
+            vertical-align: middle;
+            border: none;
+            outline: none;
+        }
+        .gd-select {
+            width: 60px;
+            .gd-select-input {
+                .gd-input {
+                    border: none;
+                    background-color: transparent;
+                    box-shadow: none;
+                    text-align: right;
+                    color: @grayColor2;
+                }
+            }
+        }
+        .gd-pagination-page-jump {
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 20px;
+            .gd-input {
+                width: 50px;
+                height: 28px;
+            }
+            button {
+                outline: none;
+                border: none;
+                background: none;
+                color: @grayColor2;
+                &:hover {
+                    color: darken(@grayColor2, 30%);
+                }
+            }
+        }
+        .gd-pagination-page-list {
+            display: inline-block;
+            vertical-align: middle;
+            font-size: 0;
+            margin-left: 20px;
+            width [class*='icon-'] {
+                font-size: 16px;
+            }
+            span {
+                cursor: pointer;
+                font-size: 14px;
+                min-width: 28px;
+                height: 28px;
+                line-height: 28px;
+                padding: 0 3px;
+                display: inline-block;
+                text-align: center;
+                box-sizing: border-box;
+                vertical-align: middle;
+                transition: all 0.3s;
+                border-radius: 2px;
+                overflow: hidden;
+                margin: 0 3px;
+                &[disabled] {
+                    color: @grayColor5;
+                }
+                &:hover:not([disabled]) {
+                    color: darken(@grayColor2, 30%);
+                    background: #ecedf2;
+                }
+            }
+            .gd-pagination-page-cur {
+                background: #ecedf2;
+                color: @grayColor1;
+            }
+        }
+    }
+}

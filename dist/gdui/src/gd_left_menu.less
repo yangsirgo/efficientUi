@@ -1,0 +1,125 @@
+@import "./gd_variables";
+//侧边栏
+.gd-left-menu {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    white-space: nowrap;
+    width: 56px;
+    background: @menuBgColor;
+    user-select: none;
+    z-index: 1000;
+    .gd-left-menu-logo {
+        background-image: url(../images/logo.png);
+        background-repeat: no-repeat;
+        background-position: 10px;
+        width: 200px;
+        height: 80px;
+        &.gd-left-menu-logopic {
+            background-size: 46px;
+            background-position: 5px
+        }
+    }
+    .gd-left-menu-prodname {
+        color: white;
+        font-size: 22px;
+        margin-left: 60px;
+        line-height: 80px;
+        display: block;
+        max-width: calc(~"100% - 60px");
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .gd-left-menu-body {
+        position: relative;
+        height: calc(~"100% - 80px");
+    }
+    .gd-left-menu-content {
+        width: 200px;
+        box-sizing: border-box;
+        padding-left: 17px;
+        position: relative;
+        left: 0;
+        &:hover {
+            >.gd-left-menu-tip {
+                right: 144px;
+            }
+        }
+    }
+    .gd-left-menu-text {
+        color: rgba(255, 255, 255, 0.8);
+        cursor: pointer;
+        display: block;
+        height: 100%;
+        transition: all .3s;
+        &:hover {
+            background-color: @menuSubBgColor;
+            padding-left: 28px !important;
+        }
+    }
+    .gd-active {
+        color: @primaryColor;
+    }
+    .gd-left-menu-sub {
+        position: absolute;
+        top: 0;
+        left: 100%;
+        background: @menuSubBgColor;
+        display: block;
+        li {
+            position: relative;
+            min-width: 140px;
+        }
+        .gd-left-menu-text {
+            position: relative;
+            left: 0;
+            padding: 0 20px;
+        }
+    }
+    .gd-left-menu-item {
+        line-height: 55px;
+        font-size: 14px;
+        position: relative;
+        &:hover {
+            >.gd-left-menu-text {
+                background-color: @menuSubBgColor;
+                padding-left: 28px !important;
+            }
+        }
+        .gd-left-menu-icon {
+            margin-right: 17px;
+            font-size: 20px;
+            float: left;
+            width: 22px;
+            height: 55px;
+        }
+    }
+    .gd-left-menu-next {
+        position: absolute;
+        right: 8px;
+        font-size: 14px;
+        color: #7b8189;
+    }
+    .gd-left-menu-tip {
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        background-color: red;
+        border-radius: 50%;
+        right: 156px;
+        top: 13px;
+        transition: right .3s;
+    }
+    .gd-left-menu-sub {
+        .gd-left-menu-tip {
+            position: relative;
+            display: inline-block;
+            left: auto;
+            right: 0;
+            top: -5px;
+            transition: right 0;
+        }
+    }
+}

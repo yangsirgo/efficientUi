@@ -1,0 +1,104 @@
+@import "gd_variables";
+.steps {
+    font-size: 0;
+    width: 100%;
+    line-height: 1.5;
+    .step-item {
+        position: relative;
+        display: inline-block;
+        vertical-align: top;
+        .step-tail {
+            width: 100%;
+            position: absolute;
+            top: 15px;
+            left: 0;
+            padding: 0 10px;
+            box-sizing: border-box;
+            .step-line {
+                width: 100%;
+                height: 1px;
+                display: inline-block;
+                background: @grayColor5;
+            }
+        }
+        .step-head {
+            display: inline-block;
+            vertical-align: top;
+            padding: 5px;
+            font-size: 12px;
+            .step-head-inner {
+                width: 20px;
+                height: 20px;
+                border-radius: 10px;
+                line-height: 20px;
+                text-align: center;
+            }
+            i.step-icon {
+                font-style:normal;
+            }
+        }
+        .step-body {
+            font-size: 12px;
+            display: inline-block;
+            padding: 2px;
+        }
+        .step-head,.step-body {
+            background-color: #fff;
+            position: relative;
+        }
+    }
+    .lastStep {
+        .step-tail {
+            display: none;
+        }
+    }
+    .step-error {
+        .step-icon {
+            color: @errorColor;
+        }
+        .steps-content {
+            color: @errorColor;
+        }
+        .steps-title {
+            color: @errorColor;
+        }
+    }
+    .step-done {
+        .step-tail .step-line{
+            background-color: @primaryColor;
+        }
+        .step-head .step-head-inner {
+            border: 1px solid @primaryColor;
+            color: @primaryColor;
+        }
+    }
+    .step-progress {
+        .step-body{
+            color: @grayColor1;
+        }
+        .step-head .step-head-inner {
+            border: 1px solid @primaryColor;
+            color: #fff;
+            background-color: @primaryColor;
+        }
+
+    }
+    .step-wait {
+        .step-body{
+            color: @grayColor5;
+        }
+        .step-head .step-head-inner {
+            border:1px  solid @grayColor5;
+            color: @grayColor5;
+        }
+    }
+    .step-custom {
+        .step-head .step-head-inner {
+            border-radius: 10px;
+        }
+    }
+}
+
+.step-horizontal {
+
+}

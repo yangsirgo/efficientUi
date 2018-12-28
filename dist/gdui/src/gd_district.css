@@ -1,0 +1,12 @@
+/*色彩*/
+.gd-district {
+  font-size: 0;
+  display: inline-block;
+}
+.gd-district .gd-select {
+  margin-left: 8px;
+}
+.gd-district .gd-select:first-child {
+  margin-left: 0;
+}
+/*# sourceMappingURL=gd_district.css.map */

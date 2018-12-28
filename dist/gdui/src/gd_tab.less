@@ -1,0 +1,208 @@
+@import "./gd_variables";
+.gd-tab-single {}
+
+//横向页签
+.gd-tab-horizontal {
+    font-size: 14px;
+    color: #657180;
+    width: 100%;
+    &>ul.gd-tab-bar {
+        //overflow: hidden;
+        width: 100%;
+        height: 32px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        li.gd-tab-li {
+            float: left;
+            margin: 0 8px 0 0;
+            &>span {
+                cursor: pointer;
+                border-color: #eee;
+                position: relative;
+                background: #F9F9F9;
+                float: left;
+                text-decoration: none;
+                color: #666;
+                font-family: MicrosoftYaHei;
+                border-radius: 2px 2px 0 0;
+                box-shadow: -1px -1px 2px rgba(0, 0, 0, 0.1);
+                border-bottom: none;
+                height: 32px;
+                min-width: 98px;
+                text-align: center;
+                line-height: 32px;
+                padding: 0 10px;
+                &:after {
+                    content: '';
+                    position: absolute;
+                    z-index: 1;
+                    top: 0;
+                    right: -.5em;
+                    bottom: 0;
+                    width: 14px;
+                    background: #F9F9F9;
+                    box-shadow: 2px -1px 1px rgba(226, 222, 222, 0.4);
+                    transform: skew(18deg);
+                    border-radius: 0 2px 0 0;
+                    cursor: pointer;
+                }
+            }
+        }
+        li.gd-tab-li-active span {
+            background: #fff;
+            z-index: 3;
+            color: @primaryColor;
+            &::after {
+                background: #fff;
+                z-index: 3;
+            }
+        }
+    }
+    &>div.gd-tab-content {
+        box-sizing: border-box;
+        background: #fff;
+        display: inline-block;
+        width: inherit;
+        height: auto;
+        position: relative;
+        z-index: 2;
+        border-radius: 0 2px 2px 2px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, .2);
+        height: calc(~"100% - 32px");
+        .gd-tab-item {
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            overflow: auto;
+            padding: 20px;
+            background-color: white;
+        }
+    }
+}
+
+//纵向页签
+.gd-tab-vertical {
+    font-size: 14px;
+    color: #657180;
+    width: 100%; //height: 200px;
+    display: flex;
+    ul.gd-tab-bar {
+        flex: none;
+        background: #F9F9F9;
+        width: 200px; //height: 270px;
+        padding: 0;
+        margin: 0; //display: inline-block;
+        float: left;
+        li::before {
+            content: ' ';
+            display: inline-block;
+            vertical-align: middle;
+            height: 100%;
+            width: 0;
+        }
+        li.gd-tab-li {
+            list-style: none;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            color: #999999;
+            cursor: pointer;
+            &:hover:not(.gd-tab-li-active) {
+                background-color: @bgColor2;
+            }
+        }
+        li.gd-tab-li-active {
+            background-color: #fff;
+            color: @primaryColor;
+            position: relative;
+            span {
+                &::after {
+                    content: " ";
+                    width: 3px;
+                    height: 100%;
+                    display: inline-block;
+                    background-color: @primaryColor;
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                }
+            }
+        }
+    }
+    &>div.gd-tab-content {
+        background: #fff;
+        position: relative;
+        z-index: 2;
+        border-radius: 0 2px 2px 0px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, .2);
+        flex: 1;
+        .gd-tab-item {
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            overflow: auto;
+            padding: 20px;
+            background-color: white;
+        }
+    }
+}
+
+//滚动页签
+.gd-tab-scroll {
+    margin-top: 25px;
+    border: #e5e5e5 solid 1px;
+    background-color: #fff;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    .gd-tab-bar {
+        position: absolute;
+        bottom: 0;
+        top: 0; //float: left;
+        margin: -1px 0 0 -1px;
+        left: 0px;
+        border-right: 1px solid @grayColor7;
+        li {
+            cursor: pointer;
+            display: block;
+            width: 195px;
+            height: 50px; //margin-top: 1px;
+            text-align: center;
+            font: 14px/50px 'Microsoft YaHei';
+            color: #999999;
+            /*background: #f3f3f3;*/
+            position: relative;
+            :first-child {
+                margin: 0;
+            }
+        }
+        .gd-tab-li-active {
+            color: @primaryColor;
+            span::after {
+                content: " ";
+                width: 3px;
+                height: 32px;
+                top: 9px;
+                right: 0px;
+                position: absolute;
+                background-color: @primaryColor;
+            }
+        }
+    }
+    .gd-tab-content {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 196px;
+        bottom: 0; //overflow-y: auto;
+        //height: inherit;
+        overflow: auto;
+        box-sizing: border-box;
+        padding: 20px;
+    }
+}

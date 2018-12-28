@@ -1,0 +1,366 @@
+@import './gd_variables';
+//表格
+.gd-table-wrapper {
+    position: relative;
+    background-color: @bgColor4;
+    height: 100%;
+    /**********    loading 样式 START     ***********/
+    &.gd-table-loading:before {
+        position: absolute;
+        content: '';
+        top: 0;
+        left: 0;
+        background: rgba(255, 255, 255, .8);
+        width: 100%;
+        height: 100%;
+        border-radius: .28571429rem;
+        z-index: 100;
+    }
+    &.gd-table-loading:after {
+        position: absolute;
+        content: '';
+        top: 50%;
+        left: 50%;
+        margin: -1.5em 0 0 -1.5em;
+        width: 3em;
+        height: 3em;
+        animation: segment-spin .6s linear;
+        animation-iteration-count: infinite;
+        border-radius: 500rem;
+        border-color: #767676 rgba(0, 0, 0, .1) rgba(0, 0, 0, .1);
+        border-style: solid;
+        border-width: .2em;
+        box-shadow: 0 0 0 1px transparent;
+        visibility: visible;
+        z-index: 101;
+    }
+    /********************* loading 样式 END  ********************/
+    .gd-none-data {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .gd-table-scroll-h {
+        height: calc(~'100% - 50px');
+        overflow: hidden;
+        width: 100%;
+        position: relative;
+    }
+    .gd-table-scroll-hp {
+        overflow: auto;
+        width: 100%;
+        position: relative;
+        min-height: 1px;
+        z-index: 3;
+        .gd-table-scroll-proxy {
+            height: 1px;
+            visibility: hidden;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    }
+    .gd-table-scroll-v {
+        overflow-y: auto;
+        overflow-x: hidden;
+        position: absolute;
+        top: 40px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+    .gd-table-head {
+        background-color: @bgColor3;
+        user-select: none;
+        position: relative;
+        tr {
+            height: 39px;
+            border-bottom: 1px solid transparent;
+            &.gd-table-scrolled {
+                border-color: @bgColor1;
+            }
+        }
+        th {
+            text-align: left;
+            transition: background-color 0.3s;
+            position: relative;
+            white-space: nowrap;
+            font-weight: normal;
+        }
+        .gd-table-col-head {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: inline-block;
+            max-width: calc(~'100% - 10px');
+            vertical-align: middle;
+            &.gd-table-filter-head {
+                max-width: calc(~'100% - 32px');
+            }
+        }
+        .gd-table-filter {
+            display: inline-block;
+            vertical-align: middle;
+            position: relative;
+            font-weight: normal;
+            text-align: left;
+            &.gd-table-filter-has {
+                .icon-down {
+                    background-color: @primaryColor;
+                    color: white;
+                    &::before {
+                        margin-left: -1px;
+                    }
+                    &:hover,
+                    &.gd-hover {
+                        color: white;
+                        background-color: darken(@primaryColor, 2%);
+                    }
+                }
+            }
+            .icon-down {
+                cursor: pointer;
+                background-color: @grayColor7;
+                color: @iconColor;
+                border-radius: 2px;
+                display: inline-block;
+                width: 16px;
+                text-align: center;
+                font-size: 14px;
+                &:hover,
+                &.gd-hover {
+                    color: @primaryColor;
+                }
+            }
+        }
+        .gd-table-resize-proxy {
+            height: 40px;
+            width: 5px;
+            position: absolute;
+            right: 0;
+            top: 0;
+            z-index: 1;
+            user-select: none;
+            cursor: col-resize;
+            .gd-table-resize-line {
+                width: 1px;
+                background-color: @bgColor1;
+                margin: 0 auto;
+            }
+        }
+        .gd-table-sort {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+        }
+        .gd-table-order {
+            cursor: pointer;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0px;
+            user-select: none;
+            &.gd-table-order-asc {
+                .icon-ascending {
+                    color: @iconDarkColor;
+                }
+            }
+            &.gd-table-order-desc {
+                .icon-descending {
+                    color: @iconDarkColor;
+                }
+            }
+            i {
+                position: absolute;
+                font-size: 20px;
+                color: @iconColor;
+                right: 0;
+            }
+            i:nth-child(1) {
+                top: 4px;
+            }
+            i:nth-child(2) {
+                bottom: 4px;
+            }
+        }
+    }
+    .gd-table-body {
+        position: relative;
+        table {
+            margin-left: 0px;
+            clear: both;
+            border-spacing: 0;
+            tr {
+                transition: all 0.3s;
+                height: 40px;
+                &:nth-child(odd) {
+                    background-color: @bgColor3;
+                }
+                &.gd-hover,
+                &:hover {
+                    background-color: #ecedf2;
+                }
+                td {
+                    position: relative;
+                }
+            }
+        }
+        .gd-table-operate {
+            color: @iconColor;
+            font-size: 0;
+        }
+    }
+    .gd-table-footer {
+        height: 50px;
+        border-top: 1px solid @grayColor6;
+        box-sizing: border-box;
+        color: @grayColor3;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 3;
+        background: @bgColor3;
+        padding: 0 10px;
+        &:after {
+            content: ' ';
+            display: inline-block;
+            vertical-align: middle;
+            height: 100%;
+            width: 0;
+        }
+        .gd-table-info {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .gd-table-page {
+            float: right;
+            height: 100%;
+            user-select: none;
+            &:after {
+                content: ' ';
+                display: inline-block;
+                vertical-align: middle;
+                height: 100%;
+                width: 0;
+            }
+            .gd-table-page-per {
+                display: inline-block;
+                vertical-align: middle;
+                border: none;
+                outline: none;
+            }
+            .gd-select {
+                width: 60px;
+                .gd-select-input {
+                    .gd-input {
+                        border: none;
+                        background-color: transparent;
+                        box-shadow: none;
+                        text-align: right;
+                        color: @grayColor2;
+                    }
+                }
+            }
+            .gd-table-page-jump {
+                display: inline-block;
+                vertical-align: middle;
+                margin-left: 20px;
+                .gd-input {
+                    width: 50px;
+                    height: 28px;
+                }
+                button {
+                    outline: none;
+                    border: none;
+                    background: none;
+                    color: @grayColor2;
+                    &:hover {
+                        color: darken(@grayColor2, 30%);
+                    }
+                }
+            }
+            .gd-table-page-list {
+                display: inline-block;
+                vertical-align: middle;
+                font-size: 0;
+                margin-left: 20px;
+                width [class*='icon-'] {
+                    font-size: 16px;
+                }
+                span {
+                    cursor: pointer;
+                    font-size: 14px;
+                    min-width: 28px;
+                    height: 28px;
+                    line-height: 28px;
+                    padding: 0 3px;
+                    display: inline-block;
+                    text-align: center;
+                    box-sizing: border-box;
+                    vertical-align: middle;
+                    transition: all 0.3s;
+                    border-radius: 2px;
+                    overflow: hidden;
+                    margin: 0 3px;
+                    &[disabled] {
+                        color: @grayColor5;
+                    }
+                    &:hover:not([disabled]) {
+                        color: darken(@grayColor2, 30%);
+                        background: #ecedf2;
+                    }
+                }
+                .gd-table-page-cur {
+                    background: #ecedf2;
+                    color: @grayColor1;
+                }
+            }
+        }
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        border-spacing: 0;
+        table-layout: fixed;
+        th,
+        td {
+            padding: 0;
+            white-space: normal;
+            word-wrap: break-word;
+            padding: 5px 10px;
+            box-sizing: border-box;
+        }
+    }
+}
+
+.gd-table-filters-hoverbox {
+    .gd-hoverbox-content {
+        max-height: 400px;
+        overflow: auto;
+    }
+}
+
+//loading 动画
+@keyframes segment-spin {
+    from {
+        transform: rotate(0)
+    }
+    to {
+        transform: rotate(360deg)
+    }
+}
+
+.gd-col-resize {
+    * {
+        cursor: col-resize !important;
+    }
+    .gd-table-head {
+        th {
+            background-color: transparent !important;
+        }
+    }
+}

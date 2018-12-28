@@ -1,0 +1,142 @@
+/*色彩*/
+.gd-tree {
+  border: 1px solid #F7F7F9;
+  border-radius: 2px;
+  box-sizing: border-box;
+  background-color: #FFFFFF;
+  overflow: auto;
+  padding: 20px;
+  height: 100%;
+  font-size: 0;
+}
+.gd-tree [class*='icon-'] {
+  font-size: 1em;
+}
+.gd-tree-inner {
+  display: inline-block;
+  overflow: hidden;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 14px;
+  position: relative;
+}
+.gd-tree ul {
+  list-style: none;
+  user-select: none;
+  margin: 0px;
+  padding: 0;
+  float: left;
+  clear: both;
+}
+.gd-tree ul .gd-tree-node-content {
+  padding: 4px 0;
+  height: 20px;
+  line-height: 20px;
+}
+.gd-tree ul .gd-tree-node-content .gd-checkbox i {
+  margin-right: 0;
+}
+.gd-tree ul .gd-tree-node-content span.gd-icon-wraper {
+  width: 20px;
+  display: inline-block;
+}
+.gd-tree ul .gd-tree-node-content i {
+  color: #CFD6E1;
+  font-size: 16px;
+}
+.gd-tree ul .gd-tree-node-content span {
+  font-size: 14px;
+}
+.gd-tree ul li {
+  list-style: none;
+  padding: 0;
+  white-space: nowrap;
+  outline: none;
+  float: left;
+  clear: both;
+}
+.gd-tree ul label[ignore] .gd-checkbox-input + i {
+  border-color: #E1E1E1;
+  background-color: #F5F5F5;
+  cursor: not-allowed;
+}
+.gd-tree ul label[ignore] .gd-checkbox-input[type='checkbox'] + i:after {
+  animation-name: none;
+  border-color: #F5F5F5;
+}
+.gd-tree ul label[ignore] .gd-checkbox-input[type='checkbox']:checked + i {
+  background-color: #F5F5F5;
+  border-color: #E1E1E1;
+}
+.gd-tree ul label[ignore] .gd-checkbox-input[type='checkbox']:checked + i:after {
+  animation-name: none;
+  border-color: #E1E1E1;
+}
+.gd-tree li ul {
+  margin: 0;
+}
+.gd-tree li span {
+  line-height: 20px;
+}
+.gd-tree-title {
+  display: inline-block;
+  margin: 0;
+  border-radius: 3px;
+  cursor: pointer;
+  vertical-align: middle;
+  color: #333333;
+  transition: all 0.2s ease-in-out;
+  padding: 0 4px;
+}
+.gd-tree-title [class*=icon-] {
+  transition: all 0.2s ease-in-out;
+  margin-right: 5px;
+}
+.gd-tree-title:hover {
+  background-color: #F5F5F5;
+}
+.gd-tree-title-selected,
+.gd-tree-title-selected:hover {
+  color: #59AEF0 !important;
+  transition: all 0.2s ease-in-out !important;
+}
+.gd-tree-title-selected i,
+.gd-tree-title-selected:hover i {
+  color: #59AEF0 !important;
+  transition: all 0.2s ease-in-out !important;
+}
+.gd-tree-arrow {
+  vertical-align: top;
+  cursor: pointer;
+  width: 12px;
+  text-align: center;
+  display: inline-block;
+}
+.gd-tree-arrow i {
+  transform: rotate(0deg);
+  transition: all 0.2s ease-in-out;
+}
+.gd-tree-arrow-open i {
+  display: inline-block;
+  transform: rotate(90deg);
+}
+.gd-tree-arrow-disabled {
+  cursor: not-allowed;
+}
+.gd-tree .gd-tree-empty {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.gd-tree.gd-tree-gray {
+  background-color: #F2F2F6;
+}
+.gd-tree.gd-tree-gray .gd-tree-title:hover {
+  background-color: #E7E9EF;
+}
+.collapse-transition {
+  transition: 0.2s height ease-in-out, 0.2s padding-top ease-in-out, 0.2s padding-bottom ease-in-out;
+}
+/*# sourceMappingURL=gd_tree.css.map */

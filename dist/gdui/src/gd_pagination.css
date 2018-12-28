@@ -1,0 +1,103 @@
+/*色彩*/
+.gd-pagination {
+  height: 50px;
+  box-sizing: border-box;
+  color: #999999;
+  z-index: 2;
+  background: #F7F7F9;
+  padding: 0 10px;
+}
+.gd-pagination:after {
+  content: ' ';
+  display: inline-block;
+  vertical-align: middle;
+  height: 100%;
+  width: 0;
+}
+.gd-pagination .gd-pagination-info {
+  display: inline-block;
+  vertical-align: middle;
+}
+.gd-pagination .gd-pagination-page {
+  float: right;
+  height: 100%;
+  user-select: none;
+}
+.gd-pagination .gd-pagination-page:after {
+  content: ' ';
+  display: inline-block;
+  vertical-align: middle;
+  height: 100%;
+  width: 0;
+}
+.gd-pagination .gd-pagination-page .gd-pagination-page-per {
+  display: inline-block;
+  vertical-align: middle;
+  border: none;
+  outline: none;
+}
+.gd-pagination .gd-pagination-page .gd-select {
+  width: 60px;
+}
+.gd-pagination .gd-pagination-page .gd-select .gd-select-input .gd-input {
+  border: none;
+  background-color: transparent;
+  box-shadow: none;
+  text-align: right;
+  color: #666666;
+}
+.gd-pagination .gd-pagination-page .gd-pagination-page-jump {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 20px;
+}
+.gd-pagination .gd-pagination-page .gd-pagination-page-jump .gd-input {
+  width: 50px;
+  height: 28px;
+}
+.gd-pagination .gd-pagination-page .gd-pagination-page-jump button {
+  outline: none;
+  border: none;
+  background: none;
+  color: #666666;
+}
+.gd-pagination .gd-pagination-page .gd-pagination-page-jump button:hover {
+  color: #1a1a1a;
+}
+.gd-pagination .gd-pagination-page .gd-pagination-page-list {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 0;
+  margin-left: 20px;
+}
+.gd-pagination .gd-pagination-page .gd-pagination-page-list width [class*='icon-'] {
+  font-size: 16px;
+}
+.gd-pagination .gd-pagination-page .gd-pagination-page-list span {
+  cursor: pointer;
+  font-size: 14px;
+  min-width: 28px;
+  height: 28px;
+  line-height: 28px;
+  padding: 0 3px;
+  display: inline-block;
+  text-align: center;
+  box-sizing: border-box;
+  vertical-align: middle;
+  transition: all 0.3s;
+  border-radius: 2px;
+  overflow: hidden;
+  margin: 0 3px;
+}
+.gd-pagination .gd-pagination-page .gd-pagination-page-list span[disabled] {
+  color: #CCCCCC;
+}
+.gd-pagination .gd-pagination-page .gd-pagination-page-list span:hover:not([disabled]) {
+  color: #1a1a1a;
+  background: #ecedf2;
+}
+.gd-pagination .gd-pagination-page .gd-pagination-page-list .gd-pagination-page-cur {
+  background: #ecedf2;
+  color: #333333;
+}
+/*# sourceMappingURL=gd_pagination.css.map */

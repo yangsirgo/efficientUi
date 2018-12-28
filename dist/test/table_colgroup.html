@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcss.com/vue/2.5.17/vue.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <style>
+        .resize-Class {
+            width: 2px;
+            float: right;
+            background-color: red;
+            height: 100%;
+            top: 0;
+            right: 0;
+            position: absolute;
+            cursor: col-resize;
+            z-index: 100;
+        }
+        th {
+            height: 100%;
+            position: relative;
+        }
+        .resizeCursor {
+            cursor: col-resize;
+        }
+        body {
+            height: 1000px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <table border="2" cellpadding=0 cellspacing=0 style="width: 100%">
+            <colgroup class="thCol">
+                <col>
+                <col>
+                <col>
+            </colgroup>
+            <tr>
+                <th>1
+                    <div class="resize-Class"></div>
+                </th>
+                <th>1
+                    <div class="resize-Class"></div>
+                </th>
+                <th>1
+                    <div  class="resize-Class"></div>
+                </th>
+            </tr>
+        </table>
+        <table border="2" cellpadding=0 cellspacing=0>
+            <colgroup class="tdCol">
+                <col width="100">
+                <col width="100">
+                <col width="100">
+            </colgroup>
+            <tr>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>2</td>
+                <td>2</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
+<script>
+
+    var log  = console.log;
+    // $("body").on('mousemove',function(e) {
+    //     var $event = $(e.target);
+    //     if($event.hasClass('resize-Class')) {
+    //         var index = $event.parent().index();
+    //         var clientX = e.clientX;
+    //         $event.on('mousedown.moveOne',function(event){
+    //             var parentBoxScreenX  = $event.parent().offset().left;
+    //             var parentBoxWidth = $event.parent().outerWidth();
+    //             var moveLineClientX = parentBoxScreenX + parentBoxWidth;
+    //             log(event.clientX);
+    //             log('parentBoxScreenX:',parentBoxScreenX);
+    //             log('parentBoxWidth:',parentBoxWidth);
+    //             $(event.target).offsetLeft = event.clientX
+    //             // $('.thCol').find('col')[index].width = clientX - parentBoxScreenX -  parentBoxWidth;
+    //             // $ e.clientX - parentBoxScreenX - parentBoxWidth;
+    //             // e.clientX
+    //         });
+    //     }
+    // });
+
+    // $(function(){
+    //     $('.tdCol').find('col').attr
+    // })
+
+    $('.resize-Class').on('mousedown',function(event){
+        var $event = $(event.target);
+        var index = $event.parent().index();
+        var boxWidth = $event.outerWidth();
+        var parentBoxScreenX  = $event.parent().offset().left;
+        var parentBoxWidth = $event.parent().outerWidth();
+        var moveLineClientX = parentBoxScreenX + parentBoxWidth;
+
+        $("body").addClass('resizeCursor').on('mousemove.moveOne',function(e) {
+            var clientX = e.clientX;
+            $event.offset({left:clientX - boxWidth});
+            $('.thCol').find('col')[index].width = clientX - parentBoxScreenX;
+            $('.tdCol').find('col')[index].width = clientX - parentBoxScreenX;
+            return false;
+        });
+        $("body").on('mouseup',function(){
+            setTimeout(function(){
+                $("body").off('mousemove.moveOne');
+                $("body").removeClass('resizeCursor');
+            },100);
+            return false;
+        });
+        return false;
+    })
+</script>

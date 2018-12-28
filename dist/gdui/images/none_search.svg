@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.3 (51167) - http://www.bohemiancoding.com/sketch -->
+    <title>未搜索到结果</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="38.0508475" y="50.9830508" width="27.1186441" height="3" rx="1.5"></rect>
+        <circle id="path-2" cx="25" cy="25" r="25"></circle>
+        <rect id="path-4" x="0.283362455" y="0.00783918606" width="10.5375303" height="1.51520043" rx="0.757600215"></rect>
+        <rect id="path-5" x="0" y="0" width="38.1204707" height="49.3638938" rx="4.33898305"></rect>
+        <rect id="path-6" x="5.44578153" y="6.26843096" width="17.1153134" height="1.56710774" rx="0.78355387"></rect>
+        <rect id="path-7" x="5.44578153" y="18.8052929" width="10.8915631" height="1.56710774" rx="0.78355387"></rect>
+        <rect id="path-8" x="5.44578153" y="12.5368619" width="25.6729701" height="1.56710774" rx="0.78355387"></rect>
+    </defs>
+    <g id="组件" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard-2">
+            <g id="Group-6">
+                <g id="Rectangle-9" transform="translate(51.610169, 52.483051) rotate(-315.000000) translate(-51.610169, -52.483051) ">
+                    <use fill="#F6F6F8" fill-rule="evenodd" xlink:href="#path-1"></use>
+                    <rect stroke="#CFD6E1" stroke-width="2" x="37.0508475" y="49.9830508" width="29.1186441" height="5" rx="2.5"></rect>
+                </g>
+                <g id="Group-2-+-Group-3-Mask" transform="translate(2.000000, 2.000000)">
+                    <mask id="mask-3" fill="white">
+                        <use xlink:href="#path-2"></use>
+                    </mask>
+                    <g id="Mask">
+                        <use fill="#F6F6F8" fill-rule="evenodd" xlink:href="#path-2"></use>
+                        <circle stroke="#CFD6E1" stroke-width="2" cx="25" cy="25" r="26"></circle>
+                    </g>
+                    <g id="Group-5" mask="url(#mask-3)">
+                        <g transform="translate(6.169492, 17.271186)">
+                            <g id="Group-2" transform="translate(10.051127, 24.732328) rotate(-15.000000) translate(-10.051127, -24.732328) translate(4.551127, 23.732328)">
+                                <g id="Rectangle-6-Copy">
+                                    <use fill="#979797" fill-rule="evenodd" xlink:href="#path-4"></use>
+                                    <rect stroke="#CFD6E1" stroke-width="1.08474576" x="0.825735337" y="0.550212067" width="9.4527845" height="1" rx="0.5"></rect>
+                                </g>
+                            </g>
+                            <g id="Group-3">
+                                <g id="Rectangle-4">
+                                    <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-5"></use>
+                                    <rect stroke="#CFD6E1" stroke-width="2.16949153" x="1.08474576" y="1.08474576" width="35.9509792" height="47.1944023" rx="4.33898305"></rect>
+                                </g>
+                                <g id="Rectangle-6">
+                                    <use fill="#CDD4DF" fill-rule="evenodd" xlink:href="#path-6"></use>
+                                    <rect stroke="#CFD6E1" stroke-width="1.08474576" x="5.98815441" y="6.81080384" width="16.0305676" height="1" rx="0.5"></rect>
+                                </g>
+                                <g id="Rectangle-6-Copy">
+                                    <use fill="#CDD4DF" fill-rule="evenodd" xlink:href="#path-7"></use>
+                                    <rect stroke="#CFD6E1" stroke-width="1.08474576" x="5.98815441" y="19.3476658" width="9.80681729" height="1" rx="0.5"></rect>
+                                </g>
+                                <g id="Rectangle-6">
+                                    <use fill="#CDD4DF" fill-rule="evenodd" xlink:href="#path-8"></use>
+                                    <rect stroke="#CFD6E1" stroke-width="1.08474576" x="5.98815441" y="13.0792348" width="24.5882243" height="1" rx="0.5"></rect>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

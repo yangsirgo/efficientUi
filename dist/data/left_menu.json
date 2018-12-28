@@ -1,0 +1,146 @@
+{
+    "resultCode": 0,
+    "data": [
+        {
+            "name": "首页",
+            "icon": "icon-home",
+            "href": "index.html"
+        },
+        {
+            "name": "侧边栏",
+            "icon": "icon-report",
+            "href": "leftmenu.html"
+        },
+        {
+            "name": "顶部栏",
+            "icon": "icon-monitor",
+            "href": "topbar.html"
+        },
+        {
+            "name": "工具栏",
+            "icon": "icon-log",
+            "href": "toolbar.html"
+        },
+        {
+            "name": "表单与验证",
+            "icon": "icon-access",
+            "sub": [
+                {
+                    "name": "表单",
+                    "href": "form.html"
+                },
+                {
+                    "name": "验证",
+                    "href": "validate.html"
+                }
+            ]
+        },
+        {
+            "name": "列表",
+            "icon": "icon-archives",
+            "sub": [
+                {
+                    "name": "列表示例",
+                    "href": "table.html"
+                },
+                {
+                    "name": "列表文档",
+                    "href": "table_doc.html"
+                }
+            ]
+        },
+        {
+            "name": "页签与标签",
+            "icon": "icon-log",
+            "sub": [
+                {
+                    "name": "页签",
+                    "href": "tab.html"
+                },
+                {
+                    "name": "标签",
+                    "href": "tag.html"
+                }
+            ]
+        },
+        {
+            "name": "树形组件",
+            "icon": "icon-network",
+            "href": "tree.html"
+        },
+        {
+            "name": "消息与弹窗",
+            "icon": "icon-log",
+            "sub": [
+                {
+                    "name": "消息",
+                    "href": "msg.html"
+                },
+                {
+                    "name": "弹窗",
+                    "href": "layer.html"
+                },
+                {
+                    "name": "悬浮框",
+                    "href": "hoverbox.html"
+                },
+                {
+                    "name": "loading",
+                    "href": "loading.html"
+                }
+            ]
+        },
+        {
+            "name": "按钮",
+            "icon": "icon-log",
+            "href": "button.html",
+            "target": "_blank"
+        },
+        {
+            "name": "登录",
+            "icon": "icon-user",
+            "sub": [
+                {
+                    "name": "登录示例",
+                    "href": "login.html"
+                },
+                {
+                    "name": "登录文档",
+                    "href": "login_doc.html"
+                }
+            ]
+        },
+        {
+            "name": "时间与日期",
+            "icon": "icon-log",
+            "sub": [
+                {
+                    "name": "时间选择",
+                    "href": "timepicker.html"
+                },
+                {
+                    "name": "日期选择",
+                    "href": "datepicker.html"
+                }
+            ]
+        },
+        {
+            "name": "其它",
+            "icon": "icon-log",
+            "sub": [
+                {
+                    "name": "占位符",
+                    "href": "placeholder.html"
+                },
+                {
+                    "name": "地区选择",
+                    "href": "district.html"
+                },
+                {
+                    "name": "分页",
+                    "href": "pagination.html"
+                }
+            ]
+        }
+    ]
+}
