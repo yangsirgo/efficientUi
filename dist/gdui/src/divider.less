@@ -1,0 +1,85 @@
+@import './gd_variables';
+
+
+.gd-divider {
+    position: relative;
+    margin : 8px 0;
+    font-size: 14px;
+}
+
+.gd-divider-horizontal {
+    height: 1px;
+    width: 100%;
+    display: block;
+    margin: 24px 0;
+    background-color: @grayColor3;
+}
+
+.gd-divider-vertical {
+    width: 1px;
+    display: inline-block;
+    height: .9em;
+    background-color: @grayColor3;
+    margin: 0 8px;
+    position: relative;
+    top: .08em;
+}
+
+
+div.gd-divider-with-left-text {
+    &:before {
+        width: 5%;
+    }
+    &:after {
+        width: 95%;
+    }
+}
+
+div.gd-divider-with-right-text {
+    &:before {
+        width: 95%;
+    }
+    &:after {
+        width: 5%;
+    }
+}
+
+.gd-divider-with-text {
+    display: table;
+    text-align: center;
+    background-color: unset;
+    &:before {
+        position: relative;
+        top: 50%;
+        content: '';
+        display: table-cell;
+        width: 50%;
+        height: 1px;
+        border-top: 1px solid @grayColor3;
+        transform: translateY(50%);
+    }
+    &:after {
+        position: relative;
+        top: 50%;
+        content: '';
+        display: table-cell;
+        width: 50%;
+        height: 1px;
+        border-top: 1px solid @grayColor3;
+        transform: translateY(50%);
+    }
+    .inner-text {
+        vertical-align: middle;
+        line-height: 1.5;
+        white-space: nowrap;
+        font-size: 16px;
+        padding: 0 20px;
+        display: inline-block;
+    }
+}
+
+.gd-divider-dashed {
+    background-color: unset !important;
+    border-top: 1px dashed @grayColor3;
+}
+

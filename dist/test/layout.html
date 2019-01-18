@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .flex,body,html {
+            height: 100%;
+        }
+        .header {
+            background-color: green;
+            line-height: 50px;
+            padding: 10px;
+            flex:0 0 auto;
+        }
+        .content {
+            flex:auto;
+        }
+        .footer {
+            background-color: green;
+            line-height: 50px;
+            padding: 10px;
+            flex:0 0 auto;
+        }
+        .flex {
+            display: flex;
+            flex: auto;
+            background: #f5f7f9;
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body>
+    <div class="flex">
+        <div class="header"> 我是header </div>
+        <div  class="content"> 我是content </div>
+        <div class="footer"> 我是footer </div>
+    </div>
+</body>
+</html>

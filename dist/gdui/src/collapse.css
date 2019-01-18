@@ -1,0 +1,32 @@
+/*色彩*/
+.gd-collapse {
+  border: 1px solid #B1B1B1;
+  box-sizing: border-box;
+}
+.gd-collapse .gd-collapse-pane:first-child .gd-collapse-title {
+  border-top: 0;
+}
+.gd-collapse .gd-collapse-title {
+  height: 38px;
+  line-height: 38px;
+  padding-left: 20px;
+  border-bottom: 1px solid #B1B1B1;
+  border-top: 1px solid #B1B1B1;
+  background-color: #F7F7F9;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+.gd-collapse .gd-collapse-title i {
+  display: inline-block;
+  transition: transform 0.2s ease-in-out;
+}
+.gd-collapse .gd-collapse-title-bordernone {
+  border-bottom: 0;
+}
+.gd-collapse .gd-collapse-title-bordernone i {
+  transform: rotate(-90deg);
+}
+.gd-collapse .gd-collapse-content {
+  padding: 0 20px;
+}
+/*# sourceMappingURL=collapse.css.map */

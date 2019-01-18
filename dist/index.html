@@ -13,36 +13,86 @@
 </head>
 <body>
 <div id="app" v-cloak>
-    <h2>Time 相对时间</h2>
+    <gd-divider> With Text</gd-divider>
+    Steven Paul Jobs was an American entrepreneur and business magnate. He was the chairman, chief executive officer,
+    and a co-founder of Apple Inc.
+    <gd-divider dashed></gd-divider>
+    Steven Paul Jobs was an American entrepreneur and business magnate. He was the chairman, chief executive officer,
+    and a co-founder of Apple Inc.
+    <gd-divider></gd-divider>
     <div>
-        <gd-time :time="time1"></gd-time>
-        <br>
-        <gd-time :time="time2" type="date"></gd-time>
-        <br>
-        <gd-time :time="time3" type="datetime"></gd-time>
-        <br>
-        <gd-time :time="time3" type="datetime" :format="format"></gd-time>
-        <br>
-        <gd-time :time="time4" type="datetime" :format="format1"></gd-time>
+        Text
+        <gd-divider type="vertical"/>
+        </gd-divider>
+        <a href="#">Link</a>
+        <gd-divider type="vertical"></gd-divider>
+        <a href="#">Link</a>
     </div>
+    <gd-divider orientation="left">Left Text</gd-divider>
+    <p>Steven Paul Jobs was an American entrepreneur and business magnate. He was the chairman, chief executive officer,
+        and a co-founder of Apple Inc.</p>
+    <gd-divider orientation="right">Right Text</gd-divider>
+    <p>Steven Paul Jobs was an American entrepreneur and business magnate. He was the chairman, chief executive officer,
+        and a co-founder of Apple Inc.</p>
+    <textarea type="code">
+         <gd-divider></gd-divider>
+        <!--type	水平还是垂直类型，可选值为 horizontal 或 vertical	String	horizontal-->
+        <!--orientation	分割线标题的位置，可选值为 left、right 或 center	Number	center-->
+        <!--dashed	是否虚线	Boolean	false-->
+    </textarea>
+    <div style="width: 200px;height: 200px">
+        <gd-collapse  v-model="value1" @on-change="change">
+            <gd-panel>
+                斯蒂夫·盖瑞·沃兹尼亚克0
+                <p slot="content">
+                    斯蒂夫·盖瑞·沃兹尼亚克（Stephen Gary
+                    Wozniak），美国电脑工程师，曾与史蒂夫·乔布斯合伙创立苹果电脑（今之苹果公司）。斯蒂夫·盖瑞·沃兹尼亚克曾就读于美国科罗拉多大学，后转学入美国著名高等学府加州大学伯克利分校（UC
+                    Berkeley）并获得电机工程及计算机（EECS）本科学位（1987年）。
+                </p>
+            </gd-panel>
+            <gd-panel>
+                斯蒂夫·盖瑞·沃兹尼亚克1
+                <p slot="content">
+                    斯蒂夫·盖瑞·沃兹尼亚克（Stephen Gary
+                    Wozniak），美国电脑工程师，曾与史蒂夫·乔布斯合伙创立苹果电脑（今之苹果公司）。斯蒂夫·盖瑞·沃兹尼亚克曾就读于美国科罗拉多大学，后转学入美国著名高等学府加州大学伯克利分校（UC
+                    Berkeley）并获得电机工程及计算机（EECS）本科学位（1987年）。
+                </p>
+            </gd-panel>
+            <gd-panel>
+                斯蒂夫·盖瑞·沃兹尼亚克2
+                <p slot="content">
+                    斯蒂夫·盖瑞·沃兹尼亚克（Stephen Gary
+                    Wozniak），美国电脑工程师，曾与史蒂夫·乔布斯合伙创立苹果电脑（今之苹果公司）。斯蒂夫·盖瑞·沃兹尼亚克曾就读于美国科罗拉多大学，后转学入美国著名高等学府加州大学伯克利分校（UC
+                    Berkeley）并获得电机工程及计算机（EECS）本科学位（1987年）。
+                </p>
+            </gd-panel>
+            <gd-panel hide-arrow>
+                斯蒂夫·盖瑞·沃兹尼亚克3
+                <p slot="content">
+                    斯蒂夫·盖瑞·沃兹尼亚克（Stephen Gary
+                    Wozniak），美国电脑工程师，曾与史蒂夫·乔布斯合伙创立苹果电脑（今之苹果公司）。斯蒂夫·盖瑞·沃兹尼亚克曾就读于美国科罗拉多大学，后转学入美国著名高等学府加州大学伯克利分校（UC
+                    Berkeley）并获得电机工程及计算机（EECS）本科学位（1987年）。
+                </p>
+            </gd-panel>
+        </gd-collapse>
+    </div>
+
+
 </div>
 </body>
 </html>
 <script>
     var app = new Vue({
         el: '#app',
-        data: {
-            time1: (new Date()).getTime() - 60 * 3 * 1000,
-            time2: (new Date()).getTime() - 60*60*24 * 3 * 1000,
-            time3: (new Date()).getTime() - 60*60*24 * 4 * 1000,
-            time4: (new Date()).getTime() - 60*60*24 * 4 * 1000,
-            currentTime: (new Date()).getTime(),
-            format:'yyyy年MM月dd日 hh:mm:ss',
-            format1:'yyyy年MM月dd日 hh:mm:ss'
+        data:{
+            value1:[1,3]
+        },
+        methods:{
+            change(key) {
+                log(key);
+            }
         }
     });
-    setInterval(function () {
-        app.time4 = +new Date();
-        log(app.time4);
-    },1000)
+
+
 </script>

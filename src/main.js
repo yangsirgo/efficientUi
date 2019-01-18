@@ -46,9 +46,27 @@ Vue.component('Steps', Steps);
 import Step from './steps/step.vue';
 Vue.component('Step', Step);
 
-//步骤
+//时间
+import Divider from './divider.vue';
+Vue.component('gd-divider', Divider);
+
+//折叠板
+import Collapse from './collapse/Collapse.vue';
+Vue.component('gd-collapse', Collapse);
+
+//折叠板下的控制板
+import Panel from './collapse/panel.vue';
+Vue.component('gd-panel', Panel);
+
+//时间
 import Time from './time/timer.vue';
 Vue.component('gd-time', Time);
+
+//货币验证
+import './jscom/currentValidate';
+
+
+
 
 //工具方法
 import {

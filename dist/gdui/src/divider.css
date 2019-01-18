@@ -1,0 +1,72 @@
+/*色彩*/
+.gd-divider {
+  position: relative;
+  margin: 8px 0;
+  font-size: 14px;
+}
+.gd-divider-horizontal {
+  height: 1px;
+  width: 100%;
+  display: block;
+  margin: 24px 0;
+  background-color: #999999;
+}
+.gd-divider-vertical {
+  width: 1px;
+  display: inline-block;
+  height: 0.9em;
+  background-color: #999999;
+  margin: 0 8px;
+  position: relative;
+  top: 0.08em;
+}
+div.gd-divider-with-left-text:before {
+  width: 5%;
+}
+div.gd-divider-with-left-text:after {
+  width: 95%;
+}
+div.gd-divider-with-right-text:before {
+  width: 95%;
+}
+div.gd-divider-with-right-text:after {
+  width: 5%;
+}
+.gd-divider-with-text {
+  display: table;
+  text-align: center;
+  background-color: unset;
+}
+.gd-divider-with-text:before {
+  position: relative;
+  top: 50%;
+  content: '';
+  display: table-cell;
+  width: 50%;
+  height: 1px;
+  border-top: 1px solid #999999;
+  transform: translateY(50%);
+}
+.gd-divider-with-text:after {
+  position: relative;
+  top: 50%;
+  content: '';
+  display: table-cell;
+  width: 50%;
+  height: 1px;
+  border-top: 1px solid #999999;
+  transform: translateY(50%);
+}
+.gd-divider-with-text .inner-text {
+  vertical-align: middle;
+  line-height: 1.5;
+  white-space: nowrap;
+  font-size: 16px;
+  padding: 0 20px;
+  display: inline-block;
+}
+.gd-divider-dashed {
+  background-color: unset !important;
+  border-top: 1px dashed #999999;
+}
+/*# sourceMappingURL=divider.css.map */

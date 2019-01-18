@@ -121,6 +121,7 @@
         <!--type	类型，可选值为 relative、date 或 datetime	String	relative-->
         <!--interval	自动更新的间隔，单位：秒	Number	60 -->
     </textarea>
+    <gd-divider dashed></gd-divider>
     <h2>upload 上传</h2>
     <h3>自动上传</h3>
     <input type="button" value="上传文件" class="upload gd-btn">
@@ -130,11 +131,21 @@
     <input type="text" class="uploadAutoFalse gd-input" value="选择文件" readonly>
     <br />
     <button id="buttonOn" class="gd-btn">点击上传</button>
+    <br />
+    <gd-divider dashed></gd-divider>
+    input 货币验证：  <input type="text" class="CheckDecimal gd-input">
 </div>
 </body>
 </html>
 <script>
+
     $(function (){
+        $(".CheckDecimal").currentValidate({
+            errorCallBack:function(){
+                log('errorCallBack');
+            }
+        });
+
         gd.upload({
             el: ".upload",//元素
             url:'target.php',

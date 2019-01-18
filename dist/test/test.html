@@ -3,32 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <!-- import Vue.js -->
+    <script src="//vuejs.org/js/vue.min.js"></script>
+    <!-- import stylesheet -->
+    <link rel="stylesheet" href="//unpkg.com/iview/dist/styles/iview.css">
+    <!-- import iView -->
+    <script src="//unpkg.com/iview/dist/iview.min.js"></script>
+    <style>
+        html,body {
+            height: 100%;
+        }
+        #app,.layout,.ivu-layout {
+            height: 100%;
+        }
+    </style>
 </head>
 <body>
+<div id="app">
+    <div class="layout">
+        <Layout>
+            <Sider hide-trigger>Sider</Sider>
+            <Layout>
+                <i-Header>Header</i-Header>
+                <i-Content>Content</i-Content>
+                <i-Footer>Footer</i-Footer>
+            </Layout>
+        </Layout>
+        <p> 测试inline-block 宽度 </p>
+        <div  style="display: table">
+            <span style="display:table-cell;width: 50%">121212</span>
+            <span style="display:inline-block;white-space: nowrap">我</span>
+            <span style="display:table-cell;width: 50%">12121212</span>
+        </div>
 
-<iframe id="upload_target" name="upload_target" src="upload1.php" style="width:0;heigth:0;overflow:hidden;border:0;position: absolute; left:-500px;"></iframe>
-<img id="tag_img" src="http://avatar.csdn.net/C/2/1/1_shenlingsuifeng.jpg" />
-<form enctype="multipart/form-data" action="upload1.php" method="post" target="upload_target">
-    <input type="file" id="fileipt" name="userfile" class="file" value=""  />
-    <input type="submit" name="uploadimg" value="上传" id="submit" hidden />
-</form>
-
-<script type='text/javascript'>
-    var lastFileName;
-    $("#fileipt").change(function() {
-        var fileName = $(this).val();
-        var pos = fileName.lastIndexOf("\\");
-        fileName = fileName.substr(pos+1, fileName.length);  // 截取出文件名 因为会带路径
-        lastFileName = fileName;
-        $("#submit").click();
-    });
-
-    function stopSend($url) {
-        $("#tag_img").attr("src",$url);
-    }
-
-</script>
-
+        <p>Steven Paul Jobs was an American entrepreneur and business magnate. He was the chairman, chief executive officer, and a co-founder of Apple Inc.</p>
+        <Divider />
+        <p>Steven Paul Jobs was an American entrepreneur and business magnate. He was the chairman, chief executive officer, and a co-founder of Apple Inc.</p>
+        <Divider>With Text</Divider>
+        <p>Steven Paul Jobs was an American entrepreneur and business magnate. He was the chairman, chief executive officer, and a co-founder of Apple Inc.</p>
+        <Divider dashed />
+    </div>
+</div>
 </body>
 </html>
+<script>
+    var app = new Vue({
+        el:'#app'
+    })
+</script>
