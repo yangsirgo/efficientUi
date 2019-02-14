@@ -62,6 +62,15 @@ Vue.component('gd-panel', Panel);
 import Time from './time/timer.vue';
 Vue.component('gd-time', Time);
 
+//tab选项卡
+import Tab from './tab/tab.vue';
+Vue.component('gd-tab', Tab);
+
+//选项卡内容
+import TabItem from './tab/tab_item.vue';
+Vue.component('gd-tab-item', TabItem);
+
+
 //货币验证
 import './jscom/currentValidate';
 

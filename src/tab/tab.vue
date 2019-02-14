@@ -1,9 +1,12 @@
 <template>
     <div :class="classes">
         <ul class="gd-tab-bar">
-            <li :class="tabCls(item)" v-for="(item,index) in navList" @click="handleChange(index)">
-                <span>{{item.label}}</span>
+            <li :class="tabCls(item)" v-for="(item,index) in navList">
+                <span><span class="gd-tab-bar-text" @click.stop="handleChange(index)">{{item.label}}</span><i v-if="closeshow" class="icon-close" @click.stop="closeableAction(index)"></i></span>
             </li>
+            <div class="gd-tab-bar-extra">
+                <slot name="extra"></slot>
+            </div>
         </ul>
         <div class="gd-tab-content" ref="scrollBox">
             <!--这里的slot就是嵌套的pane组件的内容-->
@@ -17,16 +20,23 @@ const prefixCls = 'gd-tab';
 export default {
     props: {
         value: {
-            type: [String, Number],
+            type: [Number],
             default: 0
         },
         vertical: {
             type: Boolean,
             default: false
         },
+        closeable: {
+            type: Boolean,
+            default: false
+        },
         scroll: {
             type: Boolean,
             default: false
+        },
+        beforeRemove : {
+            type: Function
         }
     },
     data() {
@@ -43,6 +53,46 @@ export default {
             return this.$children.filter(function(item) {
                 return item.$options.name === 'gd-tab-item';
             });
+        },
+        closeshow () {
+            return this.closeable && (! this.vertical) && (! this.scroll)
+        },
+        closeableActionTab (index) {
+            let removeIndex = index;
+            const tabs = this.getTabs();
+            const tab = tabs[removeIndex];
+            tab.$destroy();
+            if(tab.name === this.currentValue) {
+                const newTabs = this.getTabs();
+                let activeKey = -1;
+                if (newTabs.length) {
+                    const leftNoDisabledTabs = tabs.filter((item, itemIndex) => itemIndex < index);
+                    const rightNoDisabledTabs = tabs.filter((item, itemIndex) => itemIndex > index);
+                    if (rightNoDisabledTabs.length) {
+                        activeKey = rightNoDisabledTabs[0].name;
+                    } else if (leftNoDisabledTabs.length) {
+                        activeKey = leftNoDisabledTabs[leftNoDisabledTabs.length - 1].name;
+                    } else {
+                        activeKey = newTabs[0].name;
+                    }
+                }
+                this.currentValue = activeKey;
+            }
+            this.$emit('on-tab-remove',tab.name);
+            this.updateNav();
+        },
+        closeableAction (index) {
+            if(!this.beforeRemove) {
+                this.closeableActionTab(index);
+            }
+            let before = this.beforeRemove(index);
+            if(before && before.then()) {
+                before.then (() =>{
+                    this.closeableActionTab(index);
+                });
+            } else {
+                this.closeableActionTab(index);
+            }
         },
         //更新tabs
         updateNav() {
@@ -170,9 +220,10 @@ export default {
         value(val) {
             this.currentValue = val;
         },
-        currentValue() {
+        currentValue(val) {
             //tab发生变化时，更新pane的显示状态
             this.updateStatus();
+            this.$emit('input',val);
         }
     }
 };

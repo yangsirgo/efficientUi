@@ -40,7 +40,7 @@
         <!--orientation	分割线标题的位置，可选值为 left、right 或 center	Number	center-->
         <!--dashed	是否虚线	Boolean	false-->
     </textarea>
-    <div style="width: 200px;height: 200px">
+    <div>
         <gd-collapse  v-model="value1" @on-change="change">
             <gd-panel>
                 斯蒂夫·盖瑞·沃兹尼亚克0
@@ -76,8 +76,53 @@
             </gd-panel>
         </gd-collapse>
     </div>
+    <textarea type="code">
+        <!--value	当前激活的面板的 name，可以使用 v-model 双向绑定	Array | String	-->
+        <!--accordion	是否开启手风琴模式，开启后每次至多展开一个面板	Boolean	false-->
+        <!--orientation	分割线标题的位置，可选值为 left、right 或 center	Number	center-->
+        <!--dashed	是否虚线	Boolean	false-->
+        <!--hide-arrow	隐藏箭头	Boolean	false-->
+        <!--content	描述内容-->
+    </textarea>
 
-
+    <gd-tab
+            style="height: 300px;"
+            v-model="gdTab1"
+            @change="change"
+            closeable
+            @on-tab-remove="remove"
+            :before-remove="beforeRemove">
+        <gd-tab-item label="页签一" v-if="tab0">
+            <div>页签一的内容</div>
+        </gd-tab-item>
+        <gd-tab-item label="页签二"  v-if="tab1">
+            <div>页签二的内容</div>
+        </gd-tab-item>
+        <gd-tab-item label="页签三"  v-if="tab2">
+            <div>页签三的内容</div>
+        </gd-tab-item>
+    </gd-tab>
+    <h2> extra增加</h2>
+    <gd-tab
+            style="height: 300px;"
+            v-model="gdTab2"
+            closeable
+            @on-tab-remove="remove"
+            :before-remove="beforeRemove0">
+        <gd-tab-item :label="'标签' + item" v-for="item in tabs">
+            <div>标签{{item}}</div>
+        </gd-tab-item>
+        <button class="gd-btn" slot="extra" @click="addTabs">增加</button>
+    </gd-tab>
+    <textarea type="code">
+        <!--on-click	tab 被点击时触发	index	-->
+        <!--on-tab-remove	tab 被关闭时触发	index	-->
+        <!--extra	附加内容-->
+        <!--label	选项卡头显示文字-->
+        <!--closable	是否可以关闭页签-->
+        <!--before-remove	关闭前的函数，返回 Promise 可阻止标签关闭	Function	-->
+        <!--value	当前激活 tab 面板的 index，可以使用 v-model 双向绑定数据	String	默认为第一项 -->
+    </textarea>
 </div>
 </body>
 </html>
@@ -85,11 +130,44 @@
     var app = new Vue({
         el: '#app',
         data:{
-            value1:[1,3]
+            value1:[1,3],
+            gdTab1:1,
+            gdTab2:0,
+            tab0:true,
+            tab1:true,
+            tab2:true,
+            tabs:2
         },
         methods:{
+            addTabs() {
+                this.tabs ++;
+            },
             change(key) {
                 log(key);
+            },
+            remove(index) {
+                log(index);
+                this['tab' + index] = false;
+            },
+            remove0(index) {
+                log(index);
+                this['tab' + index] = false;
+            },
+            beforeRemove(index) {
+                let _t = this;
+                return $.when(_t.ajaxInstead());
+            },
+            beforeRemove0(index) {
+                let _t = this;
+                return $.when(_t.ajaxInstead());
+            },
+            ajaxInstead () {
+                var dtd = $.Deferred();
+                var tasks = setTimeout(() => {
+                    log('beforeRemove false');
+                    dtd.resolve();
+                },1000);
+                return dtd;
             }
         }
     });
