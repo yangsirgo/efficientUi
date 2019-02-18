@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./js/resource.js"></script>
+    <link rel="stylesheet" href="./css/form.css">
+</head>
+
+<body>
+    <!-- 此处是整体框架用，包括侧边栏和顶部 -->
+    <div id="framework" v-cloak>
+        <gd-leftmenu :config="leftMenuConfig"></gd-leftmenu>
+        <gd-topbar :config="topbarConfig"></gd-topbar>
+    </div>
+    <div id="app" class="gd-right-content gd-padding-lg" v-cloak>
+        <div class="fl">
+            <h2>输入框</h2>
+            <input type="text" placeholder="默认输入框，大小200*32" class="gd-input">
+            <textarea type="code">
+                <!-- 默认输入框，大小200*32 -->
+                <input type="text" placeholder="默认输入框" class="gd-input">
+            </textarea>
+            <input type="text" placeholder="加大的输入框，大小380*32" class="gd-input gd-input-lg">
+            <textarea type="code">
+                <!-- 加大的输入框，大小380*32 -->
+                <input type="text" placeholder="380*32" class="gd-input gd-input-lg">
+            </textarea>
+            <input type="text" placeholder="错误输入框" class="gd-input gd-input-error">
+            <textarea type="code">
+                <!-- 错误输入框 -->
+                <input type="text" placeholder="错误输入框" class="gd-input gd-input-error">
+            </textarea>
+            <input type="text" placeholder="禁用输输框" class="gd-input gd-input-error" disabled>
+            <textarea type="code">
+                <!-- 禁用输输框 -->
+                <input type="text" placeholder="禁用输输框" class="gd-input" disabled>
+            </textarea>
+            <h2>图标框</h2>
+            <div class="gd-iconinput">
+                <input type="text" placeholder="图标框">
+                <i class="icon-search"></i>
+            </div>
+            <textarea type="code">
+                <div class="gd-iconinput">
+                    <input type="text" placeholder="图标框">
+                    <i class="icon-search"></i>
+                </div>
+            </textarea>
+            <div class="gd-iconinput gd-iconinput-lg">
+                <input type="text" placeholder="大尺寸图标框">
+                <i class="icon-search"></i>
+            </div>
+            <textarea type="code">
+                <div class="gd-iconinput gd-iconinput-lg">
+                    <input type="text" placeholder="大尺寸图标框">
+                    <i class="icon-search"></i>
+                </div>
+            </textarea>
+            <h2>文本域</h2>
+            <textarea class="gd-textarea" placeholder="默认文本域200*100"></textarea>
+            <textarea type="code">
+                &lt;textarea class="gd-textarea" placeholder="默认文本域200*100"&gt;&lt;/textarea&gt;
+            </textarea>
+            <textarea class="gd-textarea gd-textarea-lg" placeholder="大尺寸文本域380*100"></textarea>
+            <textarea type="code">
+                &lt;textarea class="gd-textarea gd-textarea-lg" placeholder="大尺寸文本域380*100"&gt;&lt;/textarea&gt;
+            </textarea>
+            <textarea class="gd-textarea gd-textarea-error" placeholder="错误文本域"></textarea>
+            <textarea type="code">
+                &lt;textarea class="gd-textarea gd-textarea-error" placeholder="错误文本域"&gt;&lt;/textarea&gt;
+            </textarea>
+            <textarea class="gd-textarea gd-textarea-error" placeholder="禁用文本域" disabled></textarea>
+            <textarea type="code">
+                &lt;textarea class="gd-textarea" placeholder="禁用文本域"&gt;&lt;/textarea&gt;
+            </textarea>
+            <h2>必填项标签</h2>
+            <label class="gd-label-required">必填项</label>
+            <input type="text" class="gd-input">
+            <textarea type="code">
+                <label class="gd-label-required">必填项</label>
+                <input type="text" class="gd-input">
+            </textarea>
+        </div>
+        <div class="fr">
+            <h2>复选框</h2>
+            <label class="gd-checkbox">
+                <input type="checkbox">
+                <i></i>
+                普通复选框
+            </label>
+            <textarea type="code">
+                <label class="gd-checkbox">
+                    <input type="checkbox">
+                    <i></i>
+                    普通复选框
+                </label>
+            </textarea>
+            <label class="gd-checkbox">
+                <input type="checkbox" disabled>
+                <i></i>
+                禁用的复选框
+            </label>
+            <label class="gd-checkbox">
+                <input type="checkbox" disabled checked>
+                <i></i>
+                禁用的复选框
+            </label>
+            <textarea type="code">
+                <label class="gd-checkbox">
+                    <input type="checkbox" disabled>
+                    <i></i>
+                    禁用的复选框
+                </label>
+            </textarea>
+            <h2>开关</h2>
+            <span>普通开关</span>
+            <label class="gd-switch">
+                <input type="checkbox" checked>
+                <i></i>
+            </label>
+            <textarea type="code">
+                <!-- 普通开关 -->
+                <label class="gd-switch">
+                    <input type="checkbox" checked>
+                    <i></i>
+                </label>
+            </textarea>
+            <span>禁用开关</span>
+            <label class="gd-switch">
+                <input type="checkbox" checked disabled>
+                <i></i>
+            </label>
+            <label class="gd-switch">
+                <input type="checkbox" disabled>
+                <i></i>
+            </label>
+            <textarea type="code">
+                <!-- 禁用开关 -->
+                <label class="gd-switch">
+                    <input type="checkbox" disabled>
+                    <i></i>
+                </label>
+            </textarea>
+            <h2>单选按钮</h2>
+            <label class="gd-radio">
+                <input type="radio" value="Radio1" name="radio">
+                <i></i>
+                选项1
+            </label>
+            <label class="gd-radio">
+                <input type="radio" value="Radio2" name="radio">
+                <i></i>
+                选项2
+            </label>
+            <textarea type="code">
+                <label class="gd-radio">
+                    <input type="radio" value="Radio1" name="radio">
+                    <i></i>
+                    选项1
+                </label>
+           </textarea>
+            <label class="gd-radio">
+                <input type="radio" value="Radio1" name="disableRadio" disabled checked>
+                <i></i>
+                禁用状态
+            </label>
+            <label class="gd-radio">
+                <input type="radio" value="Radio2" name="disableRadio" disabled>
+                <i></i>
+                禁用状态
+            </label>
+            <textarea type="code">
+                <label class="gd-radio">
+                    <input type="radio" value="Radio1" name="disableRadio" disabled>
+                    <i></i>
+                    禁用状态
+                </label>
+            </textarea>
+            <h2>下拉框</h2>
+            <h5>标准状态</h5>
+            <gd-select placeholder="请选择" @change="selectChange" v-model="selectValue" name="selectDemo">
+                <gd-option value="1">济南</gd-option>
+                <gd-option value="2">泰安</gd-option>
+                <gd-option value="3">青岛</gd-option>
+            </gd-select>
+            <textarea type="code">
+                <!-- 可以设置name,用于jquery取值 -->
+                <!-- 下拉框值改变时触发change事件，事件方法中可以取到下拉框的值与显示的文本 -->
+                <gd-select placeholder="请选择" @change="selectChange" v-model="selectValue" name="selectDemo">
+                    <gd-option value="1">济南</gd-option>
+                    <gd-option value="2">泰安</gd-option>
+                    <gd-option value="3">青岛</gd-option>
+                </gd-select>
+            </textarea>
+            <h5>禁用状态</h5>
+            <gd-select placeholder="请选择" disabled>
+                <gd-option value="1">济南</gd-option>
+                <gd-option value="2">泰安</gd-option>
+                <gd-option value="3">青岛</gd-option>
+            </gd-select>
+            <textarea type="code">
+                <!-- 设置disabled属性以禁用下拉框 -->
+                <gd-select placeholder="请选择" disabled>
+                    <gd-option value="1">济南</gd-option>
+                    <gd-option value="2">泰安</gd-option>
+                    <gd-option value="3">青岛</gd-option>
+                </gd-select>
+            </textarea>
+            <h5>大尺寸</h5>
+            <gd-select class="gd-select-lg" placeholder="请选择" @change="selectChange" v-model="selectValue" name="selectDemo">
+                <gd-option value="1">济南</gd-option>
+                <gd-option value="2">泰安</gd-option>
+                <gd-option value="3">青岛</gd-option>
+            </gd-select>
+            <textarea type="code">
+                <!-- 添加gd-select-lg类 -->
+                <gd-select class="gd-select-lg" placeholder="请选择" @change="selectChange" v-model="selectValue" name="selectDemo">
+                    <gd-option value="1">济南</gd-option>
+                    <gd-option value="2">泰安</gd-option>
+                    <gd-option value="3">青岛</gd-option>
+                </gd-select>
+            </textarea>
+            <h5>带有复选框的下拉框</h5>
+            <gd-select placeholder="请选择" @change="selectChange" v-model="selectCheckValue" checkbox>
+                <gd-option value="1">济南</gd-option>
+                <gd-option value="2">泰安</gd-option>
+                <gd-option value="3">青岛</gd-option>
+                <gd-option value="4">烟台</gd-option>
+                <gd-option value="5">聊城</gd-option>
+                <gd-option value="6">潍坊</gd-option>
+                <gd-option value="7">淄博</gd-option>
+            </gd-select>
+            <textarea type="code">
+                <!-- 带有checkbox的复选框，添加checkbox属性 -->
+                <gd-select placeholder="请选择" @change="selectChange" v-model="selectCheckValue" checkbox>
+                    <gd-option value="1">济南</gd-option>
+                    <gd-option value="2">泰安</gd-option>
+                    <gd-option value="3">青岛</gd-option>
+                    <gd-option value="4">烟台</gd-option>
+                    <gd-option value="5">聊城</gd-option>
+                    <gd-option value="6">潍坊</gd-option>
+                    <gd-option value="7">淄博</gd-option>
+                </gd-select>
+            </textarea>
+            <h5>自定义内容</h5>
+            <gd-select placeholder="请选择" v-model="customValue" ref="customSelect" @change="selectChange">
+                <p>大江东去</p>
+                <p>浪淘尽</p>
+                <p>千古风流人物</p>
+            </gd-select>
+            <textarea type="code">
+            <!-- 自定义下拉框内容 -->
+            <!-- 如果要手动收起下拉框，可以调用this.$refs.customSelect.isDroped=false -->
+            <gd-select placeholder="请选择" v-model="customValue" ref="customSelect">
+                <p>大江东去</p>
+                <p>浪淘尽</p>
+                <p>千古风流人物</p>
+            </gd-select>
+            </textarea>
+        </div>
+    </div>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                selectValue: '2',
+                selectCheckValue: '2;3',
+                customValue: '大江东去'
+            },
+            methods: {
+                selectChange: function (data) {
+                    log(data)
+                },
+
+            }
+        });
+
+    </script>
+</body>
+
+</html>

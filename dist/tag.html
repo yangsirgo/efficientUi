@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./js/resource.js"></script>
+</head>
+
+<body>
+    <!-- 此处是整体框架用，包括侧边栏和顶部 -->
+    <div id="framework" v-cloak>
+        <gd-leftmenu :config="leftMenuConfig"></gd-leftmenu>
+        <gd-topbar :config="topbarConfig"></gd-topbar>
+    </div>
+    <div id="app" class="gd-right-content gd-padding-lg" style="background: white" v-cloak>
+        <h3>单字段</h3>
+        <h4>标准可用状态</h4>
+        <gd-tag v-model="tagData" @change="change" gd-validate="email" maxcount="5"></gd-tag>
+        <textarea type="code">
+            <!-- v-model绑定初始数据，如果没有初始数据可以不写，change监听change事件，gd-validate可以添加校验规则，maxcount设置最大个数 -->
+            <!-- 默认是一行容纳两个，如果想一行容纳更多，可以设置最外层宽度style="width:500px" -->
+            <gd-tag v-model="tagData" @change="change" gd-validate="email" maxcount="5"></gd-tag>
+            <script>
+                var app = new Vue({
+                    el: '#app',
+                    data: {
+                        tagData: ['124528@qq.com', 'goldencis@163.com']
+                    },
+                    methods: {
+                        change: function (data) {
+                            log(data)
+                            log(this.tagData)
+                        }
+                    }
+                });
+            </script>
+        </textarea>
+        <h4>禁用状态</h4>
+        <gd-tag v-model="tagDisabledData" disabled></gd-tag>
+        <textarea type="code">
+            <!-- 添加disabled属性 -->
+            <gd-tag v-model="tagDisabledData" disabled></gd-tag>
+        </textarea>
+        <!-- <h3>双字段</h3>
+        <h4>标准可用状态</h4>
+        <div>
+            <gd-tag-double @delete="del" :data="{id:4}" label="标签名" value="标签值"></gd-tag-double>
+            <textarea type="code">
+                <gd-tag-double @delete="del" :data="{id:4}" label="标签名" value="标签值"></gd-tag-double>
+            </textarea>
+        </div>
+        <h4>禁用状态</h4>
+        <div>
+            <gd-tag-double @delete="del" :data="{id:4}" label="标签名" value="标签值" disabled></gd-tag-double>
+            <textarea type="code">
+                <gd-tag-double @delete="del" :data="{id:4}" label="标签名" value="标签值" disabled></gd-tag-double>
+           </textarea>
+        </div> -->
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                tagData: ['124528@qq.com', 'goldencis@163.com', '124528@qq.com', 'goldencis@163.com', '124528@qq.com', 'goldencis@163.com'],
+                tagDisabledData: ['禁用状态', '禁用状态']
+            },
+            methods: {
+                change: function (data) {
+                    log(data)
+                    log(this.tagData)
+                }
+            }
+        });
+
+    </script>
+</body>
+
+</html>

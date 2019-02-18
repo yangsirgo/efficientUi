@@ -1,0 +1,46 @@
+/*色彩*/
+.score-star-wrap {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 5px;
+  cursor: default;
+  font-size: 20px;
+  display: inline-block;
+}
+.score-star-wrap .score-star {
+  display: inline-block;
+  cursor: pointer;
+  transition: all ease-in-out 0.3s;
+  position: relative;
+}
+.score-star-wrap .score-star:before {
+  content: '\f005';
+  font-family: FontAwesome;
+}
+.score-star-wrap .score-star:hover {
+  transform: scale(1.1);
+}
+.score-star-wrap .score-star-half {
+  width: 50%;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  overflow: hidden;
+  color: transparent;
+}
+.score-star-wrap .score-star-half:before {
+  content: '\f005';
+  font-family: FontAwesome;
+}
+.score-star-wrap .score-star-half-full {
+  color: #FFBC5B;
+}
+.score-star-wrap .score-star-zero {
+  color: #EEEEEE;
+}
+.score-star-wrap .score-star-full {
+  color: #FFBC5B;
+}
+/*# sourceMappingURL=rate.css.map */

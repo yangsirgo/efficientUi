@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./js/resource.js"></script>
+</head>
+
+<body>
+    <!-- 此处是整体框架用，包括侧边栏和顶部 -->
+    <div id="framework" v-cloak>
+        <gd-leftmenu :config="leftMenuConfig"></gd-leftmenu>
+        <gd-topbar :config="topbarConfig"></gd-topbar>
+    </div>
+    <div id="app" class="gd-right-content gd-padding-lg" v-cloak style="background: white;">
+        <h3>1.默认按钮</h3>
+        <button class="gd-btn">默认按钮</button>
+        <button class="gd-btn" disabled>默认按钮禁用</button>
+        <textarea type="code">
+            <button class="gd-btn">默认按钮</button>
+            <button class="gd-btn" disabled>默认按钮禁用</button>
+        </textarea>
+        <h3>2.风险按钮</h3>
+        <button class="gd-btn-danger">风险按钮</button>
+        <button class="gd-btn-danger" disabled>风险按钮禁用</button>
+        <textarea type="code">
+            <button class="gd-btn-danger">风险按钮</button>
+            <button class="gd-btn-danger" disabled>风险按钮禁用</button>
+        </textarea>
+        <h3>3.取消按钮</h3>
+        <button class="gd-btn-cancel">取消按钮</button>
+        <button class="gd-btn-cancel" disabled>取消按钮禁用</button>
+        <textarea type="code">
+            <button class="gd-btn-cancel">取消按钮</button>
+            <button class="gd-btn-cancel" disabled>取消按钮禁用</button>
+        </textarea>
+        <h3>3.图标按钮</h3>
+        <button class="gd-btn-icon icon-close"></button>
+        <button class="gd-btn-icon icon-close" disabled></button>
+        <i class="gd-btn-icon icon-close"></i>
+        <i class="gd-btn-icon icon-close" disabled></i>
+        <textarea type="code">
+            <button class="gd-btn-icon icon-close"></button>
+            <button class="gd-btn-icon icon-close" disabled></button>
+            <i class="gd-btn-icon icon-close"></i>
+            <i class="gd-btn-icon icon-close" disabled></i>
+        </textarea>
+        <h3>5.独立图标按钮</h3>
+        <button class="gd-btn-alone icon-close"></button>
+        <button class="gd-btn-alone icon-close" disabled></button>
+        <i class="gd-btn-alone icon-close"></i>
+        <i class="gd-btn-alone icon-close" disabled></i>
+        <textarea type="code">
+            <button class="gd-btn-alone icon-close"></button>
+            <button class="gd-btn-alone icon-close" disabled></button>
+            <i class="gd-btn-alone icon-close"></i>
+            <i class="gd-btn-alone icon-close" disabled></i>
+        </textarea>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {}
+        });
+    </script>
+</body>
+
+</html>

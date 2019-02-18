@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./js/resource.js"></script>
+</head>
+
+<body>
+    <!-- 此处是整体框架用，包括侧边栏和顶部 -->
+    <div id="framework" v-cloak>
+        <gd-leftmenu :config="leftMenuConfig"></gd-leftmenu>
+        <gd-topbar :config="topbarConfig">
+            <!-- 自定义控件 -->
+            <button title="如果满足不了你，在这自由发挥吧~" class="gd-btn">自定义控件</button>
+        </gd-topbar>
+    </div>
+    <div id="app" class="gd-right-content gd-padding-lg" v-cloak>
+        <p>顶栏会自动处理页面标题，支持普通图标按钮、下拉框和小红点信息，如果不能满足需要，可进行自定义，调用方式如下：</p>
+        <textarea type="code">
+            <div id="framework">
+                <gd-topbar :config="topbarConfig">
+                    <!-- 自定义控件 -->
+                    <button title="如果满足不了你，在这自由发挥吧~" class="gd-btn">自定义控件</button>
+                </gd-topbar>
+            </div>
+            <script>
+                new Vue({
+                    el: '#framework',
+                    data: {
+                        topbarConfig: [
+                            {
+                                icon: 'icon-system', //图标，必选
+                                title: '文本', //鼠标放上去的title，可选
+                                text: '文本按钮', //图标旁边的文字，可选
+                                action: function (data) {//data返回当前条目的配置信息
+                                    //点击图标执行的动作，可选
+                                    gd.showSuccess('你点了文本按钮');
+                                }
+                            },
+                            {
+                                icon: 'icon-warning-hex',
+                                title: '报警',
+                                badge: '60', //如果定义的badge，将显示小红点
+                                action: function (data) {
+                                    gd.showWarning('你点了报警');
+                                }
+                            },
+                            {
+                                icon: 'icon-fullscreen-hex',
+                                title: '全屏',
+                                action: function (data) {
+                                    gd.toggleFullscreen();
+                                }
+                            },
+                            {
+                                icon: 'icon-user',
+                                text: 'system',
+                                dropItems: [
+                                    //如果定义了dropItems，将显示下拉框
+                                    {
+                                        icon: 'icon-user',//图标
+                                        text: '个人信息', //下拉框的文本
+                                        action: function (data) {
+                                            //下拉框的动作
+                                            gd.showSuccess('你点了个人信息');
+                                        }
+                                    },
+                                    {
+                                        text: '退出',
+                                        action: function (data) {
+                                            gd.showSuccess('你点了退出');
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                });
+            </script>
+        </textarea>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                msg: 'Hello,World!',
+            }
+        });
+    </script>
+</body>
+
+</html>

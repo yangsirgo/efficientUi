@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./js/resource.js"></script>
+</head>
+
+<body>
+    <!-- 此处是整体框架用，包括侧边栏和顶部 -->
+    <div id="framework" v-cloak>
+        <gd-leftmenu :config="leftMenuConfig"></gd-leftmenu>
+        <gd-topbar :config="topbarConfig"></gd-topbar>
+    </div>
+    <div id="app" class="gd-right-content gd-padding-lg" v-cloak>
+        <p tooltip="这是提示信息" style="display: inline;">
+            这是一条普通文本，鼠标放上去会显示提示信息
+        </p>
+        <textarea type="code">
+            <!-- 直接在title里写提示信息即可 -->
+            <p tooltip="这是提示信息">这是一条普通文本，鼠标放上去会显示提示信息</p>
+        </textarea>
+        <button id="btn_tip" class="gd-btn">显示tips信息</button>
+        <textarea type="code">
+            <script>
+                gd.showTip(this, 'tip信息', {
+                    id: 'tips',//如果传一个id，将关闭之前相同id的tip
+                    time: 5000,//默认在3秒内关闭，可以自定义关闭时间，0为不自动关闭
+                    position: 'right'//设置位置，默认自动
+                });
+            </script>
+        </textarea>
+        <button id="btn_success" class="gd-btn">显示成功提示</button>
+        <textarea type="code">
+            <script>
+                gd.showSuccess('操作成功')
+            </script>
+        </textarea>
+        <button id="btn_success_time" class="gd-btn">设定关闭时间</button>
+        <textarea type="code">
+            <script>
+                // time设定关闭时间，0为不自动关闭， closeBtn: true显示关闭按钮
+                gd.showSuccess('操作成功', { time: 5000 });
+            </script>
+        </textarea>
+        <button id="btn_warning" class="gd-btn">显示警告提示</button>
+        <textarea type="code">
+            <script>
+                gd.showWarning('操作提示');
+            </script>
+        </textarea>
+        <button id="btn_error" class="gd-btn">显示失败提示</button>
+        <textarea type="code">
+            <script>
+                gd.showError('操作失败');
+            </script>
+        </textarea>
+        <button id="btn_msg" class="gd-btn">显示普通信息</button>
+        <textarea type="code">
+            <script>
+                gd.showMsg('通知信息');
+            </script>
+        </textarea>
+        <button id="btn_msg_time" class="gd-btn">自动关闭普通信息</button>
+        <textarea type="code">
+            <script>
+                gd.showMsg('通知信息', { time: 5000 });
+            </script>
+        </textarea>
+        <button id="btn_msg_btn" class="gd-btn">带有按钮的消息框</button>
+        <textarea type="code">
+            <script>
+                gd.showMsg('<div class="gd-gray1-color gd-margin-bottom-xs">这是一条普通信息</div><span class="gd-gray3-color">可在系统-设置-用户管理查看详细的导入结果</span>', {
+                    btn: [{
+                        text: '知道了',//按钮文本
+                        action: function () {//按钮点击事件
+                            gd.showSuccess('你点了知道了');
+                        }
+                    }, {
+                        text: '不再提示',
+                        action: function () {
+                            gd.showSuccess('你点了不再提示');
+                        }
+                    }]
+                });
+            </script>
+        </textarea>
+        <button id="btn_msg_custom" class="gd-btn">自定义按钮样式</button>
+        <textarea type="code">
+            <script>
+                gd.showMsg('<div class="gd-gray1-color gd-margin-bottom-xs">这是一条普通信息</div><span class="gd-gray3-color">可在系统-设置-用户管理查看详细的导入结果</span>', {
+                    btn: [{
+                        text: '拒绝',
+                        class: 'gd-btn-danger',//给按钮添加类
+                        action: function () {
+                            gd.showSuccess('你点了拒绝');
+                        }
+                    }, {
+                        text: '通过',
+                        class: 'gd-btn',
+                        action: function () {
+                            gd.showSuccess('你点了通过');
+                        }
+                    }]
+                });
+            </script>
+        </textarea>
+    </div>
+    <script>
+        new Vue({
+            el: '#app'
+        });
+        $('#btn_tip').click(function () {
+            gd.showTip(this, 'tip信息', {
+                id: 'tips',//如果传一个id，将关闭之前相同id的tip
+                time: 5000,
+                position: 'right'//设置位置，默认自动
+            });
+        });
+        $('#btn_success').click(function () {
+            gd.showSuccess('操作成功');
+        });
+        $('#btn_success_time').click(function () {
+            gd.showSuccess('操作成功', { time: 5000 });
+        });
+        $('#btn_warning').click(function () {
+            gd.showWarning('操作提示', {
+                id: 'warning' //如果传一个id，将关闭之前相同id的消息
+            });
+        });
+        $('#btn_error').click(function () {
+            gd.showError('操作失败');
+        });
+        $('#btn_msg').click(function () {
+            gd.showMsg('通知信息');
+        });
+        $('#btn_msg_time').click(function () {
+            gd.showMsg('通知信息', { time: 5000 });
+        });
+        $('#btn_msg_btn').click(function () {
+            gd.showMsg('<div class="gd-gray1-color gd-margin-bottom-xs">这是一条普通信息</div><span class="gd-gray3-color">可在系统-设置-用户管理查看详细的导入结果</span>', {
+                btn: [{
+                    text: '知道了',//按钮文本
+                    action: function () {//按钮点击事件
+                        gd.showSuccess('你点了知道了');
+                    }
+                }, {
+                    text: '不再提示',
+                    action: function () {
+                        gd.showSuccess('你点了不再提示');
+                    }
+                }]
+            });
+        });
+        $('#btn_msg_custom').click(function () {
+            gd.showMsg('<div class="gd-gray1-color gd-margin-bottom-xs">这是一条普通信息</div><span class="gd-gray3-color">可在系统-设置-用户管理查看详细的导入结果</span>', {
+                btn: [{
+                    text: '拒绝',
+                    class: 'gd-btn-danger',//给按钮添加类
+                    action: function () {
+                        gd.showSuccess('你点了拒绝');
+                    }
+                }, {
+                    text: '通过',
+                    class: 'gd-btn',
+                    action: function () {
+                        gd.showSuccess('你点了通过');
+                    }
+                }]
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./js/resource.js"></script>
+</head>
+
+<body>
+    <!-- 此处是整体框架用，包括侧边栏和顶部 -->
+    <div id="framework" v-cloak>
+        <gd-leftmenu :config="leftMenuConfig"></gd-leftmenu>
+        <gd-topbar :config="topbarConfig">
+            <!-- 自定义控件 -->
+            <button title="如果满足不了你，在这自由发挥吧~" class="gd-btn">自定义控件</button>
+        </gd-topbar>
+    </div>
+    <div id="app" class="gd-right-content" v-cloak>
+        <gd-toolbar :config="toolbarConfig">
+            <button class="gd-btn" title="自定义工具">自定义的工具</button>
+            <gd-select placeholder="请选择" checkbox>
+                <gd-option value="1">济南</gd-option>
+                <gd-option value="2">泰安</gd-option>
+                <gd-option value="3">青岛</gd-option>
+                <gd-option value="4">烟台</gd-option>
+                <gd-option value="5">聊城</gd-option>
+                <gd-option value="6">潍坊</gd-option>
+                <gd-option value="7">淄博</gd-option>
+            </gd-select>
+            <!-- slot="right"将会显示在最右边 -->
+            <i class="gd-btn-icon icon-list" slot="right"></i>
+        </gd-toolbar>
+        <div class="gd-padding-lg" style="background: white;padding:20px">
+            工具栏调用方式如下：
+            <textarea type="code">
+                <gd-toolbar :config="toolbarConfig">
+                    <button class="gd-btn" title="自定义工具">自定义的工具</button>
+                    <gd-select placeholder="请选择" checkbox>
+                        <gd-option value="1">济南</gd-option>
+                        <gd-option value="2">泰安</gd-option>
+                        <gd-option value="3">青岛</gd-option>
+                        <gd-option value="4">烟台</gd-option>
+                        <gd-option value="5">聊城</gd-option>
+                        <gd-option value="6">潍坊</gd-option>
+                        <gd-option value="7">淄博</gd-option>
+                    </gd-select>
+                    <!-- slot="right"将会显示在最右边 -->
+                    <i class="gd-btn-icon icon-list" slot="right"></i>
+                </gd-toolbar>
+                <script>
+                    var app = new Vue({
+                        el: '#app',
+                        data: {
+                            //工具栏配置
+                            toolbarConfig: [
+                                {
+                                    type: 'button',
+                                    icon: 'icon-add',
+                                    title: '添加',
+                                    action: function () {
+                                        gd.showSuccess('添加');
+                                    }
+                                },
+                                {
+                                    type: 'button',
+                                    icon: 'icon-import',
+                                    title: '导入',
+                                    action: function () {
+                                        gd.showSuccess('导入');
+                                    }
+                                },
+                                {
+                                    type: 'button',
+                                    icon: 'icon-delete',
+                                    title: '删除',
+                                    disabled: true,
+                                    action: function () {
+                                        gd.showSuccess('删除');
+                                    }
+                                },
+                                {
+                                    type: 'button',
+                                    icon: 'icon-insulate',
+                                    disabled: true,//是否禁用
+                                    title: "隔离",
+                                    action: function () {
+                                        gd.showSuccess('隔离');
+                                    }
+                                },
+                                {
+                                    type: 'button',
+                                    icon: 'icon-export',
+                                    title: "导出",
+                                    action: function () {
+                                        gd.showSuccess('导出');
+                                    }
+                                },
+                                {
+                                    type: 'button',
+                                    icon: 'icon-pass',
+                                    title: "通过",
+                                    action: function () {
+                                        gd.showSuccess('通过');
+                                    }
+                                },
+                                {
+                                    type: 'searchbox',
+                                    placeholder: "IP/MAC",
+                                    action: function (val) {
+                                        gd.showSuccess(val);
+                                    }
+                                }
+                            ],
+                        }
+                    });
+                </script>
+
+            </textarea>
+        </div>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                //工具栏配置
+                toolbarConfig: [
+                    {
+                        type: 'text',
+                        text: '工具栏文字'
+                    },
+                    {
+                        type: 'button',
+                        icon: 'icon-add',
+                        title: '添加',
+                        action: function () {
+                            gd.showSuccess('添加');
+                        }
+                    },
+                    {
+                        type: 'button',
+                        icon: 'icon-import',
+                        title: '导入',
+                        action: function () {
+                            gd.showSuccess('导入');
+                        }
+                    },
+                    {
+                        type: 'button',
+                        icon: 'icon-delete',
+                        title: '删除',
+                        disabled: true,
+                        action: function () {
+                            gd.showSuccess('删除');
+                        }
+                    },
+                    {
+                        type: 'button',
+                        icon: 'icon-insulate',
+                        disabled: true,//是否禁用
+                        title: "隔离",
+                        action: function () {
+                            gd.showSuccess('隔离');
+                        }
+                    },
+                    {
+                        type: 'button',
+                        icon: 'icon-export',
+                        title: "导出",
+                        action: function () {
+                            gd.showSuccess('导出');
+                        }
+                    },
+                    {
+                        type: 'button',
+                        icon: 'icon-pass',
+                        title: "通过",
+                        action: function () {
+                            gd.showSuccess('通过');
+                        }
+                    },
+                    {
+                        type: 'searchbox',
+                        placeholder: "IP/MAC",
+                        action: function (val) {
+                            gd.showSuccess(val);
+                        }
+                    }
+                ]
+            }
+        });
+    </script>
+</body>
+
+</html>

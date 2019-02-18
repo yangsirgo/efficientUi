@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./js/resource.js"></script>
+</head>
+
+<body>
+    <!-- 此处是整体框架用，包括侧边栏和顶部 -->
+    <div id="framework" v-cloak>
+        <gd-leftmenu :config="leftMenuConfig"></gd-leftmenu>
+        <gd-topbar :config="topbarConfig"></gd-topbar>
+    </div>
+    <div id="app" class="gd-right-content gd-padding-lg" v-cloak>
+        <button id="btn_layer" class="gd-btn">显示弹出层</button>
+        <textarea type="code">
+            <script>
+                //gd.showLayer返回当前窗口dom对象
+                var dom = gd.showLayer({
+                    id: 'wind',//可传一个id作为标识
+                    title: '弹出层',//窗口标题
+                    content: '这是弹窗内容',//可直接传内容，也可以是$('#xxx')，或是domcument.getElementById('xxx');
+                    //url: './layer_content.html',//也可以传入url作为content,
+                    size: [600, 400],//窗口大小，直接传数字即可，也可以是['600px','400px']
+                    //autoFocus:true,//自动对输入框获取焦点，默认为ture
+                    btn: [{
+                        text: '手动关闭弹窗',
+                        enter: true,//响应回车
+                        action: function (dom) {//参数为当前窗口dom对象
+                            dom.close();//或gd.closeLayer(dom);
+                            gd.showWarning('手动关闭了弹窗');
+                            return false;//阻止弹窗自动关闭
+                        }
+                    }, {
+                        text: '设置弹窗内容',
+                        action: function (dom) {
+                            dom.setContent(new Date());//设置弹窗内容
+                            return false;//阻止弹窗自动关闭
+                        }
+                    }, {
+                        text: '自定义样式的按钮',
+                        class: 'gd-btn-danger',//按钮可以应用自己的类
+                        action: function () {
+                            gd.showWarning('你点了警告');
+                        }
+                    }, {
+                        text: '取消',
+                        action: function () {
+                            gd.showSuccess('你点了取消');
+                        }
+                    }],
+                    success: function (dom) {//参数为当前窗口dom对象
+                        gd.showSuccess('窗口打开了');
+                        // dom.setContent('设置弹窗的内容');
+                    },
+                    end: function (dom) {//参数为当前窗口dom对象
+                        gd.showSuccess('窗口关闭了');
+                    }
+                });
+            </script>
+        </textarea>
+        <button id="btn_img" class="gd-btn">显示图片层</button>
+        <textarea type="code">
+            <script>
+                $('#btn_img').click(function () {
+                    var dom = gd.showLayer({
+                        id: 'wind',
+                        content: '<img src="http://p0.so.qhimgs1.com/t011eb2a9af41c6dd0a.jpg" style="max-height:200px"/>',
+                    });
+                });
+            </script>
+        </textarea>
+        <button id="btn_confirm" class="gd-btn">显示确认框</button>
+        <textarea type="code">
+            <script>
+                $('#btn_confirm').click(function () {
+                    var dom = gd.showConfirm({
+                        id: 'wind',
+                        content: '确定要删除吗?',
+                        btn: [{
+                            text: '删除',
+                            class: 'gd-btn-danger',//也可以自定义类
+                            enter: true,//响应回车
+                            action: function (dom) {
+                                gd.showWarning('你点了删除');
+                                /*
+                                可以return false阻止自动关闭，通过dom.close()或gd.closeConfirm(dom)手动关闭弹窗
+                                */
+                            }
+                        }, {
+                            text: '取消',
+                            action: function () {
+                                gd.showSuccess('你点了取消');
+                            }
+                        }],
+                        success: function (dom) {
+                            gd.showSuccess('窗口打开了');
+                        },
+                        end: function (dom) {
+                            gd.showSuccess('窗口关闭了');
+                        }
+                    });
+                });
+            </script>
+        </textarea>
+    </div>
+    <script>
+        new Vue({
+            el: '#app'
+        });
+        $('#btn_layer').click(function () {
+            var dom = gd.showLayer({
+                id: 'wind',
+                title: '弹出层',
+                content: '这是弹窗内容',
+                size: [600, 400],
+                btn: [{
+                    text: '手动关闭弹窗',
+                    enter: true,//响应回车
+                    action: function (dom) {
+                        dom.close();//或gd.closeLayer(dom);
+                        gd.showWarning('手动关闭了弹窗');
+                        return false;//阻止弹窗自动关闭
+                    }
+                }, {
+                    text: '设置弹窗内容',
+                    action: function (dom) {
+                        dom.setContent(new Date());
+                        return false;//阻止弹窗自动关闭
+                    }
+                }, {
+                    text: '自定义样式的按钮',
+                    class: 'gd-btn-danger',
+                    action: function () {
+                        gd.showWarning('你点了警告');
+                    }
+                }, {
+                    text: '取消',
+                    action: function () {
+                        gd.showSuccess('你点了取消');
+                    }
+                }
+                ],
+                success: function (dom) {
+                    gd.showSuccess('窗口打开了');
+                    // dom.setContent('设置弹窗的内容');
+                },
+                end: function (dom) {
+                    gd.showSuccess('窗口关闭了');
+                }
+            });
+        });
+        $('#btn_img').click(function () {
+            var dom = gd.showLayer({
+                id: 'wind',
+                content: '<img src="http://i4.bvimg.com/651549/1ea44c8948dbd663.jpg" style="max-height:200px"/>',
+            });
+        });
+        $('#btn_confirm').click(function () {
+            var dom = gd.showConfirm({
+                id: 'wind',
+                content: '确定要删除吗?',
+                btn: [{
+                    text: '删除',
+                    class: 'gd-btn-danger',//也可以自定义类
+                    enter: true,//响应回车
+                    action: function (dom) {
+                        gd.showWarning('你点了删除');
+                        /*
+                        可以return false阻止自动关闭，通过dom.close()或gd.closeConfirm(dom)手动关闭弹窗
+                        */
+                    }
+                }, {
+                    text: '取消',
+                    action: function (dom) {
+                        gd.showSuccess('你点了取消');
+                    }
+                }],
+                success: function (dom) {
+                    gd.showSuccess('窗口打开了');
+                    // dom.setContent('设置弹窗的内容');
+                },
+                end: function (dom) {
+                    gd.showSuccess('窗口关闭了');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

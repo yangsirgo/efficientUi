@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./js/resource.js"></script>
+    <link rel="stylesheet" href="./css/table.css">
+</head>
+
+<body>
+    <!-- 此处是整体框架用，包括侧边栏和顶部 -->
+    <div id="framework" v-cloak>
+        <gd-leftmenu :config="leftMenuConfig"></gd-leftmenu>
+        <gd-topbar :config="topbarConfig"></gd-topbar>
+    </div>
+    <div id="app" class="gd-right-content" v-cloak>
+        <gd-toolbar :config="toolbarConfig">
+            <gd-select value="checkbox;ip;mac;department;type;time;qrcode;event;state;operate" placeholder="请选择"
+                checkbox @change="change">
+                <gd-option value="checkbox">复选框</gd-option>
+                <gd-option value="ip">IP地址</gd-option>
+                <gd-option value="mac">MAC地址</gd-option>
+                <gd-option value="department">部门</gd-option>
+                <gd-option value="type">类型</gd-option>
+                <gd-option value="time">提交时间</gd-option>
+                <gd-option value="qrcode">指纹</gd-option>
+                <gd-option value="event">事件</gd-option>
+                <gd-option value="state">状态</gd-option>
+                <gd-option value="operate">操作</gd-option>
+            </gd-select>
+        </gd-toolbar>
+        <div style="visibility: hidden;position: fixed;z-index: -1;">
+            <div id="tree_box" class="tree-box" style="width: 240px;max-height: 300px">
+                <gd-tree :config='treeConfig'></gd-tree>
+            </div>
+        </div>
+        <div class="table-box">
+            <gd-table :config="tableConfig"></gd-table>
+        </div>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            methods: {
+                change: function (data) {
+                    log(data)
+                    gd.table('demoTable').showColumns(data.value.split(';'))
+                }
+            },
+            data: {
+                //工具栏配置
+                toolbarConfig: [
+                    {
+                        type: 'button',
+                        icon: 'icon-add',
+                        title: '添加',
+                        action: function () {
+                            gd.showSuccess('添加');
+                        }
+                    },
+                    {
+                        type: 'button',
+                        icon: 'icon-import',
+                        title: '导入',
+                        action: function () {
+                            gd.showSuccess('导入');
+                        }
+                    },
+                    {
+                        type: 'button',
+                        icon: 'icon-delete',
+                        title: '删除',
+                        disabled: true,
+                        action: function () {
+                            gd.showSuccess('删除');
+                        }
+                    },
+                    {
+                        type: 'button',
+                        icon: 'icon-insulate',
+                        disabled: true,//是否禁用
+                        title: "隔离",
+                        action: function () {
+                            gd.showSuccess('隔离');
+                        }
+                    },
+                    {
+                        type: 'button',
+                        icon: 'icon-export',
+                        title: "导出",
+                        action: function () {
+                            gd.showSuccess('导出');
+                        }
+                    },
+                    {
+                        type: 'button',
+                        icon: 'icon-pass',
+                        title: "通过",
+                        action: function () {
+                            gd.showSuccess('通过');
+                        }
+                    },
+                    {
+                        type: 'searchbox',
+                        placeholder: "IP/MAC",
+                        action: function (val) {
+                            gd.showSuccess(val);
+                        }
+                    }
+                ],
+                //表格配置
+                tableConfig: {
+                    id: 'demoTable',//给table一个id,调用gd.tableReload('demoTable');可重新加载表格数据并保持当前页码，gd.tableReload('demoTable'，1)，第二个参数可在加载数据时指定页码
+                    length: 50, //每页多少条,默认50，可选
+                    curPage: 1, //当前页码，默认1，可选
+                    lengthMenu: [10, 30, 50, 100], //可选择每页多少条，默认[10, 30, 50, 100]，可选
+                    enableJumpPage: false, //启用跳页，默认false，可选
+                    enableLengthMenu: true, //启用可选择每页多少条，默认true，可选
+                    enablePaging: true,//启用分页,默认true，可选
+                    orderColumn: 'ip',//排序列
+                    orderType: 'desc',//排序规则，desc或asc,默认desc
+                    columnResize: true, //启用列宽调，默认true，可选
+                    //showFooter: false,//显示footer,默认为true
+                    //lazy: true,//懒加载数据，调用gd.table('id').reload()对表格数据进行加载,默认为false
+                    //loading: true,//显示loading,默认为false
+                    //filterImmediately: true,//高级查询勾选后立即触发，默认为false
+                    //fillBlank:'--',//对空数据进行填充
+                    ajax: {
+                        //其它ajax参数同jquery
+                        url: './data/table.json',
+                        //改变从服务器返回的数据给table
+                        dataSrc: function (data) {
+                            data.rows = data.rows.map(function (obj) {
+                                return [
+                                    obj.id,
+                                    obj.ip,
+                                    obj.mac,
+                                    obj.department,
+                                    obj.type,
+                                    obj.time,
+                                    obj.qrcode,
+                                    obj.event,
+                                    obj.state,
+                                    obj.id
+                                ]
+                            });
+                            return data;
+                        },
+                        //请求参数
+                        data: {
+                            startTime: '2018-04-02',
+                            searchStr: 'work'
+                        }
+                    },
+                    columns: [
+                        {
+                            name: 'checkbox',
+                            type: 'checkbox',
+                            //single: true,//checkbox只允许选单个
+                            width: '60', //列宽
+                            //class: 'xxx',//加入自定义类
+                            align: 'center',//对齐方式，默认left，与class不同，class只影响内容，align会影响内容和表头
+                            disabled: function (cell, row, raw) {//禁用checkbox
+                                return Math.random() > 0.5;
+                            },
+                            checked: function (cell, row, raw) {//选中checkbox
+                                return Math.random() > 0.5;
+                            },
+                            change: function (checkedData, checkedRawData) {//复选框改变，触发事件，返回所有选中的列的数据,第1个参数为加工后的表格数据，第2个参数为未加工的表格数据
+                                log(checkedData)
+                                log(checkedRawData)
+                            }
+                        },
+                        {
+                            name: 'ip',//本列如果有排序或高级搜索，必须要有name
+                            head: 'IP地址',
+                            orderable: true,//启用排序
+                            show: true,//是否展示该列，默认为true
+                            title: function (cell, row, raw) {//设置title，cell为本格数据，row为本行加工后的数据，raw为本行未加工的数据,也可以直接传一个true,将以cell作为title
+                                return cell
+                            },
+                            render: function (cell, row, raw) {//自定义表格内容
+                                return cell;
+                            }
+                        },
+                        {
+                            name: 'mac',
+                            head: 'MAC地址',
+                            orderable: true,
+                            //ellipsis: false，可以禁用text ellipsis,默认为true
+                            title: function (cell, row, raw) {//设置title，cell为本格数据，row为本行加工后的数据，raw为本行未加工的数据
+                                return cell
+                            }
+                        },
+                        {
+                            name: 'department',
+                            head: '所属部门',
+                            orderable: true,
+                            title: true,
+                            filters: '#tree_box',//如果是自定义内容，这里只能传入一个选择器
+                        },
+                        {
+                            name: 'type',
+                            head: '类型',
+                            orderable: true,
+                            align: 'center',
+                            filterName: 'device',//高级查询字段名，不写为name
+                            filters: [//设置检索条件
+                                {
+                                    label: '计算机',
+                                    value: 'PC',
+                                    checked: true//默认选中
+                                }, {
+                                    label: '路由器',
+                                    value: 'router'
+                                }
+                            ]
+                        },
+                        {
+                            name: "time",
+                            head: '提交时间',
+                        },
+                        {
+                            name: 'qrcode',
+                            head: '指纹',
+                            align: 'center',
+                            render: function () {
+                                return '<i class="icon-qrcode" style="color:#999999"></i>'
+                            }
+                        },
+                        {
+                            name: 'event',
+                            head: '事件',
+                            align: 'center',
+                            render: function (cell) {
+                                var className = cell == 2 ? 'gd-mark-danger' : '';
+                                return '<span class="gd-mark ' + className + '">' + cell + '</span>'
+                            }
+                        },
+                        {
+                            name: 'state',
+                            head: '状态',
+                            align: 'center',
+                            render: function () {
+                                return '<label class="gd-switch"><input type="checkbox" checked><i></i></label>'
+                            }
+                        },
+                        {
+                            name: 'operate',
+                            head: '操作',
+                            align: 'center',
+                            width: 120,
+                            operates: [
+                                {
+                                    icon: 'icon-edit',
+                                    title: '编辑',//设置图标title
+                                    action: function (cell, row, raw) {//动作函数,cell为本格数据，row为本行加工后的数据，raw为本行未加工的数据
+                                        log(cell)
+                                        log(row)
+                                        log(raw)
+                                    }
+                                },
+                                {
+                                    icon: 'icon-pass',
+                                    title: '确认',
+                                    action: function (cell, row, raw) {
+
+                                    }
+                                },
+                                {
+                                    icon: 'icon-play',
+                                    text: '播放',
+                                    show: function (cell, row, raw) {//是否展示，可控制权限
+                                        return row[0] == 2;
+                                    },
+                                    action: function (cell, row, raw) {
+                                        log(cell)
+                                        log(row)
+                                        log(raw)
+                                    }
+                                },
+                                {
+                                    icon: 'icon-insulate',
+                                    text: '隔离',
+                                    disabled: function (cell, row, raw) {//是否禁用
+                                        return row[0] == 2;
+                                    },
+                                    action: function () {
+
+                                    }
+                                },
+                                {
+                                    icon: 'icon-locate',
+                                    text: '定位',
+                                    action: function () {
+
+                                    }
+                                },
+                                {
+                                    icon: 'icon-relation',
+                                    text: '关联',
+                                    action: function () {
+
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                treeConfig: {
+                    id: 'treeTest',//树的id，用于提供API
+                    showCheckBox: true,//默认是false;显示checkbox
+                    data: [{
+                        id: 1,
+                        name: '顶级部门',
+                        level: 1,
+                        pId: null,
+                        expend: true,
+                    }, {
+                        id: 2,
+                        name: '历下区技术研发部',
+                        level: 2,
+                        pId: 1,
+                        expend: true,
+                    }, {
+                        id: 3,
+                        name: '高新区技术研发部',
+                        level: 2,
+                        pId: 1,
+                        expend: true,
+                    }],
+                    onSelect: function (n) {// 点击树节点时触发 返回所有选中节点的数据
+                        console.log(n);
+                    },
+                    onChange: function (n) {// 点击复选框时触发  返回所有选中复选框的数据
+                        var ids = n.map(function (node) {
+                            return node.id
+                        });
+                        gd.table('demoTable').setFilterValue('department', ids.join(';'))
+                    }
+                },
+            }
+        });
+    </script>
+</body>
+
+</html>

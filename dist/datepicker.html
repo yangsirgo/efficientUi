@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./js/resource.js"></script>
+</head>
+
+<body>
+    <!-- 此处是整体框架用，包括侧边栏和顶部 -->
+    <div id="framework" v-cloak>
+        <gd-leftmenu :config="leftMenuConfig"></gd-leftmenu>
+        <gd-topbar :config="topbarConfig"></gd-topbar>
+    </div>
+    <div id="app" class="gd-right-content gd-padding-lg">
+        <p>普通日期选择:</p>
+        <gd-datepicker :config="dateConfig"></gd-datepicker>
+        <textarea type="code">
+            <gd-datepicker :config="dateConfig"></gd-datepicker>
+            <script>
+                var app = new Vue({
+                    el: '#app',
+                    data: {
+                        dateConfig: {
+                            value: '2018-05-06',//设置初始时间,可选
+                            maxDate: '2020-06-03',//最大日期
+                            minDate: '2018-05-03',//最小日期
+                            change: function (time) {
+                                log(time);//时间改变时触发
+                            }
+                        }
+                    }
+                })
+            </script>
+        </textarea>
+        <p>日期加时间点选择:</p>
+        <gd-datepicker :config="dateTimeConfig"></gd-datepicker>
+        <textarea type="code">
+            <gd-datepicker :config="dateTimeConfig"></gd-datepicker>
+            <script>
+                var app = new Vue({
+                    el: '#app',
+                    data: {
+                        dateTimeConfig: {
+                            value: '2018-05-06',//设置初始时间,可选
+                            maxDate: '2020-06-03',//最大日期
+                            minDate: '2018-05-03',//最小日期
+                            timePicker: true,//展示时间选择器
+                            timeValue: '18:30',
+                            timeStep: 15,//时间最小单位
+                            change: function (time) {
+                                log(time);//时间改变时触发
+                            }
+                        }
+                    }
+                })
+            </script>
+        </textarea>
+        <p>日期加时间范围选择:</p>
+        <gd-datepicker :config="dateTimeRangeConfig"></gd-datepicker>
+        <textarea type="code">
+            <gd-datepicker :config="dateTimeRangeConfig"></gd-datepicker>
+            <script>
+                var app = new Vue({
+                    el: '#app',
+                    data: {
+                        dateTimeRangeConfig: {
+                            value: '2018-05-06',//设置初始时间,可选
+                            maxDate: '2020-06-03',//最大日期
+                            minDate: '2018-05-03',//最小日期
+                            timePicker: true,//展示时间选择器
+                            timeValue: ['13:15', '19:45'],
+                            timeStep: 15,//时间最小单位
+                            timeRange: true,//选取时间范围
+                            change: function (time) {
+                                log(time);//时间改变时触发
+                            }
+                        }
+                    }
+                })
+            </script>
+        </textarea>
+        <p>普通日期范围选择:</p>
+        <gd-datepicker :config="dateRangeConfig"></gd-datepicker>
+        <textarea type="code">
+            <gd-datepicker :config="dateRangeConfig"></gd-datepicker>
+            <script>
+                var app = new Vue({
+                    el: '#app',
+                    data: {
+                        dateRangeConfig: {
+                            value: ['2018-05-06', '2018-05-13'],//设置初始时间,可选
+                            maxDate: '2020-06-03',//最大日期
+                            minDate: '2018-05-03',//最小日期
+                            dateRange: true,//日期范围选择
+                            change: function (time) {
+                                log(time);//时间改变时触发
+                            }
+                        }
+                    }
+                })
+            </script>
+        </textarea>
+        <p>日期范围选择带时间:</p>
+        <gd-datepicker :config="dateRangeTimeConfig"></gd-datepicker>
+        <textarea type="code">
+            <gd-datepicker :config="dateRangeTimeConfig"></gd-datepicker>
+            <script>
+                var app = new Vue({
+                    el: '#app',
+                    data: {
+                        dateRangeTimeConfig: {
+                            value: ['2018-05-06 10:30', '2018-05-13 12:30'],//设置初始时间,可选
+                            maxDate: '2020-06-03',//最大日期
+                            minDate: '2018-05-03',//最小日期
+                            dateRange: true,//日期范围选择
+                            timePicker: true,//展示时间选择器
+                            timeStep: 15,//时间最小单位
+                            change: function (time) {
+                                log(time);//时间改变时触发
+                            }
+                        }
+                    }
+                })
+            </script>
+        </textarea>
+        <p>最近日期选择器(当天):</p>
+        <gd-recentpicker placeholder="请选择" :config="recentPickerConfig"></gd-recentpicker>
+        <textarea type="code">
+            <gd-recentpicker placeholder="请选择" :config="recentPickerConfig"></gd-recentpicker>
+            <script>
+                var app = new Vue({
+                    el: '#app',
+                    data: {
+                        recentPickerConfig: {
+                            value: '2018-05-06',//设置初始时间,可选
+                            maxDate: '2020-06-03',//最大日期
+                            minDate: '2018-05-03',//最小日期
+                            timeValue: ['13:15', '19:45'],
+                            timeStep: 15,//时间最小单位
+                            change: function (time) {
+                                log(time);//时间改变时触发
+                            },
+                            items: [{
+                                value: 8,
+                                label: '最近8小时'
+                            }, {
+                                value: 24,
+                                label: '最近1天'
+                            }, {
+                                value: 72,
+                                label: '最近3天'
+                            }, {
+                                value: 7 * 24,
+                                label: '最近7天'
+                            }, {
+                                value: 15 * 24,
+                                label: '最近15天'
+                            }, {
+                                value: 30 * 24,
+                                label: '最近30天'
+                            }]
+                        }
+                    }
+                })
+            </script>
+        </textarea>
+        <p>最近日期选择器(跨天):</p>
+        <gd-recentpicker placeholder="请选择" :config="recentRangePickerConfig"></gd-recentpicker>
+        <textarea type="code">
+            <gd-recentpicker placeholder="请选择" :config="recentRangePickerConfig"></gd-recentpicker>
+            <script>
+                var app = new Vue({
+                    el: '#app',
+                    data: {
+                        recentRangePickerConfig: {
+                            value: ['2018-05-06 10:30', '2018-05-13 12:30'],//设置初始时间,可选
+                            maxDate: '2020-06-03',//最大日期
+                            minDate: '2018-05-03',//最小日期
+                            dateRange: true,//日期范围选择
+                            timePicker: true,//展示时间选择器
+                            timeStep: 15,//时间最小单位
+                            change: function (time) {
+                                log(time);//时间改变时触发
+                            },
+                            items: [{
+                                value: 8,
+                                label: '最近8小时'
+                            }, {
+                                value: 24,
+                                label: '最近1天'
+                            }, {
+                                value: 72,
+                                label: '最近3天'
+                            }, {
+                                value: 7 * 24,
+                                label: '最近7天'
+                            }, {
+                                value: 15 * 24,
+                                label: '最近15天'
+                            }, {
+                                value: 30 * 24,
+                                label: '最近30天'
+                            }]
+                        }
+                    }
+                })
+            </script>
+        </textarea>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                dateConfig: {
+                    value: '2018-05-06',//设置初始时间,可选
+                    maxDate: '2020-06-03',//最大日期
+                    minDate: '2018-05-03',//最小日期
+                    change: function (time) {
+                        log(time);//时间改变时触发
+                    }
+                },
+                dateTimeConfig: {
+                    value: '2018-05-06',//设置初始时间,可选
+                    maxDate: '2020-06-03',//最大日期
+                    minDate: '2018-05-03',//最小日期
+                    timePicker: true,//展示时间选择器
+                    timeValue: '18:30',
+                    timeStep: 15,//时间最小单位
+                    change: function (time) {
+                        log(time);//时间改变时触发
+                    }
+                },
+                dateTimeRangeConfig: {
+                    value: '2018-05-06',//设置初始时间,可选
+                    maxDate: '2020-06-03',//最大日期
+                    minDate: '2018-05-03',//最小日期
+                    timePicker: true,//展示时间选择器
+                    timeValue: ['13:15', '19:45'],
+                    timeStep: 15,//时间最小单位
+                    timeRange: true,//选取时间范围
+                    change: function (time) {
+                        log(time);//时间改变时触发
+                    }
+                },
+                dateRangeConfig: {
+                    value: ['2018-05-06', '2018-05-13'],//设置初始时间,可选
+                    maxDate: '2020-06-03',//最大日期
+                    minDate: '2018-05-03',//最小日期
+                    dateRange: true,//日期范围选择
+                    change: function (time) {
+                        log(time);//时间改变时触发
+                    }
+                },
+                dateRangeTimeConfig: {
+                    value: ['2018-05-06 10:30', '2018-05-13 12:30'],//设置初始时间,可选
+                    maxDate: '2020-06-03',//最大日期
+                    minDate: '2018-05-03',//最小日期
+                    dateRange: true,//日期范围选择
+                    timePicker: true,//展示时间选择器
+                    timeStep: 15,//时间最小单位
+                    change: function (time) {
+                        log(time);//时间改变时触发
+                    }
+                },
+                recentPickerConfig: {
+                    value: '2018-05-06',//设置初始时间,可选
+                    maxDate: '2020-06-03',//最大日期
+                    minDate: '2018-05-03',//最小日期
+                    timeValue: ['13:15', '19:45'],
+                    timeStep: 15,//时间最小单位
+                    change: function (time) {
+                        log(time);//时间改变时触发
+                    },
+                    items: [{
+                        value: 8,
+                        label: '最近8小时'
+                    }, {
+                        value: 24,
+                        label: '最近1天'
+                    }, {
+                        value: 72,
+                        label: '最近3天'
+                    }, {
+                        value: 7 * 24,
+                        label: '最近7天'
+                    }, {
+                        value: 15 * 24,
+                        label: '最近15天'
+                    }, {
+                        value: 30 * 24,
+                        label: '最近30天'
+                    }]
+                },
+                recentRangePickerConfig: {
+                    value: ['2018-05-06 10:30', '2018-05-13 12:30'],//设置初始时间,可选
+                    maxDate: '2020-06-03',//最大日期
+                    minDate: '2018-05-03',//最小日期
+                    dateRange: true,//日期范围选择
+                    timePicker: true,//展示时间选择器
+                    timeStep: 15,//时间最小单位
+                    change: function (time) {
+                        log(time);//时间改变时触发
+                    },
+                    items: [{
+                        value: 8,
+                        label: '最近8小时'
+                    }, {
+                        value: 24,
+                        label: '最近1天'
+                    }, {
+                        value: 72,
+                        label: '最近3天'
+                    }, {
+                        value: 7 * 24,
+                        label: '最近7天'
+                    }, {
+                        value: 15 * 24,
+                        label: '最近15天'
+                    }, {
+                        value: 30 * 24,
+                        label: '最近30天'
+                    }]
+                }
+            },
+            methods: {
+
+            }
+        });
+    </script>
+</body>
+
+</html>

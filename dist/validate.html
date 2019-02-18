@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./css/validate.css">
+    <script src="./js/resource.js"></script>
+</head>
+
+<body>
+    <!-- 此处是整体框架用，包括侧边栏和顶部 -->
+    <div id="framework" v-cloak>
+        <gd-leftmenu :config="leftMenuConfig"></gd-leftmenu>
+        <gd-topbar :config="topbarConfig"></gd-topbar>
+    </div>
+    <div id="app" class="gd-right-content gd-padding-lg">
+        <form id="validate_demo" class="container">
+            <div class="row">
+                <label class="gd-label-required">必填项</label>
+                <input type="text" class="gd-input" gd-validate="required">
+                <span>gd-validate="required"</span>
+            </div>
+            <div class="row">
+                <label>不包含特殊字符</label>
+                <input type="text" class="gd-input" gd-validate="exceptSpecialChar">
+                <span>gd-validate="exceptSpecialChar"</span>
+            </div>
+            <div class="row">
+                <label>字母、数字和下划线</label>
+                <input type="text" class="gd-input" gd-validate="normalChar">
+                <span>gd-validate="normalChar"</span>
+            </div>
+            <div class="row">
+                <label>密码</label>
+                <input id="pw" type="password" class="gd-input">
+                <span>id="pw"</span>
+            </div>
+            <div class="row">
+                <label>确认密码</label>
+                <input type="password" class="gd-input" gd-validate="equalTo" gdv-equal="pw">
+                <span>gd-validate="equalTo" gdv-equal="pw"</span>
+            </div>
+            <div class="row">
+                <label>邮箱</label>
+                <input type="text" class="gd-input" gd-validate="email">
+                <span>gd-validate="email"</span>
+            </div>
+            <div class="row">
+                <label>电话</label>
+                <input type="text" class="gd-input" gd-validate="phone">
+                <span>gd-validate="phone",支持手机和固话,支持+86</span>
+            </div>
+            <div class="row">
+                <label>IP</label>
+                <input type="text" class="gd-input" gd-validate="ip">
+                <span>gd-validate="ip"</span>
+            </div>
+            <div class="row">
+                <label>IP+端口</label>
+                <input type="text" class="gd-input" gd-validate="ipPort">
+                <span>gd-validate="ipPort"</span>
+            </div>
+            <div class="row">
+                <label>端口</label>
+                <input type="text" class="gd-input" gd-validate="port">
+                <span>gd-validate="port"</span>
+            </div>
+            <div class="row">
+                <label>IPV6</label>
+                <input type="text" class="gd-input" gd-validate="ipv6">
+                <span>gd-validate="ipv6",支持“:”或“-”分隔</span>
+            </div>
+            <div class="row">
+                <label>IP段</label>
+                <input type="text" class="gd-input" gd-validate="ipRanges">
+                <span>gd-validate="ipRanges"，“;”分隔</span>
+            </div>
+            <div class="row">
+                <label>CIDR IP</label>
+                <input type="text" class="gd-input" gd-validate="cidr">
+                <span>gd-validate="cidr"</span>
+            </div>
+            <div class="row">
+                <label>MAC地址</label>
+                <input type="text" class="gd-input" gd-validate="mac">
+                <span>gd-validate="mac",支持“:”或“-”分隔</span>
+            </div>
+            <div class="row">
+                <label>数字</label>
+                <input type="text" class="gd-input" gd-validate="number">
+                <span>gd-validate="number"</span>
+            </div>
+            <div class="row">
+                <label>最大值</label>
+                <input type="text" class="gd-input" gd-validate="maxValue" gdv-maxvalue="10">
+                <span>gd-validate="maxValue" gdv-maxvalue="10"</span>
+            </div>
+            <div class="row">
+                <label>最小值</label>
+                <input type="text" class="gd-input" gd-validate="minValue" gdv-minvalue="10">
+                <span>gd-validate="minValue" gdv-minvalue="10"</span>
+            </div>
+            <div class="row">
+                <label>数值范围</label>
+                <input type="text" class="gd-input" gd-validate="valueRange" gdv-minvalue="5" gdv-maxvalue="10">
+                <span>gd-validate="valueRange" gdv-minvalue="5" gdv-maxvalue="10"</span>
+            </div>
+            <div class="row">
+                <label>整数</label>
+                <input type="text" class="gd-input" gd-validate="int">
+                <span>gd-validate="int"</span>
+            </div>
+            <div class="row">
+                <label>最大长度</label>
+                <input type="text" class="gd-input" gd-validate="maxLength" gdv-maxlength="10">
+                <span>gd-validate="maxLength" gdv-maxlength="10"</span>
+            </div>
+            <div class="row">
+                <label>最小长度</label>
+                <input type="text" class="gd-input" gd-validate="minLength" gdv-minlength="5">
+                <span>gd-validate="minLength" gdv-minlength="5"</span>
+            </div>
+            <div class="row">
+                <label>url</label>
+                <input type="text" class="gd-input" gd-validate="url">
+                <span>gd-validate="url"</span>
+            </div>
+            <div class="row">
+                <label>远程较验</label>
+                <input type="text" class="gd-input" gd-validate="remote" gdv-api="/?oldName=历下区" gdv-remote-msg="用户名已存在" name="departmentName">
+                <span>gd-validate="remote" gdv-api="/?oldName=历下区" gdv-remote-msg="用户名已存在" name="departmentName"</span>
+            </div>
+            <div class="row">
+                <label>自定义校验</label>
+                <input type="text" class="gd-input" gd-validate="goldencis">
+                <span>gd-validate="goldencis"</span>
+            </div>
+            <div class="gd-clearfix ">
+                <button id="btn_submit" type="button" class="gd-btn gd-margin-top-lg">提交</button>
+            </div>
+        </form>
+        <textarea type="code">
+            <form id="validate_demo">
+                <!-- 在文本框上添加相应的校验属性 -->
+                <input type="text" class="gd-input" gd-validate="required">
+                <!-- 可以组合较验规则 -->
+                <input type="text" class="gd-input" gd-validate="required phone">
+                <!-- 可以自定义错误信息 -->
+                <input type="text" class="gd-input" gd-validate="required phone" gdv-msg="电话号码不正确">
+            </form>
+
+            <script>
+                /**
+                 * 调用gd.validate方法进行初始化
+                 * 自动添加placeholder只在本身没有placeholder的情况下，且仅对以下类型起作用：ip,ipRanges,port,mac,maxValue,minValue,valueRange,int,maxLength,minLength,lengthRange,url
+                 */
+                var validate = gd.validate('#validate_demo', {
+                    autoPlaceholer: true,//自动添加placeholder，默认为false
+                    //focusError: true,//调用valid()时，是否对出错的元素获取焦点，默认为true,特殊情况下会用到false
+                    rules: [{//rules用于自定义校验
+                        name: 'goldencis',//规则名称，gd-validate="goldencis"
+                        msg: '输入的值必须是goldencis',//不合法时的提示信息
+                        valid: function (value, el) {//校验方法,第一个参数为输入框的值,第二个参数为输入框本身，返回true为通过
+                            return value === 'goldencis'
+                        }
+                    }]
+                });
+                $("#btn_submit").click(function () {
+                    var result = validate.valid();//获得整体的校验结果
+                    result && gd.showSuccess("验证通过");
+                });
+            </script>
+        </textarea>
+    </div>
+    <script>
+        $(function () {
+            $("input:first").focus();
+            var validate = gd.validate('#validate_demo', {
+                autoPlaceholer: true,//自动添加placeholder，默认为false
+                //focusError: true,//调用valid()时，是否对出错的元素获取焦点，默认为true,特殊情况下会用到false
+                rules: [{//rules用于自定义校验
+                    name: 'goldencis',//规则名称，gd-validate="goldencis"
+                    msg: '输入的值必须是goldencis',//不合法时的提示信息
+                    valid: function (value, el) {//校验方法，第一个参数为输入框的值,第二个参数为输入框本身，返回true为通过
+                        return value === 'goldencis'
+                    }
+                }]
+            });
+            $("#btn_submit").click(function () {
+                var result = validate.valid();//获得整体的校验结果
+                result && gd.showSuccess("验证通过");
+            });
+        });
+
+    </script>
+</body>
+
+</html>

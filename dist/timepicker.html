@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./js/resource.js"></script>
+</head>
+
+<body>
+    <!-- 此处是整体框架用，包括侧边栏和顶部 -->
+    <div id="framework" v-cloak>
+        <gd-leftmenu :config="leftMenuConfig"></gd-leftmenu>
+        <gd-topbar :config="topbarConfig"></gd-topbar>
+    </div>
+    <div id="app" class="gd-right-content gd-padding-lg">
+        <p>时间点标尺:</p>
+        <gd-timeruler :config="timePointRulerConfig"></gd-timeruler>
+        <textarea type="code">
+            <gd-timeruler :config="timePointRulerConfig"></gd-timeruler>
+            <script>
+                var app = new Vue({
+                    el: '#app',
+                    data: {
+                        timePointRulerConfig: {
+                            step: 15,//设置间隔分钟数，可选，默认是30分钟
+                            change: function (time) {
+                                log(time);//时间改变时触发
+                            }
+                        }
+                    }
+                });
+            </script>
+        </textarea>
+        <p>时间范围标尺:</p>
+        <gd-timeruler :config="timeRangeRulerConfig"></gd-timeruler>
+        <textarea type="code">
+            <gd-timeruler :config="timeRangeRulerConfig"></gd-timeruler>
+            <script>
+                var app = new Vue({
+                    el: '#app',
+                    data: {
+                        timeRangeRulerConfig: {
+                            step: 15,//设置间隔分钟数，可选，默认是30分钟
+                            value: ['10:30', '16:00'],//设置初始时间,可选
+                            range: true,//时间范围选择
+                            change: function (time) {
+                                log(time);//时间改变时触发
+                            }
+                        }
+                    }
+                });
+            </script>
+        </textarea>
+        <p>时间点选择器:</p>
+        <gd-timepicker :config="timePointPickerConfig"></gd-timepicker>
+        <textarea type="code">
+            <gd-timepicker :config="timePointPickerConfig"></gd-timepicker>
+            <script>
+                var app = new Vue({
+                    el: '#app',
+                    data: {
+                        timePointPickerConfig: {
+                            step: 15,//设置间隔分钟数，可选，默认是30分钟
+                            value: '10:00',//设置初始时间,可选
+                            change: function (time) {
+                                log(time);//时间改变时触发
+                            }
+                        }
+                    }
+                });
+            </script>
+        </textarea>
+        <p>时间范围择器:</p>
+        <gd-timepicker :config="timeRangePickerConfig"></gd-timepicker>
+        <textarea type="code">
+            <gd-timepicker :config="timeRangePickerConfig"></gd-timepicker>
+            <script>
+                var app = new Vue({
+                    el: '#app',
+                    data: {
+                        timeRangePickerConfig: {
+                            step: 15,//设置间隔分钟数，可选，默认是30分钟
+                            value: ['10:30', '16:00'],//设置初始时间,可选
+                            range: true,//时间范围选择
+                            change: function (time) {
+                                log(time);//时间改变时触发
+                            }
+                        }
+                    }
+                });
+            </script>
+        </textarea>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                timePointRulerConfig: {
+                    step: 15,//设置间隔分钟数，可选，默认是30分钟
+                    value: '12:30',//设置初始时间,可选
+                    change: function (time) {
+                        log(time);//时间改变时触发
+                    }
+                },
+                timeRangeRulerConfig: {
+                    step: 15,//设置间隔分钟数，可选，默认是30分钟
+                    value: ['10:30', '16:00'],//设置初始时间,可选
+                    range: true,//时间范围选择
+                    change: function (time) {
+                        log(time);//时间改变时触发
+                    }
+                },
+                timePointPickerConfig: {
+                    step: 15,//设置间隔分钟数，可选，默认是30分钟
+                    value: '10:00',//设置初始时间,可选
+                    change: function (time) {
+                        log(time);//时间改变时触发
+                    }
+                },
+                timeRangePickerConfig: {
+                    step: 15,//设置间隔分钟数，可选，默认是30分钟
+                    value: ['10:30', '16:00'],//设置初始时间,可选
+                    range: true,//时间范围选择
+                    change: function (time) {
+                        log(time);//时间改变时触发
+                    }
+                },
+            },
+            methods: {
+
+            }
+        });
+    </script>
+</body>
+
+</html>

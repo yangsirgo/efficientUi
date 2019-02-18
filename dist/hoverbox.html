@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./js/resource.js"></script>
+</head>
+
+<body>
+    <!-- 此处是整体框架用，包括侧边栏和顶部 -->
+    <div id="framework" v-cloak>
+        <gd-leftmenu :config="leftMenuConfig"></gd-leftmenu>
+        <gd-topbar :config="topbarConfig"></gd-topbar>
+    </div>
+    <div id="app" class="gd-right-content gd-padding-lg" v-cloak>
+        <!-- 普通悬浮框 -->
+        <h3>普通悬浮框</h3>
+        <button id="btn_normal" class="gd-btn-icon icon-add"></button>
+        <textarea type="code">
+            <script>
+                $('#btn_normal').mouseenter(function () {
+                    gd.showHoverBox({
+                        el: this,
+                        position: 'right',//位置，默认bottom
+                        //点击的时候触发，data为本条数据，full为全部数据
+                        onClick: function (data, full) {
+                            console.log(data);
+                            console.log(full);
+                        },
+                        //关闭的时候触发
+                        onClose: function (full) {
+                            console.log(full);
+                        },
+                        items: [
+                            {
+                                icon: 'icon-add',//图标，可选
+                                text: '添加',//文字，必选
+                                value: '1',//值，可选
+                            },
+                            {
+                                text: '删除',
+                                value: '2',
+                            },
+                            {
+                                text: '禁用',
+                                value: '3',
+                                disabled: true//禁用
+                            },
+                        ]
+                    });
+                })
+            </script>
+        </textarea>
+        <!-- 带复选框的悬浮框 -->
+        <h3>带复选框的悬浮框</h3>
+        <button id="btn_checkbox" class="gd-btn-icon icon-add"></button>
+        <textarea type="code">
+            <script>
+                $('#btn_checkbox').mouseenter(function () {
+                    gd.showHoverBox({
+                        el: this,
+                        checkbox: true,//显示复选框
+                        position: 'bottom',//位置，默认bottom
+                        //autoClose:false,//鼠标离开是否自动关闭，默认为true
+                        //复选框改变的时候触发，data为本条数据，full为全部数据
+                        onChange: function (data, full) {
+                            console.log(data);
+                            console.log(full);
+                        },
+                        //关闭的时候触发
+                        onClose: function (full) {
+                            console.log(full);
+                        },
+                        items: [
+                            {
+                                text: '添加',//文字，必选
+                                value: '1',//值，可选
+                                checked: true//默认选中，可选
+                            },
+                            {
+                                text: '删除',
+                                value: '2',
+                            },
+                            {
+                                text: '禁用',
+                                value: '3',
+                                disabled: true//禁用
+                            },
+                        ]
+                    });
+                })
+            </script>
+        </textarea>
+        <h3>自定义内容的悬浮框</h3>
+        <button id="btn_custom" class="gd-btn-icon icon-add"></button>
+        <textarea type="code">
+            <script>
+                $('#btn_custom').mouseenter(function () {
+                    gd.showHoverBox({
+                        el: this,
+                        position: 'bottom',//位置，默认bottom
+                        //关闭的时候触发
+                        onClose: function () {
+                        },
+                        content: '<div class="gd-padding-sm">自定义悬浮框内容</div>',//也可以直接传入$('#id')
+                    });
+                });
+            </script>
+        </textarea>
+    </div>
+    <script>
+        new Vue({
+            el: '#app'
+        });
+        $('#btn_normal').mouseenter(function () {
+            gd.showHoverBox({
+                el: this,
+                position: 'right',//位置，默认bottom
+                //autoClose:false,//鼠标离开是否自动关闭，默认为true
+                //点击的时候触发，data为本条数据，full为全部数据
+                onClick: function (data, full) {
+                    console.log(data);
+                    console.log(full);
+                },
+                onChange: function (data, full) {
+                    console.log(data);
+                    console.log(full);
+                },
+                onClose: function (full) {
+                    console.log(full);
+                },
+                items: [
+                    {
+                        icon: 'icon-add',//图标，可选
+                        text: '添加',//文字，必选
+                        value: '1',//值，可选
+                    },
+                    {
+                        text: '删除',
+                        value: '2',
+                    },
+                    {
+                        text: '禁用',
+                        value: '3',
+                        disabled: true//禁用
+                    },
+                ]
+            });
+        });
+        $('#btn_checkbox').mouseenter(function () {
+            gd.showHoverBox({
+                el: this,
+                checkbox: true,//显示复选框
+                position: 'bottom',//位置，默认bottom
+                //复选框改变的时候触发，data为本条数据，full为全部数据
+                onChange: function (data, full) {
+                    console.log(data);
+                    console.log(full);
+                },
+                //关闭的时候触发
+                onClose: function (full) {
+                    console.log(full);
+                },
+                items: [
+                    {
+                        text: '添加',//文字，必选
+                        value: '1',//值，可选
+                        checked: true//默认选中，可选
+                    },
+                    {
+                        text: '删除',
+                        value: '2',
+                    },
+                    {
+                        text: '禁用',
+                        value: '3',
+                        disabled: true//禁用
+                    },
+                ]
+            });
+        });
+        $('#btn_custom').mouseenter(function () {
+            gd.showHoverBox({
+                el: this,
+                position: 'bottom',//位置，默认bottom
+                //关闭的时候触发
+                onClose: function () {
+                },
+                //size: [100, 200],//可以设置大小，默认会适应内容
+                content: '<div class="gd-padding-sm">自定义悬浮框内容</div>',//也可以直接传入$('#id')
+            });
+        });
+    </script>
+</body>
+
+</html>

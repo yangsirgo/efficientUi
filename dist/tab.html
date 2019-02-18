@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./js/resource.js"></script>
+</head>
+
+<body>
+    <!-- 此处是整体框架用，包括侧边栏和顶部 -->
+    <div id="framework" v-cloak>
+        <gd-leftmenu :config="leftMenuConfig"></gd-leftmenu>
+        <gd-topbar :config="topbarConfig"></gd-topbar>
+    </div>
+    <div id="app" class="gd-right-content gd-padding-lg" v-cloak>
+        <h4>横向页签</h4>
+        <gd-tab style="height: 300px;" @change="change">
+            <gd-tab-item label="页签一">
+                <div>页签一的内容</div>
+            </gd-tab-item>
+            <gd-tab-item label="页签二">
+                <div>页签二的内容</div>
+            </gd-tab-item>
+            <gd-tab-item label="页签三">
+                <div>页签三的内容</div>
+            </gd-tab-item>
+        </gd-tab>
+        <textarea type="code">
+            <!-- 定义页签名称，更改label属性,标签切换的时候，触发change事件，返回标签名称和索引-->
+            <gd-tab style="height: 300px;" @change="change">
+                <gd-tab-item label="页签一">
+                    <div>页签一的内容</div>
+                </gd-tab-item>
+                <gd-tab-item label="页签二">
+                    <div>页签二的内容</div>
+                </gd-tab-item>
+                <gd-tab-item label="页签三">
+                    <div>页签三的内容</div>
+                </gd-tab-item>
+            </gd-tab>
+            <script>
+                var app = new Vue({
+                    el: '#app',
+                    methods: {
+                        change: function (data) {
+                            log(data)
+                        }
+                    }
+                });
+            </script>
+        </textarea>
+        <h4>纵向页签</h4>
+        <gd-tab vertical style="height: 300px;" @change="change">
+            <gd-tab-item label="页签一">
+                <div>页签一的内容</div>
+            </gd-tab-item>
+            <gd-tab-item label="页签二">
+                <div>页签二的内容</div>
+            </gd-tab-item>
+            <gd-tab-item label="页签三">
+                <div>页签三的内容</div>
+            </gd-tab-item>
+        </gd-tab>
+        <textarea type="code">
+            <!-- 默认是横向tab，使用纵向tab请增加vertical，标签切换的时候，触发change事件，返回标签名称和索引-->
+            <gd-tab vertical style="height: 300px;" @change="change">
+                <gd-tab-item label="页签一">
+                    <div>页签一的内容</div>
+                </gd-tab-item>
+                <gd-tab-item label="页签二">
+                    <div>页签二的内容</div>
+                </gd-tab-item>
+                <gd-tab-item label="页签三">
+                    <div>页签三的内容</div>
+                </gd-tab-item>
+            </gd-tab>
+        </textarea>
+        <h4>滚动页签</h4>
+        <gd-tab scroll style="height: 300px">
+            <gd-tab-item label="页签一">
+                <div style="height: 200px;">页签一的内容</div>
+            </gd-tab-item>
+            <gd-tab-item label="页签二">
+                <div style="height: 200px;">页签二的内容</div>
+            </gd-tab-item>
+            <gd-tab-item label="页签三">
+                <div style="height: 200px;">页签三的内容</div>
+            </gd-tab-item>
+            <gd-tab-item label="页签四">
+                <div style="height: 200px;">页签四的内容</div>
+            </gd-tab-item>
+        </gd-tab>
+        <textarea type="code">
+            <!-- 增加scroll 属性 可以变成滚动页签 -->
+            <gd-tab scroll style="height: 300px">
+                <gd-tab-item label="页签一">
+                    <div style="height: 200px;">页签一的内容</div>
+                </gd-tab-item>
+                <gd-tab-item label="页签二">
+                    <div style="height: 200px;">页签二的内容</div>
+                </gd-tab-item>
+                <gd-tab-item label="页签三">
+                    <div style="height: 200px;">页签三的内容</div>
+                </gd-tab-item>
+                <gd-tab-item label="页签四">
+                    <div style="height: 200px;">页签四的内容</div>
+                </gd-tab-item>
+            </gd-tab>
+        </textarea>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            methods: {
+                change: function (data) {
+                    log(data)
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

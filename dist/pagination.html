@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./js/resource.js"></script>
+</head>
+
+<body>
+    <!-- 此处是整体框架用，包括侧边栏和顶部 -->
+    <div id="framework" v-cloak>
+        <gd-leftmenu :config="leftMenuConfig"></gd-leftmenu>
+        <gd-topbar :config="topbarConfig"></gd-topbar>
+    </div>
+    <div id="app" class="gd-right-content gd-padding-lg" v-cloak>
+        <gd-pagination style="background:white" :config="paginationConfig" @change="paginationChange"></gd-pagination>
+        <textarea type="code">
+            <gd-pagination style="background:white" :config="paginationConfig" @change="paginationChange"></gd-pagination>
+            <script>
+                var app = new Vue({
+                    el: '#app',
+                    data: {
+                        paginationConfig: {
+                            // length: 10, //每页多少条，默认10
+                            // curPage: 1, //当前页码默认1
+                            // lengthMenu: [10, 30, 50, 100], //可选择每页多少条，默认 [10, 30, 50, 100]
+                            // enableLengthMenu: true, //启用可选择每页多少条，默认true
+                            enableJumpPage: true, //启用跳页,默认为false
+                            total: 100, //数据总量,必选
+                            realLength: 10 //实际数据长度,,必选,ajax返回后要手动去更新
+                        }
+                    },
+                    methods: {
+                        paginationChange: function (data) {
+                            log(data)
+                        }
+                    }
+                });
+            </script>
+        </textarea>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                paginationConfig: {
+                    // length: 10, //每页多少条，默认10
+                    // curPage: 1, //当前页码默认1
+                    // lengthMenu: [10, 30, 50, 100], //可选择每页多少条，默认 [10, 30, 50, 100]
+                    // enableLengthMenu: true, //启用可选择每页多少条，默认true
+                    enableJumpPage: true, //启用跳页,默认为false
+                    total: 100, //数据总量,必选
+                    realLength: 10 //实际数据长度,,必选,ajax返回后要手动去更新
+                }
+            },
+            methods: {
+                paginationChange: function (data) {
+                    log(data)
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

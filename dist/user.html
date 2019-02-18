@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./gdui/css/iconfont/iconfont.css">
+    <link href="https://cdn.jsdelivr.net/npm/normalize.css/normalize.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./gdui/css/gd_common.css">
+    <link rel="stylesheet" href="./gdui/css/gd_left_menu.css">
+    <link rel="stylesheet" href="./gdui/css/gd_topbar.css">
+    <link rel="stylesheet" href="./css/global.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <title>首页</title>
+</head>
+
+<body>
+    <!-- 此处是整体框架用，包括侧边栏和顶部 -->
+    <div id="framework" v-cloak>
+        <gd-leftmenu :config="leftMenuConfig"></gd-leftmenu>
+        <gd-topbar :config="topbarConfig"></gd-topbar>
+    </div>
+    <div id="app" class="gd-right-content gd-padding-lg" v-cloak>
+        {{msg}}
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="./gdui/js/gd_components.js"></script>
+    <script src="./gdui/js/gd_global.js"></script>
+    <script src="./js/global.js"></script>
+    <script src="./js/index.js"></script>
+</body>
+
+</html>

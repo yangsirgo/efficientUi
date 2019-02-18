@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./js/resource.js"></script>
+    <title>登录</title>
+</head>
+
+<body>
+    <div id="app" v-cloak>
+        <gd-login :config="loginConfig"></gd-login>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                loginConfig: [
+                    {
+                        text: 'GDC',
+                        textStyle: {
+                            color: '#58A5E3'
+                        },
+                        name: 'tsa',
+                        api: './data/login_success.json',
+                        logo: './images/login_logo.png',
+                        cover: './images/tsa_cover.jpg',
+                        href: '/',
+                        isDefault: true,
+                        encrypt: function (data) {
+                            return data;
+                        },
+                        success: function (data) {//数据返回返后回调，可用于写入cookie
+                            log(data)
+                        },
+                        error: function (xhr, errorText, errorStatus) {//数据error 返后的回调，可用于写入判断错误信息 提示中文信息等
+                            log(xhr, errorText, errorStatus);
+                        }
+                    },
+                    {
+                        name: 'drs',
+                        api: './data/login_error.json',
+                        logo: './images/login_logo.png',
+                        cover: './images/oms_cover.jpg',
+                        href: '/',
+                    },
+                    {
+                        name: 'oms',
+                        api: './data/login_success.json',
+                        logo: './images/login_logo.png',
+                        cover: './images/tsa_cover.jpg',
+                        href: '/'
+                    }
+                ]
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./js/resource.js"></script>
+</head>
+
+<body>
+    <!-- 此处是整体框架用，包括侧边栏和顶部 -->
+    <div id="framework" v-cloak>
+        <gd-leftmenu :config="leftMenuConfig"></gd-leftmenu>
+        <gd-topbar :config="topbarConfig"></gd-topbar>
+    </div>
+    <div id="app" class="gd-right-content gd-padding-lg" v-cloak>
+        <p>登录调用方式如下：</p>
+        <textarea type="code">
+            <div id="app" v-cloak>
+                <gd-login :config="loginConfig"></gd-login>
+            </div>
+            <script>
+                var app = new Vue({
+                    el: '#app',
+                    data: {
+                        loginConfig: [
+                            {
+                                name: 'tsa', //产品名称
+                                api: './data/login_success.json', //用户名密码校验接口
+                                logo: './images/login_logo.png', //logo
+                                cover: './images/tsa_cover.jpg', //底部封面
+                                href: '/', //登录成功后跳转地址,不写将不执行跳转
+                                encrypt: function (data) { //可自定义加密方式，可选,默认情况下，如果引入了sha256.js,会自动应用sha256加密
+                                    return data;
+                                },
+                                success: function (data) {//数据返回返后回调，可用于写入cookie
+                                    log(data)
+                                },
+                                error: function (xhr, errorText, errorStatus) {//数据error 返后的回调，可用于写入判断错误信息 提示中文信息等
+                                    log(xhr, errorText, errorStatus);
+                                }
+                            },
+                            {
+                                name: 'drs',
+                                api: './data/login_error.json',
+                                logo: './images/login_logo.png',
+                                cover: './images/oms_cover.jpg',
+                                href: '/',
+                                isDefault: true
+                            },
+                            {
+                                name: 'oms',
+                                api: './data/login_success.json',
+                                logo: './images/login_logo.png',
+                                cover: './images/tsa_cover.jpg',
+                                href: '/'
+                            }
+                        ]
+                    }
+                });
+            </script>
+        </textarea>
+        <p>登录接口返回数据：</p>
+        <textarea type="code" class="language-javascript">
+            {
+                "resultCode": 0, //成功
+                "resultMsg": ""
+            }
+            {
+                "resultCode": 1, //失败
+                "resultMsg": "用户名或密码错误"
+            }
+        </textarea>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {}
+        });
+    </script>
+</body>
+
+</html>

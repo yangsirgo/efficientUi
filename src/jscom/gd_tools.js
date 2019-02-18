@@ -36,6 +36,32 @@ export function post(url, data, callback) {
         type: 'post',
         url: url,
         data: data,
+        contentType: typeof data === 'string' ? 'application/json' : undefined,
+        dataType: 'json',
+        success: function(response, status, xhr) {
+            callback(response, status, xhr);
+        },
+        error: function(xhr, errorText, errorStatus) {
+            callback(
+                {
+                    resultCode: -1,
+                    resultMsg: errorText
+                },
+                errorStatus,
+                xhr
+            );
+        }
+    });
+}
+/**
+ * 通用Post JSON
+ */
+export function postJSON(url, data, callback) {
+    $.ajax({
+        type: 'post',
+        url: url,
+        data: JSON.stringify(data),
+        contentType: 'application/json',
         dataType: 'json',
         success: function(response, status, xhr) {
             callback(response, status, xhr);
@@ -80,8 +106,10 @@ export function getMaxZIndex() {
  * 数据深复制
  */
 export function clone(data) {
-    if (typeof data === 'object') {
-        return JSON.parse(JSON.stringify(data));
+    if ($.isArray(data)) {
+        return $.extend(true, [], data);
+    } else if ($.isPlainObject(data)) {
+        return $.extend(true, {}, data);
     } else {
         return data;
     }
@@ -179,9 +207,28 @@ export function newDate(value) {
         return new Date();
     }
 }
-//判断是否是有效日期
+/**
+ * 判断是否是有效日期
+ */
 export function isDate(date) {
     return date instanceof Date && date.toString() !== 'Invalid Date';
+}
+/**
+ * 转换url参数为对象
+ */
+export function parseUrlParam(url) {
+    try {
+        url = url.match(/\?([^#]+)/)[1];
+        var obj = {},
+            arr = url.split('&');
+        for (var i = 0; i < arr.length; i++) {
+            var subArr = arr[i].split('=');
+            obj[subArr[0]] = subArr[1];
+        }
+        return obj;
+    } catch (err) {
+        return {};
+    }
 }
 /**
  * 字符串格式化

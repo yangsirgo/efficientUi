@@ -123,6 +123,8 @@
         <!--before-remove	关闭前的函数，返回 Promise 可阻止标签关闭	Function	-->
         <!--value	当前激活 tab 面板的 index，可以使用 v-model 双向绑定数据	String	默认为第一项 -->
     </textarea>
+    <h3>Score 评分</h3>
+    <rate v-model="rateValue" allow-half/>
 </div>
 </body>
 </html>
@@ -136,7 +138,8 @@
             tab0:true,
             tab1:true,
             tab2:true,
-            tabs:2
+            tabs:2,
+            rateValue:1
         },
         methods:{
             addTabs() {

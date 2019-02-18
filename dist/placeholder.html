@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./js/resource.js"></script>
+</head>
+
+<body>
+    <!-- 此处是整体框架用，包括侧边栏和顶部 -->
+    <div id="framework" v-cloak>
+        <gd-leftmenu :config="leftMenuConfig"></gd-leftmenu>
+        <gd-topbar :config="topbarConfig"></gd-topbar>
+    </div>
+    <div id="app" class="gd-right-content gd-padding-lg" v-cloak>
+        <h3>占位符</h3>
+        <h5>1.默认尺寸</h5>
+        <i class="gd-none-data"></i>
+        <i class="gd-none-search"></i>
+        <i class="gd-select-user"></i>
+        <i class="gd-select-file"></i>
+        <textarea type="code">
+            <i class="gd-none-data"></i>
+            <i class="gd-none-search"></i>
+            <i class="gd-select-user"></i>
+            <i class="gd-select-file"></i>
+        </textarea>
+        <h5>2.小尺寸</h5>
+        <i class="gd-none-data-xs"></i>
+        <i class="gd-none-search-xs"></i>
+        <i class="gd-select-user-xs"></i>
+        <i class="gd-select-file-xs"></i>
+        <textarea type="code">
+            <i class="gd-none-data-xs"></i>
+            <i class="gd-none-search-xs"></i>
+            <i class="gd-select-user-xs"></i>
+            <i class="gd-select-file-xs"></i>
+        </textarea>
+        <h3>标记</h3>
+        <span class="gd-mark">0</span>
+        <span class="gd-mark gd-mark-success">1</span>
+        <span class="gd-mark gd-mark-error">2</span>
+        <span class="gd-mark gd-mark-danger">3</span>
+        <span class="gd-mark gd-mark-warning">4</span>
+        <textarea type="code">
+            <span class="gd-mark">0</span>
+            <span class="gd-mark gd-mark-success">1</span>
+            <span class="gd-mark gd-mark-error">2</span>
+            <span class="gd-mark gd-mark-danger">3</span>
+            <span class="gd-mark gd-mark-warning">4</span>
+        </textarea>
+        <h3>IE低版本检测</h3>
+        <p>在gdui.css之后，所有js之前引入gd_iecheck.js,在用户使用IE9及以下版本访问时，将给出以下提示：</p>
+        <img src="./images/iecheck.png" alt="">
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+            },
+            methods: {
+            }
+        });
+    </script>
+</body>
+
+</html>

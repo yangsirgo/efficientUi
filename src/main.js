@@ -5,13 +5,20 @@ function GD() {}
 window.gd = new GD();
 GD.prototype.successCode = 0; //resultCode===0表示成功
 
+//侧边栏
+import LeftMenu from './LeftMenu.vue';
+Vue.component('gd-leftmenu', LeftMenu);
+
+//侧边栏子项目
+import LeftMenuSub from './LeftMenuSub.vue';
+Vue.component('gd-leftmenu-sub', LeftMenuSub);
+
+
+
 //表格
 import Table from './Table.vue';
 Vue.component('gd-table', Table);
 
-//表格
-import ToolBar from './ToolBar.vue';
-Vue.component('gd-toolbar', ToolBar);
 
 //下拉框
 import Select from './select/Select.vue';
@@ -21,9 +28,88 @@ Vue.component('gd-select', Select);
 import Option from './select/Option.vue';
 Vue.component('gd-option', Option);
 
+
 //悬浮窗
 import { showHoverBox, closeHoverBox } from './jscom/gd_hoverbox.js';
 GD.prototype.showHoverBox = showHoverBox;
+
+//loading
+import { showLoading, closeLoading } from './jscom/gd_loading.js';
+GD.prototype.showLoading = showLoading;
+GD.prototype.closeLoading = closeLoading;
+
+//校验
+import validate from './jscom/gd_validate.js';
+GD.prototype.validate = validate;
+
+//表格对象
+import { table } from './Table.vue';
+GD.prototype.table = table;
+
+//树对象
+import { tree } from './tree/treeWrap.vue';
+GD.prototype.tree = tree;
+
+//根据地区代码获取地区数据
+import { getDistrictDetailByCode } from './District/District.vue';
+GD.prototype.getDistrictDetailByCode = getDistrictDetailByCode;
+
+//侧边栏对象
+import { menu } from './LeftMenu.vue';
+GD.prototype.menu = menu;
+
+//顶部条
+import TopBar from './TopBar.vue';
+Vue.component('gd-topbar', TopBar);
+
+//登录
+import Login from './Login.vue';
+Vue.component('gd-login', Login);
+
+//单字段标签
+import Tag from './Tag.vue';
+Vue.component('gd-tag', Tag);
+
+//双字段标签
+import TagDouble from './TagDouble.vue';
+Vue.component('gd-tag-double', TagDouble);
+
+//工具栏
+import ToolBar from './ToolBar.vue';
+Vue.component('gd-toolbar', ToolBar);
+
+//工具栏
+import District from './District/District.vue';
+Vue.component('gd-district', District);
+
+//分页
+import Pagination from './Pagination.vue';
+Vue.component('gd-pagination', Pagination);
+
+//时间标尺
+import TimeRuler from './TimeRuler.vue';
+Vue.component('gd-timeruler', TimeRuler);
+
+//时间选择器
+import TimePicker from './TimePicker.vue';
+Vue.component('gd-timepicker', TimePicker);
+
+//日期面板
+import DatePanel from './DatePanel.vue';
+Vue.component('gd-datepanel', DatePanel);
+
+//日期范围面板
+import DateRangePanel from './DateRangePanel.vue';
+Vue.component('gd-daterangepanel', DateRangePanel);
+
+//日期选择器
+import DatePicker from './DatePicker.vue';
+Vue.component('gd-datepicker', DatePicker);
+
+//最近日期选择器
+import RecentPicker from './RecentPicker.vue';
+Vue.component('gd-recentpicker', RecentPicker);
+
 
 //长传文件upload
 import uploadAction from './jscom/gd_upload';
@@ -70,11 +156,11 @@ Vue.component('gd-tab', Tab);
 import TabItem from './tab/tab_item.vue';
 Vue.component('gd-tab-item', TabItem);
 
+import Rate from './rate/rate.vue';
+Vue.component('rate', Rate);
 
 //货币验证
 import './jscom/currentValidate';
-
-
 
 
 //工具方法
@@ -109,7 +195,3 @@ GD.prototype.showWarning = showWarning; //显示警告信息
 GD.prototype.showError = showError; //显示失败信息
 GD.prototype.showMsg = showMsg; //显示普通信息
 GD.prototype.closeMsg = closeMsg; //关闭信息
-
-//表格对象
-import { table } from './Table.vue';
-GD.prototype.table = table;

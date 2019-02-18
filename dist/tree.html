@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./js/resource.js"></script>
+    <link rel="stylesheet" href="./css/tree.css">
+</head>
+
+<body>
+    <!-- 此处是整体框架用，包括侧边栏和顶部 -->
+    <div id="framework" v-cloak>
+        <gd-leftmenu :config="leftMenuConfig"></gd-leftmenu>
+        <gd-topbar :config="topbarConfig"></gd-topbar>
+    </div>
+    <div id="app" class="gd-right-content gd-padding-lg" v-cloak>
+        <div style="width:240px;">
+            <gd-tree :config='treeConfig' class="gd-tree-gray"></gd-tree>
+        </div>
+        <div class="gd-clearfix"></div>
+        <textarea type="code">
+            <!-- 基本用法 -->
+            <!-- 给节点设置 expand、selected、checked 和 disabled 可以将节点设置为展开、选中、勾选和禁用。 -->
+            <!-- class="gd-tree-gray"设置为灰色背景 -->
+            <gd-tree :config='treeConfig' class="gd-tree-gray"></gd-tree>
+            <script>
+                var app = new Vue({
+                    el: '#app',
+                    data: {
+                        treeConfig: {
+                            id: 'treeTest',//树的id，用于提供API
+                            simpleData: true,//简单模式，默认为true
+                            showCheckBox: true,//默认是false;显示checkbox
+                            linkable: false,//默认是true 父子联动
+                            accordion: true,//手风琴效果，默认是false
+                            data: [{
+                                id: "Resource",//必须数据段 节点ID
+                                name: "资源",//必须数据段 节点名称
+                                level: "0",//必须数据段 节点层级,必须从0开始
+                                pId: null,//必须数据段 且顶级父节点的pId必须为null
+                                expand: true,//是否展开子节点
+                                disabled: true,//禁掉 checkbox  和 不能select
+                                icon: "icon-notice",// 默认的icon是文件夹形式，可以自定义
+                                selected: true,//是否选中子节点文本
+                                //ignore:true,//忽略节点，被忽略的节点将被禁用，且不参与联动
+                                checked: true //是否勾选(如果勾选，子节点也会全部勾选)
+                            }],
+                            onSelect: function (node) {// 点击树节点时触发 返回点击选中的节点数据
+                                console.log(node);
+                            },
+                            onChange: function (nodes) {// 点击复选框时触发  返回所有选中复选框的数据
+                                console.log(nodes);
+                            },
+                            ready: function (data) {//树的数据改变后，dom渲染完成后触发，data为树的数据
+                                log(data)
+                            }
+                        }
+                    }
+                })
+                /******提供对外接口：
+                1、gd.tree('treeTest').setData(treeData);//设置tree数据
+                2、gd.tree('treeTest').getData();//获取tree数据
+                3、gd.tree('treeTest').getCheckedNodes();获取勾选的tree的数据
+                4、gd.tree('treeTest').getSelectedNode();获取点击选中的tree的数据
+                5、gd.tree('treeTest').getTopNodeData();获取顶级节点数据
+                6、gd.tree('treeTest').expandAll(true);展开全部节点，false表示收起全部节点
+                7、gd.tree('treeTest').getNode(1);//获取ID为1的节点数据
+                8、gd.tree('treeTest').setNode(1,nodeData);//设置ID为1的节点数据,nodeData的数据格式与初始化data一致。
+                */
+            </script>
+        </textarea>
+    </div>
+    <script>
+        $(function () {
+            $.ajax({
+                url: "./data/tree.json",
+                dataType: "json",
+                success: function (data) {
+                    gd.tree('treeTest').setData(data);
+                }
+            })
+        })
+        var app = new Vue({
+            el: '#app',
+            data: {
+                treeConfig: {
+                    id: 'treeTest',
+                    showCheckBox: true,
+                    accordion: true,
+                    data: [],
+                    // linkable: false,
+                    onSelect: function (node) {
+                        console.log(node);
+                    },
+                    onChange: function (nodes) {
+                        console.log(nodes);
+                    },
+                    ready: function (data) {
+                        log(data)
+                    }
+                }
+            },
+            methods: {}
+        });
+    </script>
+</body>
+
+</html>

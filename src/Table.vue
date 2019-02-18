@@ -38,15 +38,15 @@
                         <tr v-for="row,rowIdx in rows">
                             <td v-for="cell,colIdx in row" :class="[columns[colIdx].class]" :style="{'text-align':columns[colIdx].align}" v-if="columns[colIdx].show !== false">
                                 <div v-if="columns[colIdx].operates" class="gd-table-operate">
-                                    <button type="button" class="gd-table-operate-item gd-btn-alone" :disabled="operateDisabled[rowIdx][colIdx][i]" :style="{visibility:operateShow[rowIdx][colIdx][i]?'':'hidden'}" :class="operate.icon" :title="operate.title" v-for="operate,i in columns[colIdx].operates" v-if="i <= 1" @click="operateAction(operate,rowIdx,colIdx)"></button>
-                                    <button type="button" class="gd-table-operate-item gd-btn-alone" :disabled="operateDisabled[rowIdx][colIdx][2]" :style="{visibility:operateShow[rowIdx][colIdx][2]?'':'hidden'}" :class="columns[colIdx].operates[2].icon" :title="columns[colIdx].operates[2].title" v-if="columns[colIdx].operates.length === 3" @click="operateAction(columns[colIdx].operates[2],rowIdx,colIdx)"></button>
+                                    <button type="button" class="gd-table-operate-item gd-btn-alone" :disabled="operateDisabled[rowIdx][colIdx][i]" :style="{visibility:operateShow[rowIdx][colIdx][i]?'':'hidden'}" :class="getOperateIcon(operate.icon,cell,row,rowIdx,colIdx)" :title="getOperateTitle(operate.title,cell,row,rowIdx,colIdx)" v-for="operate,i in columns[colIdx].operates" v-if="i <= 1" @click="operateAction(operate,rowIdx,colIdx)"></button>
+                                    <button type="button" class="gd-table-operate-item gd-btn-alone" :disabled="operateDisabled[rowIdx][colIdx][2]" :style="{visibility:operateShow[rowIdx][colIdx][2]?'':'hidden'}" :class="getOperateIcon(columns[colIdx].operates[2].icon,cell,row,rowIdx,colIdx)" :title="getOperateTitle(columns[colIdx].operates[2].title,cell,row,rowIdx,colIdx)" v-if="columns[colIdx].operates.length === 3" @click="operateAction(columns[colIdx].operates[2],rowIdx,colIdx)"></button>
                                     <button type="button" class="gd-table-operate-item icon-more gd-btn-alone" v-if="columns[colIdx].operates.length >= 4" @mouseenter="showMoreOperate($event,rowIdx,colIdx)"></button>
                                 </div>
                                 <label v-else-if="columns[colIdx].type==='checkbox'" class="gd-checkbox">
                                     <input type="checkbox" v-model="checkedRows[rowIdx]" @change="checkedChange(rowIdx,colIdx)" :disabled="disabledRows[rowIdx]">
                                     <i></i>
                                 </label>
-                                <div v-else v-html="cell" :class="{'gd-text-ellipsis':columns[colIdx].ellipsis!==false}" :title="getTitle(cell,row,rowIdx,colIdx)"></div>
+                                <div v-else v-html="getCell(cell)" :class="{'gd-text-ellipsis':columns[colIdx].ellipsis!==false}" :title="getTitle(cell,row,rowIdx,colIdx)"></div>
                             </td>
                             <td :width="pathWidth+'px'" v-if="pathWidth>0"></td>
                         </tr>
@@ -81,10 +81,10 @@
     </div>
 </template>
 <script type="text/ecmascript-6">
-import Bus from './bus.js';
+import Bus from "./bus.js";
 let apps = []; //vue实例
 let flag = false;
-let loadingClass = 'gd-table-loading'; //loadingClass名称
+let loadingClass = "gd-table-loading"; //loadingClass名称
 export default {
     data() {
         //默认配置数据
@@ -97,18 +97,19 @@ export default {
             enablePaging: true, //启用分页
             columnResize: true, //启用列宽调
             filtersShow: true, //显示高级检索
-            orderType: 'desc', //排序规则
+            orderType: "desc", //排序规则
             showFooter: false, //显示footer
             lazy: false, //懒加载数据
-            orderColumn: '', //排序列
+            orderColumn: "", //排序列
             loading: false, //显示loading
             filterImmediately: false, //高级查询勾选后立即触发
+            fillBlank: "", //填充空数据
             ajax: {
-                type: 'get',
-                url: '',
+                type: "get",
+                url: "",
                 data: {},
-                dataType: 'json',
-                contentType: 'application/json'
+                dataType: "json",
+                contentType: "application/json"
             }
         };
         //功能数据
@@ -119,12 +120,12 @@ export default {
             resizeIndex: -1, //列调整的索引
             startX: 0, //列宽调整鼠标起始位置
             endX: 0, //列宽调整鼠标结束位置
-            tableWidth: '100%', //表格宽度
+            tableWidth: "100%", //表格宽度
             resizeLineHeight: 40, //列宽调整线高度
             scrollBarVWidth: 0, //纵向滚动条宽度
             scrollBarHWidth: 0, //横向滚动条宽度
             total: 0, //数据总量
-            jumpPageVal: '', //跳页页码
+            jumpPageVal: "", //跳页页码
             pages: [], //页码列表
             rows: [], //数据值
             rawData: [], //原始数据
@@ -142,7 +143,7 @@ export default {
             scrollLeft: 0, //表格横向向滚动位置
             pathWidth: 0 //列的宽度不能充满时，填充的宽度
         };
-        if (typeof this.config.ajax.data === 'object') {
+        if (typeof this.config.ajax.data === "object") {
             workData.ajaxParam = gd.clone(this.config.ajax.data);
         }
         let data = $.extend(true, config, this.config, workData);
@@ -152,7 +153,7 @@ export default {
         data.columns.forEach((o, i) => {
             //过滤器处理
             if (o.filters !== undefined) {
-                let filter = '';
+                let filter = "";
                 if (o.filters instanceof Array) {
                     if (o.filters.length > 0) {
                         filter = o.filters.map(f => {
@@ -176,7 +177,7 @@ export default {
         });
         return data;
     },
-    props: ['config'],
+    props: ["config"],
     methods: {
         //加载数据
         loadData() {
@@ -189,23 +190,30 @@ export default {
                 param.start = (_this.curPage - 1) * _this.length;
                 param.length = _this.length;
             }
-            if (typeof _this.orderColumn !== '') {
+            if (typeof _this.orderColumn !== "") {
                 param.orderColumn = _this.orderColumn;
             }
-            _this.ajax.data = $.extend(true, {}, _this.ajaxParam, param, this.filterParam);
+            _this.filterParam = _this.getfilterParam();
+            _this.ajax.data = $.extend(
+                true,
+                {},
+                _this.ajaxParam,
+                param,
+                this.filterParam
+            );
             _this.ajax.success = function(msg, status, xhr) {
                 // gd.closeLoading();
                 $(tableWrapperObj).removeClass(loadingClass); //移除loading
                 if (msg.resultCode === gd.successCode) {
                     _this.fillData(msg);
                 } else {
-                    gd.showError('数据加载失败！' + msg.resultMsg);
+                    gd.showError("数据加载失败！" + msg.resultMsg);
                 }
             };
             _this.ajax.error = function(xhr, errorText, errorStatus) {
                 // gd.closeLoading();
                 $(tableWrapperObj).removeClass(loadingClass); //移除loading
-                gd.showError('数据加载失败！' + errorStatus);
+                gd.showError("数据加载失败！" + errorStatus);
             };
             if (this.config.loading) {
                 $(tableWrapperObj).addClass(loadingClass); //增加loading
@@ -216,7 +224,7 @@ export default {
         //计算列宽
         calcColumnWidth() {
             let _this = this;
-            this.tableWidth = '100%';
+            this.tableWidth = "100%";
             this.pathWidth = 0;
             this.scrollBarVWidth = 0;
             this.scrollBarHWidth = 0;
@@ -225,17 +233,24 @@ export default {
                 _this.columnWidth[i] = _this.columns[i].width;
             });
             _this.$nextTick(() => {
-                _this.scrollBarVWidth = _this.$refs.tableBody.offsetWidth - _this.$refs.tableBody.clientWidth;
+                _this.scrollBarVWidth =
+                    _this.$refs.tableBody.offsetWidth -
+                    _this.$refs.tableBody.clientWidth;
                 _this.$nextTick(() => {
                     let tempIdx = [];
                     $(_this.$refs.tableWrapper)
-                        .find('.gd-table-head th[col-index]')
+                        .find(".gd-table-head th[col-index]")
                         .each(function(i, el) {
-                            tempIdx.push(Number($(el).attr('col-index')));
-                            _this.columnWidth[$(el).attr('col-index')] = $(el).outerWidth();
+                            tempIdx.push(Number($(el).attr("col-index")));
+                            _this.columnWidth[$(el).attr("col-index")] = $(
+                                el
+                            ).outerWidth();
                         });
                     _this.columnWidth.forEach((w, i) => {
-                        if (typeof w === 'undefined' || tempIdx.indexOf(i) < 0) {
+                        if (
+                            typeof w === "undefined" ||
+                            tempIdx.indexOf(i) < 0
+                        ) {
                             _this.columnWidth[i] = 0;
                         }
                     });
@@ -251,20 +266,28 @@ export default {
                 width += w;
             });
             this.tableWidth = width;
-            this.scrollBarVWidth = this.$refs.tableBody.offsetWidth - this.$refs.tableBody.clientWidth;
-            this.scrollBarHWidth = this.$refs.tableScrollHP.offsetHeight - this.$refs.tableScrollHP.clientHeight;
-            this.pathWidth = Math.max(this.$refs.tableBody.offsetWidth - this.tableWidth, 0);
+            this.scrollBarVWidth =
+                this.$refs.tableBody.offsetWidth -
+                this.$refs.tableBody.clientWidth;
+            this.scrollBarHWidth =
+                this.$refs.tableScrollHP.offsetHeight -
+                this.$refs.tableScrollHP.clientHeight;
+            this.pathWidth = Math.max(
+                this.$refs.tableBody.offsetWidth - this.tableWidth,
+                0
+            );
             this.$forceUpdate();
         },
         //填充表格数据
         fillData(msg) {
             let _this = this;
+            msg.rows = msg.rows || msg.data;
             _this.operateShow = {};
             _this.operateDisabled = {};
             _this.disabledRows = [];
             _this.checkedRows = [];
             _this.rawData = gd.clone(msg);
-            if (typeof _this.ajax.dataSrc === 'function') {
+            if (typeof _this.ajax.dataSrc === "function") {
                 msg = _this.ajax.dataSrc(msg);
             }
             _this.total = msg.total;
@@ -273,23 +296,28 @@ export default {
                 //render函数处理
                 if (config.render !== undefined) {
                     _this.rows.forEach(function(row, rowIdx) {
-                        row[colIdx] = config.render(row[colIdx], row, gd.clone(_this.rawData.rows[rowIdx]));
+                        row[colIdx] = config.render(
+                            row[colIdx],
+                            row,
+                            gd.clone(_this.rawData.rows[rowIdx])
+                        );
                     });
                 }
-                if (config.type === 'checkbox') {
+                if (config.type === "checkbox") {
                     //disabled函数处理
                     _this.rows.forEach(function(row, rowIdx) {
-                        if (typeof config.disabled === 'function') {
+                        if (typeof config.disabled === "function") {
                             _this.disabledRows[rowIdx] = config.disabled(
                                 row[colIdx],
                                 row,
                                 gd.clone(_this.rawData.rows[rowIdx])
                             );
                         } else {
-                            _this.disabledRows[rowIdx] = config.disabled == true;
+                            _this.disabledRows[rowIdx] =
+                                config.disabled == true;
                         }
                         //复选框
-                        if (typeof config.checked === 'function') {
+                        if (typeof config.checked === "function") {
                             _this.checkedRows[rowIdx] = config.checked(
                                 row[colIdx],
                                 row,
@@ -321,16 +349,19 @@ export default {
                             let isShow = false;
                             let isDisabled = false;
                             //显示配置
-                            if (typeof operate.show === 'function') {
+                            if (typeof operate.show === "function") {
                                 isShow =
-                                    operate.show(row[colIdx], gd.clone(row), gd.clone(_this.rawData.rows[rowIdx])) ===
-                                    true;
+                                    operate.show(
+                                        row[colIdx],
+                                        gd.clone(row),
+                                        gd.clone(_this.rawData.rows[rowIdx])
+                                    ) === true;
                             } else {
                                 isShow = operate.show !== false;
                             }
                             operateShow[rowIdx][colIdx].push(isShow);
                             //禁用配置
-                            if (typeof operate.disabled === 'function') {
+                            if (typeof operate.disabled === "function") {
                                 isDisabled =
                                     operate.disabled(
                                         row[colIdx],
@@ -399,12 +430,29 @@ export default {
                 this.resizeIndex = -1;
             }
         },
+        getCell(cell) {
+            if (cell === 0) {
+                return cell;
+            } else {
+                return cell || this.fillBlank;
+            }
+        },
         //获取title
         getTitle(cell, row, rowIdx, colIdx) {
-            if (typeof this.columns[colIdx].title === 'function') {
-                return this.columns[colIdx].title(cell, gd.clone(row), gd.clone(this.rawData.rows[rowIdx]));
+            var html = cell;
+            if (typeof this.columns[colIdx].title === "function") {
+                html = this.columns[colIdx].title(
+                    cell,
+                    gd.clone(row),
+                    gd.clone(this.rawData.rows[rowIdx])
+                );
+                return $(`<div>${html}</div>`)
+                    .text()
+                    .trim();
             } else if (this.columns[colIdx].title === true) {
-                return cell;
+                return $(`<div>${html}</div>`)
+                    .text()
+                    .trim();
             }
         },
         //改变页码
@@ -413,25 +461,25 @@ export default {
         },
         //上一页
         goPrevPage(e) {
-            if (!$(e.currentTarget).attr('disabled')) {
+            if (!$(e.currentTarget).attr("disabled")) {
                 this.curPage = Math.max(1, this.curPage - 1);
             }
         },
         //下一页
         goNextPage(e) {
-            if (!$(e.currentTarget).attr('disabled')) {
+            if (!$(e.currentTarget).attr("disabled")) {
                 this.curPage = Math.min(this.totalPage, this.curPage + 1);
             }
         },
         //首页
         goFirstPage(e) {
-            if (!$(e.currentTarget).attr('disabled')) {
+            if (!$(e.currentTarget).attr("disabled")) {
                 this.curPage = 1;
             }
         },
         //尾页
         goLastPage(e) {
-            if (!$(e.currentTarget).attr('disabled')) {
+            if (!$(e.currentTarget).attr("disabled")) {
                 this.curPage = this.totalPage;
             }
         },
@@ -453,7 +501,7 @@ export default {
         sort(e, col) {
             if (col.orderable) {
                 if (this.orderColumn === col.name) {
-                    this.orderType = this.orderType == 'asc' ? 'desc' : 'asc';
+                    this.orderType = this.orderType == "asc" ? "desc" : "asc";
                 } else {
                     this.orderColumn = col.name;
                 }
@@ -469,11 +517,11 @@ export default {
             this.isResizeModel = true;
             this.resizeIndex = colIdx;
             this.resizeLineHeight = this.$refs.tableScrollH.clientHeight;
-            $('body').addClass('gd-col-resize');
+            $("body").addClass("gd-col-resize");
         },
         //显示高级搜索
         showFilters(e, colIdx) {
-            if ($('.gd-table-filters-hoverbox').length) {
+            if ($(".gd-table-filters-hoverbox").length) {
                 return;
             }
             let _this = this;
@@ -481,7 +529,7 @@ export default {
                 el: e.currentTarget,
                 checkbox: true, //显示复选框
                 autoClose: false, //不自动关闭
-                class: 'gd-table-filters-hoverbox'
+                class: "gd-table-filters-hoverbox"
             };
             if (_this.filters[colIdx] instanceof Array) {
                 hoverConfig.items = _this.filters[colIdx].map(f => {
@@ -521,10 +569,15 @@ export default {
             let _this = this;
             _this.filters.forEach((filter, i) => {
                 if (
-                    !(_this.columns[i].filterName === undefined && _this.columns[i].name === undefined) &&
+                    !(
+                        _this.columns[i].filterName === undefined &&
+                        _this.columns[i].name === undefined
+                    ) &&
                     _this.columns[i].show !== false
                 ) {
-                    param[_this.columns[i].filterName || _this.columns[i].name] = $(filter)
+                    param[
+                        _this.columns[i].filterName || _this.columns[i].name
+                    ] = $(filter)
                         .map((i, k) => {
                             if (k.checked) {
                                 return k.value;
@@ -535,7 +588,7 @@ export default {
             });
             for (let key in param) {
                 if (param[key].length > 0) {
-                    filterParam[key] = param[key].join(';');
+                    filterParam[key] = param[key].join(";");
                 }
             }
             $.extend(filterParam, this.customFilterParam);
@@ -544,7 +597,9 @@ export default {
         //高级搜索
         filterChange() {
             let filterParam = this.getfilterParam();
-            if (JSON.stringify(this.filterParam) !== JSON.stringify(filterParam)) {
+            if (
+                JSON.stringify(this.filterParam) !== JSON.stringify(filterParam)
+            ) {
                 this.filterParam = filterParam;
                 if (this.curPage == 1) {
                     this.loadData();
@@ -558,14 +613,18 @@ export default {
             let _this = this;
             let currentTarget = e.currentTarget;
             $(currentTarget)
-                .closest('tr')
-                .addClass('gd-hover');
+                .closest("tr")
+                .addClass("gd-hover");
             gd.showHoverBox({
                 el: e.currentTarget,
-                position: 'left',
+                position: "left",
                 //点击的时候触发
                 onClick: function(data) {
-                    _this.operateAction(_this.columns[colIdx].operates[data.index], rowIdx, colIdx);
+                    _this.operateAction(
+                        _this.columns[colIdx].operates[data.index],
+                        rowIdx,
+                        colIdx
+                    );
                 },
                 items: $.map(_this.columns[colIdx].operates, (o, i) => {
                     if (i >= 2 && _this.operateShow[rowIdx][colIdx][i]) {
@@ -579,17 +638,21 @@ export default {
                 }),
                 end: function(dom) {
                     $(currentTarget)
-                        .closest('tr')
-                        .removeClass('gd-hover');
+                        .closest("tr")
+                        .removeClass("gd-hover");
                 }
             });
         },
         //操作动作
         operateAction(operate, rowIdx, colIdx) {
-            if (typeof operate.action === 'function') {
+            if (typeof operate.action === "function") {
                 let row = this.rows[rowIdx];
                 let cell = row[colIdx];
-                return operate.action(cell, gd.clone(row), gd.clone(this.rawData.rows[rowIdx]));
+                return operate.action(
+                    cell,
+                    gd.clone(row),
+                    gd.clone(this.rawData.rows[rowIdx])
+                );
             }
         },
         //是否有更多操作
@@ -599,8 +662,15 @@ export default {
             } else {
                 return col.operates.some((o, i) => {
                     if (o.show !== undefined) {
-                        if (typeof o.show === 'function') {
-                            return i >= 2 && o.show(cell, gd.clone(row), gd.clone(this.rawData.rows[rowIdx])) === true;
+                        if (typeof o.show === "function") {
+                            return (
+                                i >= 2 &&
+                                o.show(
+                                    cell,
+                                    gd.clone(row),
+                                    gd.clone(this.rawData.rows[rowIdx])
+                                ) === true
+                            );
                         } else {
                             return i >= 2 && o.show;
                         }
@@ -616,22 +686,27 @@ export default {
             let checkedRows = this.checkedRows.map((c, i) => {
                 return _this.checkdAll && _this.disabledRows[i] !== true;
             });
-            if (JSON.stringify(checkedRows) !== JSON.stringify(this.checkedRows)) {
+            if (
+                JSON.stringify(checkedRows) !== JSON.stringify(this.checkedRows)
+            ) {
                 this.checkedRows = checkedRows;
-                if (typeof _this.columns[colIdx].change === 'function') {
+                if (typeof _this.columns[colIdx].change === "function") {
                     let checkedData = this.rows.filter((row, i) => {
                         return this.checkedRows[i];
                     });
                     let checkedRawData = this.rawData.rows.filter((row, i) => {
                         return this.checkedRows[i];
                     });
-                    _this.columns[colIdx].change(gd.clone(checkedData), gd.clone(checkedRawData));
+                    _this.columns[colIdx].change(
+                        gd.clone(checkedData),
+                        gd.clone(checkedRawData)
+                    );
                 }
             }
         },
         //隐藏多列
         hideColumns(columns) {
-            if (typeof columns === 'undefined' || !columns instanceof Array) {
+            if (typeof columns === "undefined" || !columns instanceof Array) {
                 this.columns.forEach(col => {
                     col.show = false;
                 });
@@ -660,7 +735,7 @@ export default {
         },
         //显示多列
         showColumns(columns) {
-            if (typeof columns === 'undefined' || !columns instanceof Array) {
+            if (typeof columns === "undefined" || !columns instanceof Array) {
                 this.columns.forEach(col => {
                     col.show = true;
                 });
@@ -673,7 +748,7 @@ export default {
                     }
                 });
             }
-            this.tableWidth = '100%';
+            this.tableWidth = "100%";
             this.calcColumnWidth();
             this.filterChange();
         },
@@ -690,8 +765,12 @@ export default {
         },
         //是否有勾选的查询条件
         hasFilter(colIdx) {
-            let filterName = this.columns[colIdx].filterName || this.columns[colIdx].name;
-            return this.filterParam[filterName] !== undefined && this.filterParam[filterName] !== '';
+            let filterName =
+                this.columns[colIdx].filterName || this.columns[colIdx].name;
+            return (
+                this.filterParam[filterName] !== undefined &&
+                this.filterParam[filterName] !== ""
+            );
         },
         //列表滚动
         bodyScroll(e) {
@@ -720,19 +799,46 @@ export default {
                 });
                 _this.checkdAll = checkAll;
             }
-            if (typeof _this.columns[colIdx].change === 'function') {
+            if (typeof _this.columns[colIdx].change === "function") {
                 let checkedData = this.rows.filter((row, i) => {
                     return this.checkedRows[i];
                 });
                 let checkedRawData = this.rawData.rows.filter((row, i) => {
                     return this.checkedRows[i];
                 });
-                _this.columns[colIdx].change(gd.clone(checkedData), gd.clone(checkedRawData));
+                _this.columns[colIdx].change(
+                    gd.clone(checkedData),
+                    gd.clone(checkedRawData)
+                );
             }
         },
         //横向滚动
         scrollH(e) {
             this.scrollLeft = e.currentTarget.scrollLeft;
+        },
+        //操作的title
+        getOperateTitle(title, cell, row, rowIdx, colIdx) {
+            if (typeof title === "function") {
+                return title(
+                    cell,
+                    gd.clone(row),
+                    gd.clone(this.rawData.rows[rowIdx])
+                );
+            } else {
+                return title;
+            }
+        },
+        //操作的icon
+        getOperateIcon(icon, cell, row, rowIdx, colIdx) {
+            if (typeof icon === "function") {
+                return icon(
+                    cell,
+                    gd.clone(row),
+                    gd.clone(this.rawData.rows[rowIdx])
+                );
+            } else {
+                return icon;
+            }
         }
     },
     computed: {
@@ -750,8 +856,8 @@ export default {
         jumpPageVal(newValue, oldValue) {
             if (isNaN(newValue)) {
                 //输入的不是数字，置空
-                this.jumpPageVal = '';
-            } else if (newValue !== '' && newValue <= 0) {
+                this.jumpPageVal = "";
+            } else if (newValue !== "" && newValue <= 0) {
                 //小于等于0，改为第一页
                 this.jumpPageVal = 1;
             } else if (newValue > this.totalPage) {
@@ -780,20 +886,23 @@ export default {
         this.columnOldWidth = [].concat(_this.columnWidth);
         //如果可调列宽，要监听窗口缩放
         $(window).resize(() => {
-            _this.scrollBarVWidth = _this.$refs.tableBody.offsetWidth - _this.$refs.tableBody.clientWidth;
+            _this.scrollBarVWidth =
+                _this.$refs.tableBody.offsetWidth -
+                _this.$refs.tableBody.clientWidth;
             if (this.columnResize) {
                 _this.calcTableSize();
             }
         });
-        $('body')
+        $("body")
             //鼠标移动，调整列宽
-            .on('mousemove', function(e) {
+            .on("mousemove", function(e) {
                 if (_this.isResizeModel) {
                     _this.endX = e.clientX;
                     let offset = _this.endX - _this.startX;
-                    let width = _this.columnOldWidth[_this.resizeIndex] + offset;
+                    let width =
+                        _this.columnOldWidth[_this.resizeIndex] + offset;
                     let minWidth = 90;
-                    if (_this.columns[_this.resizeIndex].type === 'checkbox') {
+                    if (_this.columns[_this.resizeIndex].type === "checkbox") {
                         minWidth = 40;
                     }
                     if (width < minWidth) {
@@ -803,16 +912,17 @@ export default {
                     } else {
                         Vue.set(_this.columnWidth, _this.resizeIndex, width);
                     }
-                    _this.resizeLineHeight = _this.$refs.tableScrollH.clientHeight;
+                    _this.resizeLineHeight =
+                        _this.$refs.tableScrollH.clientHeight;
                     _this.calcTableSize();
                 }
             })
             //鼠标弹起，结束列宽调整
-            .on('mouseup', function() {
+            .on("mouseup", function() {
                 _this.columnOldWidth = [].concat(_this.columnWidth);
                 _this.isResizeModel = false;
                 _this.resizeLineHeight = 40;
-                $('body').removeClass('gd-col-resize');
+                $("body").removeClass("gd-col-resize");
             });
         //加载数据
         this.filterParam = this.getfilterParam();
@@ -843,11 +953,15 @@ gdTable.prototype.reload = function(resetPage, ajaxParam, isMerge) {
     if (resetPage) {
         apps[this.index].curPage = resetPage;
     }
-    if (typeof ajaxParam === 'object') {
+    if (typeof ajaxParam === "object") {
         if (isMerge === false) {
             apps[this.index].ajaxParam = gd.clone(ajaxParam);
         } else {
-            apps[this.index].ajaxParam = $.extend(true, apps[this.index].ajaxParam, ajaxParam);
+            apps[this.index].ajaxParam = $.extend(
+                true,
+                apps[this.index].ajaxParam,
+                ajaxParam
+            );
         }
     }
     apps[this.index].loadData();
@@ -889,11 +1003,15 @@ gdTable.prototype.getAjaxParam = function(isFull) {
 };
 //设置ajax参数
 gdTable.prototype.setAjaxParam = function(ajaxParam, isMerge) {
-    if (typeof ajaxParam === 'object') {
+    if (typeof ajaxParam === "object") {
         if (isMerge === false) {
             apps[this.index].ajaxParam = gd.clone(ajaxParam);
         } else {
-            apps[this.index].ajaxParam = $.extend(true, apps[this.index].ajaxParam, ajaxParam);
+            apps[this.index].ajaxParam = $.extend(
+                true,
+                apps[this.index].ajaxParam,
+                ajaxParam
+            );
         }
     }
 };
@@ -920,18 +1038,18 @@ gdTable.prototype.setFilter = function(colName, filter) {
 };
 //设置高级查询值
 gdTable.prototype.setFilterValue = function(filterName, filterValue) {
-    if (typeof filterValue !== 'undefined') {
-        apps[this.index].customFilterParam[filterName] = filterValue;
+    if (typeof filterValue !== "undefined") {
+        Vue.set(apps[this.index].customFilterParam, filterName, filterValue);
     } else {
         delete apps[this.index].customFilterParam[filterName];
     }
 };
 //设置排序
 gdTable.prototype.setOrder = function(orderName, orderType) {
-    if (typeof orderName !== 'undefined' && orderName) {
+    if (typeof orderName !== "undefined" && orderName) {
         apps[this.index].orderColumn = orderName;
     }
-    if (typeof orderType !== 'undefined' && orderType) {
+    if (typeof orderType !== "undefined" && orderType) {
         apps[this.index].orderType = orderType;
     }
 };

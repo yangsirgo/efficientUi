@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./js/resource.js"></script>
+</head>
+
+<body>
+    <!-- 此处是整体框架用，包括侧边栏和顶部 -->
+    <div id="framework" v-cloak>
+        <gd-leftmenu :config="leftMenuConfig"></gd-leftmenu>
+        <gd-topbar :config="topbarConfig"></gd-topbar>
+    </div>
+    <div id="app" class="gd-right-content gd-padding-lg" v-cloak>
+        <p>列表调用方式如下：</p>
+        <textarea type="code">
+            <div id="app" v-cloak>
+                <gd-table :config="tableConfig"></gd-table>
+            </div>
+            <script>
+                var app = new Vue({
+                    el: '#app',
+                    data: {
+                        //表格配置
+                        tableConfig: {
+                            id: 'demoTable',//给table一个id,调用gd.tableReload('demoTable');可重新加载表格数据并保持当前页码，gd.tableReload('demoTable'，1)，第二个参数可在加载数据时指定页码
+                            length: 50, //每页多少条,默认50，可选
+                            curPage: 1, //当前页码，默认1，可选
+                            lengthMenu: [10, 30, 50, 100], //可选择每页多少条，默认[10, 30, 50, 100]，可选
+                            enableJumpPage: false, //启用跳页，默认false，可选
+                            enableLengthMenu: true, //启用可选择每页多少条，默认true，可选
+                            enablePaging: true,//启用分页,默认true，可选
+                            orderColumn: 'ip',//排序列
+                            orderType: 'desc',//排序规则，desc或asc,默认desc
+                            columnResize: true, //启用列宽调，默认true，可选
+                            //showFooter: false,//显示footer,默认为true
+                            //lazy: true,//懒加载数据，调用gd.table('id').reload()对表格数据进行加载,默认为false
+                            //loading: true,//显示loading,默认为false
+                            //filterImmediately: true,//高级查询勾选后立即触发，默认为false
+                            //fillBlank:'--',//对空数据进行填充
+                            ajax: {
+                                //其它ajax参数同jquery
+                                url: './data/table.json',
+                                //改变从服务器返回的数据给table
+                                dataSrc: function (data) {
+                                    data.rows = data.rows.map(function (obj) {
+                                        return [
+                                            obj.id,
+                                            obj.ip,
+                                            obj.mac,
+                                            obj.department,
+                                            obj.type,
+                                            obj.time,
+                                            obj.qrcode,
+                                            obj.event,
+                                            obj.state,
+                                            obj.id
+                                        ]
+                                    });
+                                    return data;
+                                },
+                                //请求参数
+                                data: {
+                                    startTime: '2018-04-02',
+                                    searchStr: 'work'
+                                }
+                            },
+                            columns: [
+                                {
+                                    name: 'checkbox',
+                                    type: 'checkbox',
+                                    // single: true,//checkbox只允许选单个
+                                    width: '60', //列宽
+                                    //class: 'xxx',//加入自定义类
+                                    align: 'center',//对齐方式，默认left，与class不同，class只影响内容，align会影响内容和表头
+                                    disabled: function (cell, row, raw) {//禁用checkbox
+                                        return Math.random() > 0.5;
+                                    },
+                                    change: function (data) {//复选框改变，触发事件，返回所有选中的列的数据
+                                        log(data)
+                                    }
+                                },
+                                {
+                                    name: 'ip',//本列如果有排序或高级搜索，必须要有name
+                                    head: 'IP地址',
+                                    orderable: true,//启用排序
+                                    show: true,//是否展示该列，默认为true
+                                    title: function (cell, row, raw) {//设置title，cell为本格数据，row为本行加工后的数据，raw为本行未加工的数据,也可以直接传一个true,将以cell作为title
+                                        return cell
+                                    },
+                                    render: function (cell, row, raw) {//自定义表格内容
+                                        return cell;
+                                    }
+                                },
+                                {
+                                    name: 'mac',
+                                    head: 'MAC地址',
+                                    orderable: true,
+                                    //ellipsis: false，可以禁用text ellipsis,默认为true
+                                    title: function (cell, row, raw) {//设置title，cell为本格数据，row为本行加工后的数据，raw为本行未加工的数据
+                                        return cell
+                                    }
+                                },
+                                {
+                                    name: 'department',
+                                    head: '所属部门',
+                                    orderable: true,
+                                    title: true,
+                                    filters: '#tree_box',//如果是自定义内容，这里只能传入一个选择器
+                                },
+                                {
+                                    name: 'type',
+                                    head: '类型',
+                                    orderable: true,
+                                    align: 'center',
+                                    filterName: 'device',//高级查询字段名，不写为name
+                                    filters: [//设置检索条件
+                                        {
+                                            label: '计算机',
+                                            value: 'PC',
+                                            checked: true//默认选中
+                                        }, {
+                                            label: '路由器',
+                                            value: 'router'
+                                        }
+                                    ]
+                                },
+                                {
+                                    name: "time",
+                                    head: '提交时间',
+                                },
+                                {
+                                    name: 'qrcode',
+                                    head: '指纹',
+                                    align: 'center',
+                                    render: function () {
+                                        return '<i class="icon-qrcode" style="color:#999999"></i>'
+                                    }
+                                },
+                                {
+                                    name: 'event',
+                                    head: '事件',
+                                    align: 'center',
+                                    render: function (cell) {
+                                        var className = cell == 2 ? 'gd-mark-danger' : '';
+                                        return '<span class="gd-mark ' + className + '">' + cell + '</span>'
+                                    }
+                                },
+                                {
+                                    name: 'state',
+                                    head: '状态',
+                                    align: 'center',
+                                    render: function () {
+                                        return '<label class="gd-switch"><input type="checkbox" checked><i></i></label>'
+                                    }
+                                },
+                                {
+                                    name: 'operate',
+                                    head: '操作',
+                                    align: 'center',
+                                    width: 120,
+                                    operates: [
+                                        {
+                                            icon: 'icon-edit',
+                                            title: '编辑',//设置图标title
+                                            action: function (cell, row, raw) {//动作函数,cell为本格数据，row为本行加工后的数据，raw为本行未加工的数据
+                                                log(cell)
+                                                log(row)
+                                                log(raw)
+                                            }
+                                        },
+                                        {
+                                            icon: 'icon-pass',
+                                            title: '确认',
+                                            action: function (cell, row, raw) {
+
+                                            }
+                                        },
+                                        {
+                                            icon: 'icon-play',
+                                            text: '播放',
+                                            show: function (cell, row, raw) {//是否展示，可控制权限
+                                                return row[0] == 2;
+                                            },
+                                            action: function (cell, row, raw) {
+                                                log(cell)
+                                                log(row)
+                                                log(raw)
+                                            }
+                                        },
+                                        {
+                                            icon: 'icon-insulate',
+                                            text: '隔离',
+                                            disabled: function (cell, row, raw) {//是否禁用
+                                                return row[0] == 2;
+                                            },
+                                            action: function () {
+
+                                            }
+                                        },
+                                        {
+                                            icon: 'icon-locate',
+                                            text: '定位',
+                                            action: function () {
+
+                                            }
+                                        },
+                                        {
+                                            icon: 'icon-relation',
+                                            text: '关联',
+                                            action: function () {
+
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    treeConfig: {
+                        id: 'treeTest',//树的id，用于提供API
+                        showCheckBox: true,//默认是false;显示checkbox
+                        data: [{
+                            id: 1,
+                            name: '顶级部门',
+                            level: 1,
+                            pId: null,
+                            expend: true
+                        }, {
+                            id: 2,
+                            name: '历下区技术研发部',
+                            level: 2,
+                            pId: 1,
+                            expend: true
+                        }, {
+                            id: 3,
+                            name: '高新区技术研发部',
+                            level: 2,
+                            pId: 1,
+                            expend: true
+                        }],
+                        onSelect: function (n) {// 点击树节点时触发 返回所有选中节点的数据
+                            console.log(n);
+                        },
+                        onChange: function (n) {// 点击复选框时触发  返回所有选中复选框的数据
+                            var ids = n.map(function (node) {
+                                return node.id
+                            });
+                            gd.table('demoTable').setFilterValue('department', ids.join(';'))
+                        }
+                    },
+                });
+                /*
+                内置ajax参数
+                orderType: desc //排序,
+                start: 0//页面的开始条数,
+                length: 50//页面的数据条数，数据交互时三条数据会传递给后端（内置默认），这三条字段名不能更改，所以提前与后端约定好.
+                */
+
+                /*提供对外接口：
+                1、gd.table('id').getData();//获取表格数据
+                2、gd.table('id').getCheckedData();//获取选中的数据
+                3、gd.table('id').reload();有三种用法
+                        —>gd.table('id').reload(5),重新加载数据，并指定加载第5页，不传或传false将保持当前页码
+                        —>gd.table('id').reload(5,{ip:'192.168.0.1'}),重新加载数据，并指定加载第5页，并设置ajax参数，这里会和之前的参数进行合并
+                        —>gd.table('id').reload(5,{ip:'192.168.0.1'},false),重新加载数据，并指定加载第5页，并设置ajax参数，这里会覆盖之前的参数
+                4、gd.table('id').showColumns(['ip','mac']);//显示参数中的列，如果不传，将显示全部列
+                5、gd.table('id').showColumn('ip');//显示ip列，不影响其它列
+                6、gd.table('id').hideColumns(['ip','mac']);//隐藏参数中的列，如果不传，将隐藏全部列
+                7、gd.table('id').hideColumn('ip');//隐藏ip列，不影响其它列
+                8、gd.table('id').getAjaxParam();//不传参数将仅得到用户自己添加的ajax参数，可用于reload，传true将获得所有参数，可用于导出
+                9、gd.table('id').setAjaxParam({ip:'192.168.0.1'});//用于设置用户自己添加的ajax参数
+                10、gd.table('id').setFilter('name',filter);//设置高级查询参数，第二个参数格式如下：
+                    	[{
+                            label: '计算机',
+                            value: 'PC'
+                        }, {
+                            label: '路由器',
+                            value: 'router'
+                        }]
+                        或传一个选择器进行自定义
+                11、gd.table('id').setFilterValue('key',value);//设置高级查询值
+                12、gd.table('id').setOrder('mac','desc');//设置排序列
+                13、gd.table('id').appendData(rows);//追加表格数据，只在不启用分页的时候有效，数据格式遵循接口的rows
+                */
+
+            </script>
+        </textarea>
+
+        <p>接口数据格式如下：</p>
+        <textarea type="code" class="language-javascript">
+            {
+                "resultCode": 0,
+                "total": 800,
+                "rows": [
+                    {
+                        "id": 1,
+                        "ip": "192.168.3.1",
+                        "mac": "00-00-00-00-00-00-00-E0",
+                        "department": "历下区技术研发部",
+                        "type": "交换机",
+                        "time": "2018-04-15 12:48:56",
+                        "event": "1",
+                        "state": 1
+                    },
+                    {
+                        "id": 2,
+                        "ip": "192.168.3.1",
+                        "mac": "00-00-00-00-00-00-00-E0",
+                        "department": "历下区技术研发部",
+                        "type": "交换机",
+                        "time": "2018-04-15 12:48:56",
+                        "event": "1",
+                        "state": 1
+                    },
+                    {
+                        "id": 1,
+                        "ip": "192.168.3.1",
+                        "mac": "00-00-00-00-00-00-00-E0",
+                        "department": "历下区技术研发部",
+                        "type": "交换机",
+                        "time": "2018-04-15 12:48:56",
+                        "event": "1",
+                        "state": 1
+                    },
+                    {
+                        "id": 1,
+                        "ip": "192.168.3.1",
+                        "mac": "00-00-00-00-00-00-00-E0",
+                        "department": "历下区技术研发部",
+                        "type": "交换机",
+                        "time": "2018-04-15 12:48:56",
+                        "event": "1",
+                        "state": 1
+                    },
+                    {
+                        "id": 1,
+                        "ip": "192.168.3.1",
+                        "mac": "00-00-00-00-00-00-00-E0",
+                        "department": "历下区技术研发部",
+                        "type": "交换机",
+                        "time": "2018-04-15 12:48:56",
+                        "event": "1",
+                        "state": 1
+                    }
+                ],
+                "resultMsg": ""
+            }
+        </textarea>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {}
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+@import './gd_variables';
+//@import url(https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+
+.score-star-wrap {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    cursor: default;
+    font-size: 20px;
+    display: inline-block;
+    .score-star {
+        display: inline-block;
+        cursor: pointer;
+        transition: all ease-in-out .3s;
+        position: relative;
+        &:before {
+            content: '\f005';
+            font-family: FontAwesome;
+        }
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+    .score-star-half {
+        width: 50%;
+        display: inline-block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        overflow: hidden;
+        &:before {
+            content: '\f005';
+            font-family: FontAwesome;
+        }
+        color: transparent;
+    }
+    .score-star-half-full {
+        color: @warningColor;
+    }
+
+    .score-star-zero {
+        color: @grayColor7;
+    }
+    .score-star-full {
+        color: @warningColor;
+    }
+}

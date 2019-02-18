@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./js/resource.js"></script>
+</head>
+
+<body>
+    <!-- 此处是整体框架用，包括侧边栏和顶部 -->
+    <div id="framework" v-cloak>
+        <gd-leftmenu :config="leftMenuConfig"></gd-leftmenu>
+        <gd-topbar :config="topbarConfig"></gd-topbar>
+    </div>
+    <div id="app" class="gd-right-content gd-padding-lg" v-cloak>
+        <p>侧边栏调用方式如下：</p>
+        <textarea type="code">
+            <div id="framework">
+                <gd-leftmenu :config="leftMenuConfig"></gd-leftmenu>
+            </div>
+            <script>
+                new Vue({
+                    el: '#framework',
+                    data: {
+                        leftMenuConfig: {
+                            api: './data/left_menu.json', //接口地址
+                            //data: menuData, //api和data二选一，data是菜单的json数据,如果同时定义，以data优先
+                            logo: './images/tsa_menu_logo.png', //logo地址
+                            apiCallback: function (data) {
+                                //回调函数可对接口数据进行加工，可选
+                                return data;
+                            },
+                            ready: function (data) {
+                                //菜单加载完成回调
+                                log(data);
+                            }
+                            /*
+                            logoStyle: {//设置logo的样式，可选
+                                backgroundPosition: '10px'
+                            },
+                            mode: 'load', //可以传入'load'或'iframe'来启用load模式与iframe模式，默认是常规模式
+                            changeUrl: true, //load与iframe模式下，是否改变url,默认为false
+                            action: function(data, param) {
+                                //load与iframe模式下,菜单点击后的回调，
+                                //load模式下，第一个参数为返回的load内容，第二个参数为当前菜单的参数，
+                                //iframe模式下，第一个参数为url，第二个参数为当前菜单的参数
+                                console.log(data);
+                                console.log(param);
+                            }
+                            */
+                        }
+                    }
+                });
+                /*
+                提供下面两个方法
+                1.gd.menu('首页').addTip();或gd.menu(['首页','表单']).addTip()//添加红点提示
+                2.gd.menu('首页').removeTip();//移除红点提示
+                */
+            </script>
+
+        </textarea>
+        <p>接口数据格式如下：</p>
+        <textarea type="code" class="language-javascript">
+            {
+                "resultCode": 0,
+                "data": [
+                    {
+                        "name": "首页",//菜单名称
+                        "icon": "icon-home",//菜单图标
+                        "href": "index.html"//菜单地址
+                    },
+                    {
+                        "name": "侧边栏",
+                        "icon": "icon-report",
+                        "href": "leftmenu_doc.html"
+                    },
+                    {
+                        "name": "系统",
+                        "icon": "icon-system",
+                        "href": "",
+                        "sub": [//子菜单
+                            {
+                                "name": "组织架构",
+                                "icon": "",
+                                "href": "",
+                                "sub": [
+                                    {
+                                        "name": "用户",
+                                        "icon": "",
+                                        "href": "user.html"
+                                    },
+                                    {
+                                        "name": "部门",
+                                        "icon": "",
+                                        "href": "index.html"
+                                    },
+                                    {
+                                        "name": "权限",
+                                        "icon": "",
+                                        "href": "index.html"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "关于",
+                                "icon": "",
+                                "href": "about.html"
+                            }
+                        ]
+                    }
+                ]
+            }
+        </textarea>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                msg: 'Hello,World!',
+            }
+        });
+    </script>
+</body>
+
+</html>
