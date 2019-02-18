@@ -1,179 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="./js/resource.js"></script>
-    <style>
-        #app {
-            height: 870px;
-            width: 100%;
-        }
-    </style>
 </head>
+
 <body>
-<div id="app" v-cloak>
-    <gd-divider> With Text</gd-divider>
-    Steven Paul Jobs was an American entrepreneur and business magnate. He was the chairman, chief executive officer,
-    and a co-founder of Apple Inc.
-    <gd-divider dashed></gd-divider>
-    Steven Paul Jobs was an American entrepreneur and business magnate. He was the chairman, chief executive officer,
-    and a co-founder of Apple Inc.
-    <gd-divider></gd-divider>
-    <div>
-        Text
-        <gd-divider type="vertical"/>
-        </gd-divider>
-        <a href="#">Link</a>
-        <gd-divider type="vertical"></gd-divider>
-        <a href="#">Link</a>
+    <!-- 此处是整体框架用，包括侧边栏和顶部 -->
+    <div id="framework" v-cloak>
+        <gd-leftmenu :config="leftMenuConfig"></gd-leftmenu>
+        <gd-topbar :config="topbarConfig">
+            <button title="如果满足不了你，在这自由发挥吧~" class="gd-btn">自定义控件</button>
+        </gd-topbar>
     </div>
-    <gd-divider orientation="left">Left Text</gd-divider>
-    <p>Steven Paul Jobs was an American entrepreneur and business magnate. He was the chairman, chief executive officer,
-        and a co-founder of Apple Inc.</p>
-    <gd-divider orientation="right">Right Text</gd-divider>
-    <p>Steven Paul Jobs was an American entrepreneur and business magnate. He was the chairman, chief executive officer,
-        and a co-founder of Apple Inc.</p>
-    <textarea type="code">
-         <gd-divider></gd-divider>
-        <!--type	水平还是垂直类型，可选值为 horizontal 或 vertical	String	horizontal-->
-        <!--orientation	分割线标题的位置，可选值为 left、right 或 center	Number	center-->
-        <!--dashed	是否虚线	Boolean	false-->
-    </textarea>
-    <div>
-        <gd-collapse  v-model="value1" @on-change="change">
-            <gd-panel>
-                斯蒂夫·盖瑞·沃兹尼亚克0
-                <p slot="content">
-                    斯蒂夫·盖瑞·沃兹尼亚克（Stephen Gary
-                    Wozniak），美国电脑工程师，曾与史蒂夫·乔布斯合伙创立苹果电脑（今之苹果公司）。斯蒂夫·盖瑞·沃兹尼亚克曾就读于美国科罗拉多大学，后转学入美国著名高等学府加州大学伯克利分校（UC
-                    Berkeley）并获得电机工程及计算机（EECS）本科学位（1987年）。
-                </p>
-            </gd-panel>
-            <gd-panel>
-                斯蒂夫·盖瑞·沃兹尼亚克1
-                <p slot="content">
-                    斯蒂夫·盖瑞·沃兹尼亚克（Stephen Gary
-                    Wozniak），美国电脑工程师，曾与史蒂夫·乔布斯合伙创立苹果电脑（今之苹果公司）。斯蒂夫·盖瑞·沃兹尼亚克曾就读于美国科罗拉多大学，后转学入美国著名高等学府加州大学伯克利分校（UC
-                    Berkeley）并获得电机工程及计算机（EECS）本科学位（1987年）。
-                </p>
-            </gd-panel>
-            <gd-panel>
-                斯蒂夫·盖瑞·沃兹尼亚克2
-                <p slot="content">
-                    斯蒂夫·盖瑞·沃兹尼亚克（Stephen Gary
-                    Wozniak），美国电脑工程师，曾与史蒂夫·乔布斯合伙创立苹果电脑（今之苹果公司）。斯蒂夫·盖瑞·沃兹尼亚克曾就读于美国科罗拉多大学，后转学入美国著名高等学府加州大学伯克利分校（UC
-                    Berkeley）并获得电机工程及计算机（EECS）本科学位（1987年）。
-                </p>
-            </gd-panel>
-            <gd-panel hide-arrow>
-                斯蒂夫·盖瑞·沃兹尼亚克3
-                <p slot="content">
-                    斯蒂夫·盖瑞·沃兹尼亚克（Stephen Gary
-                    Wozniak），美国电脑工程师，曾与史蒂夫·乔布斯合伙创立苹果电脑（今之苹果公司）。斯蒂夫·盖瑞·沃兹尼亚克曾就读于美国科罗拉多大学，后转学入美国著名高等学府加州大学伯克利分校（UC
-                    Berkeley）并获得电机工程及计算机（EECS）本科学位（1987年）。
-                </p>
-            </gd-panel>
-        </gd-collapse>
+    <div id="app" class="gd-right-content gd-padding-lg" v-cloak>
+        <p>说明：组件库依赖jquery与vue,另外只需引入样式文件gdui.min.css与js文件gdui.min.js即可。</p>
+        <p>关于项目的整体结构，推荐如下：</p>
+        <textarea type="code">
+            <body>
+                <!-- 此处是整体框架，包括侧边栏和顶部,这一部分可以单独作为一个vue实例，写在公共文件中 -->
+                <div id="framework" v-cloak>
+                    <gd-leftmenu></gd-leftmenu>
+                    <gd-topbar></gd-topbar>
+                </div>
+                <!-- 此处页面内容区，这一部分可以是另一个vue实例，处理具体业务 -->
+                <div id="app" class="gd-right-content" v-cloak>
+                    Hello,Golencis!
+                </div>
+            </body>
+        </textarea>
     </div>
-    <textarea type="code">
-        <!--value	当前激活的面板的 name，可以使用 v-model 双向绑定	Array | String	-->
-        <!--accordion	是否开启手风琴模式，开启后每次至多展开一个面板	Boolean	false-->
-        <!--orientation	分割线标题的位置，可选值为 left、right 或 center	Number	center-->
-        <!--dashed	是否虚线	Boolean	false-->
-        <!--hide-arrow	隐藏箭头	Boolean	false-->
-        <!--content	描述内容-->
-    </textarea>
-
-    <gd-tab
-            style="height: 300px;"
-            v-model="gdTab1"
-            @change="change"
-            closeable
-            @on-tab-remove="remove"
-            :before-remove="beforeRemove">
-        <gd-tab-item label="页签一" v-if="tab0">
-            <div>页签一的内容</div>
-        </gd-tab-item>
-        <gd-tab-item label="页签二"  v-if="tab1">
-            <div>页签二的内容</div>
-        </gd-tab-item>
-        <gd-tab-item label="页签三"  v-if="tab2">
-            <div>页签三的内容</div>
-        </gd-tab-item>
-    </gd-tab>
-    <h2> extra增加</h2>
-    <gd-tab
-            style="height: 300px;"
-            v-model="gdTab2"
-            closeable
-            @on-tab-remove="remove"
-            :before-remove="beforeRemove0">
-        <gd-tab-item :label="'标签' + item" v-for="item in tabs">
-            <div>标签{{item}}</div>
-        </gd-tab-item>
-        <button class="gd-btn" slot="extra" @click="addTabs">增加</button>
-    </gd-tab>
-    <textarea type="code">
-        <!--on-click	tab 被点击时触发	index	-->
-        <!--on-tab-remove	tab 被关闭时触发	index	-->
-        <!--extra	附加内容-->
-        <!--label	选项卡头显示文字-->
-        <!--closable	是否可以关闭页签-->
-        <!--before-remove	关闭前的函数，返回 Promise 可阻止标签关闭	Function	-->
-        <!--value	当前激活 tab 面板的 index，可以使用 v-model 双向绑定数据	String	默认为第一项 -->
-    </textarea>
-    <h3>Score 评分</h3>
-    <rate v-model="rateValue" allow-half/>
-</div>
-</body>
-</html>
-<script>
-    var app = new Vue({
-        el: '#app',
-        data:{
-            value1:[1,3],
-            gdTab1:1,
-            gdTab2:0,
-            tab0:true,
-            tab1:true,
-            tab2:true,
-            tabs:2,
-            rateValue:1
-        },
-        methods:{
-            addTabs() {
-                this.tabs ++;
-            },
-            change(key) {
-                log(key);
-            },
-            remove(index) {
-                log(index);
-                this['tab' + index] = false;
-            },
-            remove0(index) {
-                log(index);
-                this['tab' + index] = false;
-            },
-            beforeRemove(index) {
-                let _t = this;
-                return $.when(_t.ajaxInstead());
-            },
-            beforeRemove0(index) {
-                let _t = this;
-                return $.when(_t.ajaxInstead());
-            },
-            ajaxInstead () {
-                var dtd = $.Deferred();
-                var tasks = setTimeout(() => {
-                    log('beforeRemove false');
-                    dtd.resolve();
-                },1000);
-                return dtd;
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                msg: 'Hello,World!',
             }
-        }
-    });
+        });
+    </script>
+</body>
 
-
-</script>
+</html>
