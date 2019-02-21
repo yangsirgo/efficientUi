@@ -9,6 +9,10 @@
             height: 870px;
             width: 100%;
         }
+        .score-star-custom:before {
+                content: '\f005';
+                font-family: FontAwesome;
+        }
     </style>
 </head>
 <body>
@@ -124,7 +128,21 @@
         <!--value	当前激活 tab 面板的 index，可以使用 v-model 双向绑定数据	String	默认为第一项 -->
     </textarea>
     <h3>Score 评分</h3>
-    <rate v-model="rateValue" allow-half/>
+    <rate v-model="halfValue" allow-half icon="icon-report" show-text @on-change="ratechange">
+        <span>{{halfValue}}</span>
+    </rate>
+    <textarea type="code">
+        <!--count	star 总数	Number	5-->
+        <!--value	当前 star 数，可以使用 v-model 双向绑定数据	Number	0-->
+        <!--allow-half	是否允许半选	Boolean	false-->
+        <!--disabled	是否只读，无法进行交互	Boolean	false-->
+        <!--show-text	是否显示提示文字	Boolean	false-->
+        <!--clearable	是否可以取消选择	Boolean	false-->
+        <!--character	自定义字符	String	- -->
+        <!--icon	使用图标	String	--->
+        <!--custom-icon	使用自定义图标	String	--->
+        <!--on-change	评分改变时触发	value-->
+    </textarea>
 </div>
 </body>
 </html>
@@ -139,9 +157,13 @@
             tab1:true,
             tab2:true,
             tabs:2,
-            rateValue:1
+            rateValue:1,
+            halfValue:1.5
         },
         methods:{
+            ratechange (value) {
+                log(value);
+            },
             addTabs() {
                 this.tabs ++;
             },

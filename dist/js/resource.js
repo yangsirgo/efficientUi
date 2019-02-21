@@ -34,7 +34,6 @@ if (devMode) {
         './gdui/src/gd_pagination.css',
         './gdui/src/card.css',
         './gdui/src/steps.css',
-        './gdui/src/rate.css',
         './gdui/src/divider.css',
         './gdui/src/collapse.css',
         './css/global.css'

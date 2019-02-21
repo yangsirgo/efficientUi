@@ -1,4 +1,5 @@
 /*色彩*/
+@import url(https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
 .score-star-wrap {
   margin-top: 5px;
   margin-bottom: 5px;
@@ -35,7 +36,7 @@
   font-family: FontAwesome;
 }
 .score-star-wrap .score-star-half-full {
-  color: #FFBC5B;
+  color: #FFBC5B !important;
 }
 .score-star-wrap .score-star-zero {
   color: #EEEEEE;
