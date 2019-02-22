@@ -128,9 +128,7 @@
         <!--value	当前激活 tab 面板的 index，可以使用 v-model 双向绑定数据	String	默认为第一项 -->
     </textarea>
     <h3>Score 评分</h3>
-    <rate v-model="halfValue" allow-half icon="icon-report" show-text @on-change="ratechange">
-        <span>{{halfValue}}</span>
-    </rate>
+    <rate v-model="halfValue" allow-half show-text></rate>
     <textarea type="code">
         <!--count	star 总数	Number	5-->
         <!--value	当前 star 数，可以使用 v-model 双向绑定数据	Number	0-->

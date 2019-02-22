@@ -16,7 +16,7 @@
     </div>
     <div id="app" class="gd-right-content gd-padding-lg" v-cloak>
         <h4>横向页签</h4>
-        <gd-tab style="height: 300px;" @change="change">
+        <gd-tab style="height: 300px;" v-model="baseValue">
             <gd-tab-item label="页签一">
                 <div>页签一的内容</div>
             </gd-tab-item>
@@ -28,29 +28,110 @@
             </gd-tab-item>
         </gd-tab>
         <textarea type="code">
-            <!-- 定义页签名称，更改label属性,标签切换的时候，触发change事件，返回标签名称和索引-->
-            <gd-tab style="height: 300px;" @change="change">
-                <gd-tab-item label="页签一">
-                    <div>页签一的内容</div>
-                </gd-tab-item>
-                <gd-tab-item label="页签二">
-                    <div>页签二的内容</div>
-                </gd-tab-item>
-                <gd-tab-item label="页签三">
-                    <div>页签三的内容</div>
-                </gd-tab-item>
-            </gd-tab>
+            <!--基础用法-->
+            <!--value 可以使用 v-model 双向绑定数据。-->
+            <template>
+                <gd-tab value="name1"  v-model="baseValue">
+                    <gd-tab-item label="标签一">标签一的内容</gd-tab-item>
+                    <gd-tab-item label="标签二">标签二的内容</gd-tab-item>
+                    <gd-tab-item label="标签三">标签三的内容</gd-tab-item>
+                </gd-tab>
+            </template>
             <script>
-                var app = new Vue({
-                    el: '#app',
-                    methods: {
-                        change: function (data) {
-                            log(data)
-                        }
-                    }
-                });
+                export default {
+
+                }
             </script>
         </textarea>
+        <gd-tab
+                style="height: 300px;"
+                v-model="gdTab2"
+                closeable>
+            <gd-tab-item :label="'标签' + item" v-for="item in tabs">
+                <div>标签{{item}}</div>
+            </gd-tab-item>
+            <button class="gd-btn" slot="extra" @click="addTabs">增加</button>
+        </gd-tab>
+        <textarea type="code">
+            <!--附加内容-->
+            <!--设置 slot extra 可以在页签右边添加附加操作。-->
+            <!--通过设置属性 closable 可以关闭某一项-->
+            <template>
+                <gd-tab closable>
+                    <gd-tab-item v-for="tabDemo in tabs1" :key="tabDemo" :label="'标签' + tabDemo">标签{{ tabDemo }}</gd-tab-item>
+                    <button @click="handleTabsAdd" slot="extra">增加</button>
+                </gd-tab>
+            </template>
+            <script>
+                export default {
+                    data () {
+                        return {
+                            tabs1: 2
+                        }
+                    },
+                    methods: {
+                        handleTabsAdd () {
+                            this.tabs1 ++;
+                        }
+                    }
+                }
+            </script>
+        </textarea>
+        <gd-tab closeable style="height: 300px;"
+                @on-tab-remove="remove"
+                :before-remove="beforeRemove0">
+            <gd-tab-item label="标签一" v-if="tab0">标签一的内容</gd-tab-item>
+            <gd-tab-item label="标签二" v-if="tab1">标签二的内容</gd-tab-item>
+            <gd-tab-item label="标签三" v-if="tab2">标签三的内容</gd-tab-item>
+        </gd-tab>
+        <textarea type="code">
+                        <template>
+                            <gd-tab closeable style="height: 300px;"
+                                    @on-tab-remove="remove"
+                                    :before-remove="beforeRemove0">
+                                <gd-tab-item label="标签一" v-if="tab0">标签一的内容</gd-tab-item>
+                                <gd-tab-item label="标签二" v-if="tab1">标签二的内容</gd-tab-item>
+                                <gd-tab-item label="标签三" v-if="tab2">标签三的内容</gd-tab-item>
+                            </gd-tab>
+                        </template>
+                        <script>
+                            export default {
+                                data () {
+                                    return {
+                                        tab0: true,
+                                        tab1: true,
+                                        tab2: true
+                                    }
+                                },
+                                methods: {
+                                    beforeRemove0(index) {
+                                        let _t = this;
+                                        return $.when(_t.ajaxInstead());
+                                    },
+                                    ajaxInstead () {
+                                        var dtd = $.Deferred();
+                                        var tasks = setTimeout(() => {
+                                            alert('beforeRemove true');
+                                            dtd.resolve();
+                                        },1000);
+                                        return dtd;
+                                    }
+                                }
+                            }
+                        </script>
+        </textarea>
+
+
+        <textarea type="code">
+            <!--on-click	tab 被点击时触发	index	-->
+            <!--on-tab-remove	tab 被关闭时触发	index	-->
+            <!--extra	附加内容-->
+            <!--label	选项卡头显示文字-->
+            <!--closable	是否可以关闭页签-->
+            <!--before-remove	关闭前的函数，返回 Promise 可阻止标签关闭	Function	-->
+            <!--value	当前激活 tab 面板的 index，可以使用 v-model 双向绑定数据	String	默认为第一项 -->
+        </textarea>
+
         <h4>纵向页签</h4>
         <gd-tab vertical style="height: 300px;" @change="change">
             <gd-tab-item label="页签一">
@@ -113,9 +194,38 @@
     <script>
         var app = new Vue({
             el: '#app',
+            data: {
+                baseValue:1,
+                gdTab2:1,
+                tabs:3,
+                tab0: true,
+                tab1: true,
+                tab2: true
+            },
             methods: {
                 change: function (data) {
                     log(data)
+                },
+                addTabs() {
+                    this.tabs ++;
+                },
+                handleTabRemove () {
+
+                },
+                remove(index) {
+                    this['tab' + index] = false;
+                },
+                beforeRemove0(index) {
+                    let _t = this;
+                    return $.when(_t.ajaxInstead());
+                },
+                ajaxInstead () {
+                    var dtd = $.Deferred();
+                    var tasks = setTimeout(() => {
+                        alert('beforeRemove true');
+                        dtd.resolve();
+                    },1000);
+                    return dtd;
                 }
             }
         });

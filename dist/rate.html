@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        @import url(https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+
+        [class^="icon-"], [class*=" icon-"] {
+            line-height: unset !important;
+        }
+    </style>
+    <script src="./js/resource.js"></script>
+</head>
+
+<body>
+    <!-- 此处是整体框架用，包括侧边栏和顶部 -->
+    <div id="framework" v-cloak>
+        <gd-leftmenu :config="leftMenuConfig"></gd-leftmenu>
+        <gd-topbar :config="topbarConfig"></gd-topbar>
+    </div>
+    <div id="app" class="gd-right-content gd-padding-lg" v-cloak>
+        <rate v-model="value"></rate>
+        <textarea type="code">
+            <!--基本用法-->
+            <template>
+                <Rate v-model="value" />
+            </template>
+            <script>
+                export default {
+                    data () {
+                        return {
+                            value: 0
+                        }
+                    }
+                }
+            </script>
+        </textarea>
+        <rate v-model="halfValue" allow-half></rate>
+        <textarea type="code">
+            <!--设置属性 allow-half 可以选中半星。-->
+            <template>
+                <Rate allow-half v-model="valueHalf" />
+            </template>
+            <script>
+                export default {
+                    data () {
+                        return {
+                            valueHalf: 2.5
+                        }
+                    }
+                }
+            </script>
+        </textarea>
+        <rate show-text allow-half v-model="valueCustomText">
+            <span style="color: #f5a623">{{ valueCustomText }}</span>
+        </rate>
+        <textarea type="code">
+            <!--设置属性 show-text 可以显示提示文字。提示内容也可以通过 slot 自定义。-->
+            <template>
+                  <Rate show-text allow-half v-model="valueCustomText">
+                      <span style="color: #f5a623">{{ valueCustomText }}</span>
+                  </Rate>
+            </template>
+            <script>
+                export default {
+                    data () {
+                        return {
+                            valueText: 3,
+                            valueCustomText: 3.8
+                        }
+                    }
+                }
+            </script>
+        </textarea>
+        <rate v-model="valueCustomText" allow-half disabled></rate>
+        <textarea type="code">
+            <!--设置属性 disabled 开启只读模式，无法交互。-->
+            <template>
+                  <Rate allow-half disabled v-model="valueCustomText" />
+            </template>
+            <script>
+                export default {
+                    data () {
+                        return {
+                            valueText: 3
+                        }
+                    }
+                }
+            </script>
+        </textarea>
+        <rate v-model="value3" character="A" ></rate>
+        <rate v-model="value4" character="好" ></rate>
+        <rate v-model="value5" icon="icon-report" ></rate>
+        <textarea type="code">
+            <!--设置 character 属性，可以自定义字符。-->
+            <!--设置 icon 或 custom-icon 属性，可以自定义图标。-->
+            <template>
+                <Rate v-model="value3" character="A" />
+                <Rate v-model="value4" character="好" />
+                <Rate v-model="value5" icon="ios-heart" />
+            </template>
+            <script>
+                export default {
+                    data () {
+                        return {
+                            value3: 3,
+                            value4: 3,
+                            value5: 3
+                        }
+                    }
+                }
+            </script>
+        </textarea>
+        <rate v-model="clearableValue" clearable></rate>
+        <textarea type="code">
+            <!-- 支持允许或者禁用清除。 -->
+            <template>
+                <Rate clearable v-model="value1" />
+            </template>
+            <script>
+                export default {
+                    data () {
+                        return {
+                            value1: 3,
+                            value2: 3
+                        }
+                    }
+                }
+            </script>
+        </textarea>
+        <textarea type="code">
+            <!--count	star 总数	Number	5-->
+            <!--value	当前 star 数，可以使用 v-model 双向绑定数据	Number	0-->
+            <!--allow-half	是否允许半选	Boolean	false-->
+            <!--disabled	是否只读，无法进行交互	Boolean	false-->
+            <!--show-text	是否显示提示文字	Boolean	false-->
+            <!--clearable	是否可以取消选择	Boolean	false-->
+            <!--character	自定义字符	String	- -->
+            <!--icon	使用图标	String	--->
+            <!--custom-icon	使用自定义图标	String	--->
+            <!--on-change	评分改变时触发	value-->
+        </textarea>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                value:1,
+                halfValue:1.5,
+                valueCustomText:2.5,
+                value3: 3,
+                value4: 3,
+                value5: 3,
+                clearableValue:3
+            },
+            methods: {
+                onchange (data) {
+                    log(data)
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

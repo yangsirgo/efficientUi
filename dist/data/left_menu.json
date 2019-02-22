@@ -139,6 +139,10 @@
                 {
                     "name": "分页",
                     "href": "pagination.html"
+                },
+                {
+                    "name": "Rate 评分",
+                    "href": "rate.html"
                 }
             ]
         }

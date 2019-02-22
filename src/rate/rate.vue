@@ -4,16 +4,16 @@
              v-for="item in starNum"
              @mouseover="starhover(item,$event)"
              @click="starClick(item,$event)">
-            <template v-if="!showCharacter">
+            <template v-if="!showCharacter()">
                 <span type="half" class="score-star-half-content" v-if="allowHalf"></span>
             </template>
             <template v-else>
                 <span class="rate-chart-content-first">
-                    <template v-if="icon !== '' && customIcon !== ''">{{character}}</template>
+                    <template v-if="character !== ''">{{character}}</template>
                     <template v-else><i :class="iconCls"></i></template>
                 </span>
                 <span type="half" class="rate-chart-content-second">
-                    <template v-if="icon !== '' && customIcon !== ''">{{character}}</template>
+                    <template v-if="character !== ''">{{character}}</template>
                     <template v-else><i type="half" :class="iconCls"></i></template>
                 </span>
             </template>
@@ -160,7 +160,6 @@
 
 <style lang="less" scoped>
     @import '../../dist/gdui/src/gd_variables';
-    @import url(https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
 
     .score-star-wrap {
         margin-top: 5px;

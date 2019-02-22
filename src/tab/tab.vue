@@ -2,7 +2,7 @@
     <div :class="classes">
         <ul class="gd-tab-bar">
             <li :class="tabCls(item)" v-for="(item,index) in navList">
-                <span><span class="gd-tab-bar-text" @click.stop="handleChange(index)">{{item.label}}</span><i v-if="closeshow" class="icon-close" @click.stop="closeableAction(index)"></i></span>
+                <span><span class="gd-tab-bar-text" @click.stop="handleChange(index)">{{item.label}}</span><i v-if="closeshow()" class="icon-close" @click.stop="closeableAction(index)"></i></span>
             </li>
             <div class="gd-tab-bar-extra">
                 <slot name="extra"></slot>
