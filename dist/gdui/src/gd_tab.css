@@ -123,6 +123,13 @@
   margin: 0;
   float: left;
 }
+.gd-tab-vertical ul.gd-tab-bar span {
+  width: 100%;
+  display: inline-block;
+  cursor: pointer;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
 .gd-tab-vertical ul.gd-tab-bar li::before {
   content: ' ';
   display: inline-block;
@@ -200,6 +207,13 @@
   color: #999999;
   /*background: #f3f3f3;*/
   position: relative;
+}
+.gd-tab-scroll .gd-tab-bar li span {
+  width: 100%;
+  display: inline-block;
+  cursor: pointer;
+  padding: 0 10px;
+  box-sizing: border-box;
 }
 .gd-tab-scroll .gd-tab-bar li :first-child {
   margin: 0;
