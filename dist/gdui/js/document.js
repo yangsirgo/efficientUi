@@ -17,7 +17,7 @@ function initCode(node,type) {
         });
       if($(node).find('.icon-up').length!= 0){
             $(node).find('.icon-up').removeClass('icon-up').addClass('icon-down');
-        } else if (node.tagName === 'i' && node.className != 'icon-down') {
+        } else if (node.tagName === 'I' && node.className != 'icon-down') {
               node.className = 'icon-down';
         }
     } else {
@@ -27,7 +27,7 @@ function initCode(node,type) {
             });
             if($(node).find('.icon-down').length!= 0){
                 $(node).find('.icon-down').removeClass('icon-down').addClass('icon-up');
-            } else if (node.tagName === 'i' && node.className != 'icon-up') {
+            } else if (node.tagName === 'I' && node.className != 'icon-up') {
                 node.className = 'icon-up';
             }
 
@@ -37,7 +37,7 @@ function initCode(node,type) {
             });
             if($(node).find('.icon-up').length!= 0){
                 $(node).find('.icon-up').removeClass('icon-up').addClass('icon-down');
-            } else if (node.tagName === 'i' && node.className != 'icon-down') {
+            } else if (node.tagName === 'I' && node.className != 'icon-down') {
                 node.className = 'icon-down';
             }
         }
