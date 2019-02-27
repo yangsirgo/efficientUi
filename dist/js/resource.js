@@ -36,7 +36,8 @@ if (devMode) {
         './gdui/src/steps.css',
         './gdui/src/divider.css',
         './gdui/src/collapse.css',
-        './css/global.css'
+        './gdui/src/grid.css',
+        './gdui/src/codeSide.css',
     ];
 } else {
     resource = ['./js/plugins/prism/prism.css', './gdui/css/gdui.min.css', './css/global.css'];
@@ -52,7 +53,8 @@ resource = [
     './js/plugins/vue.js',
     './gdui/js/gdui.min.js',
     './js/plugins/clipboard.min.js',
-    './js/global.js'
+    './js/global.js',
+    './gdui/js/document.js'
 ];
 for (var i = 0; i < resource.length; i++) {
     document.write('<script src="' + resource[i] + '"></script>');

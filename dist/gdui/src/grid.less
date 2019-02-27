@@ -1,0 +1,51 @@
+@import './gd_variables.less';
+@prefix-name: gd;//前缀
+
+
+.@{prefix-name}-row {
+    position: relative;
+    margin-left: 0;
+    margin-right: 0;
+    display: block;
+    height: auto;
+    &:before,&:after {
+        display: table;
+        content: '';
+    }
+    &:after {
+        visibility: hidden;
+        height: 0;
+        font-size: 0;
+        clear: both;
+    }
+    .@{prefix-name}-col {
+        padding: 10px 0;
+        text-align: center;
+        color: @grayColor1;
+        position: relative;
+    }
+    .@{prefix-name}-col-span-12 {
+        display: block;
+        width: 50%;
+    }
+    .@{prefix-name}-col-span-8 {
+        display: block;
+        width: 100/3%;
+    }
+    .@{prefix-name}-col-span-6 {
+        display: block;
+        width: 25%;
+    }
+    .@{prefix-name}-col-span-12,.@{prefix-name}-col-span-8 {
+        float: left;
+    }
+    .example-split {
+        border: 1px dashed @grayColor6;
+        position: absolute;
+        left: 50%;
+        top: 0;
+        bottom: 0;
+
+    }
+}
+

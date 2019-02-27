@@ -143,6 +143,16 @@
                 {
                     "name": "Rate 评分",
                     "href": "rate.html"
+                },
+                {
+                    "name": "布局",
+                    "sub": [{
+                        "name": "Divider 分割线",
+                        "href": "divider.html"
+                    },{
+                        "name": "Grid 栅格",
+                        "href": "grid.html"
+                    }]
                 }
             ]
         }

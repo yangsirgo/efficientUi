@@ -159,6 +159,12 @@ Vue.component('gd-tab-item', TabItem);
 import Rate from './rate/rate.vue';
 Vue.component('rate', Rate);
 
+import Row from './grid/row.vue';
+Vue.component('gd-row', Row);
+
+import Col from './grid/col.vue';
+Vue.component('gd-col', Col);
+
 //货币验证
 import './jscom/currentValidate';
 

@@ -1,0 +1,49 @@
+/*色彩*/
+.gd-row {
+  position: relative;
+  margin-left: 0;
+  margin-right: 0;
+  display: block;
+  height: auto;
+}
+.gd-row:before,
+.gd-row:after {
+  display: table;
+  content: '';
+}
+.gd-row:after {
+  visibility: hidden;
+  height: 0;
+  font-size: 0;
+  clear: both;
+}
+.gd-row .gd-col {
+  padding: 10px 0;
+  text-align: center;
+  color: #333333;
+  position: relative;
+}
+.gd-row .gd-col-span-12 {
+  display: block;
+  width: 50%;
+}
+.gd-row .gd-col-span-8 {
+  display: block;
+  width: 33.33333333%;
+}
+.gd-row .gd-col-span-6 {
+  display: block;
+  width: 25%;
+}
+.gd-row .gd-col-span-12,
+.gd-row .gd-col-span-8 {
+  float: left;
+}
+.gd-row .example-split {
+  border: 1px dashed #E1E1E1;
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+}
+/*# sourceMappingURL=grid.css.map */

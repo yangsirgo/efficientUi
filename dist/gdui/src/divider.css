@@ -44,7 +44,7 @@ div.gd-divider-with-right-text:after {
   display: table-cell;
   width: 50%;
   height: 1px;
-  border-top: 1px solid #999999;
+  border-top: 1px solid #E1E1E1;
   transform: translateY(50%);
 }
 .gd-divider-with-text:after {
@@ -54,7 +54,7 @@ div.gd-divider-with-right-text:after {
   display: table-cell;
   width: 50%;
   height: 1px;
-  border-top: 1px solid #999999;
+  border-top: 1px solid #E1E1E1;
   transform: translateY(50%);
 }
 .gd-divider-with-text .inner-text {

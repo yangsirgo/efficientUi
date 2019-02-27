@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./js/resource.js"></script>
+    <style>
+        .gd-row {
+            box-sizing: border-box;
+        }
+
+        .demoExp .gd-row .gd-col{
+            background: rgba(0,153,229,.9);
+        }
+
+        .demoExp .gd-row .gd-col:nth-child(odd){
+            background: rgba(0,153,229,.7);
+        }
+
+    </style>
+</head>
+
+<body>
+    <!-- 此处是整体框架用，包括侧边栏和顶部 -->
+    <div id="framework" v-cloak>
+        <gd-leftmenu :config="leftMenuConfig"></gd-leftmenu>
+        <gd-topbar :config="topbarConfig"></gd-topbar>
+    </div>
+    <div id="app" class="gd-right-content gd-padding-lg" v-cloak>
+        <gd-card>
+            <gd-row>
+                <gd-col span="12" class="demoExp">
+                    <div style="padding-right: 20px">
+                        <gd-row>
+                            <gd-col span="12">col-12</gd-col>
+                            <gd-col span="12">col-12</gd-col>
+                        </gd-row>
+                        <br />
+                        <gd-row>
+                            <gd-col span="8">col-8</gd-col>
+                            <gd-col span="8">col-8</gd-col>
+                            <gd-col span="8">col-8</gd-col>
+                        </gd-row>
+                    </div>
+                    <gd-divider orientation="left">基本用法</gd-divider>
+                    <div class="demoExpText">
+                        <p>水平排列的布局。</p>
+                        <p>col必须放在row里面。</p>
+                    </div>
+                </gd-col>
+                <div class="example-split"></div>
+                <gd-col span="12"  class="demoExp1">
+                    <div style="height: inherit;overflow: hidden">
+                        <div style="padding-left: 20px">
+                            <textarea type="code">
+                        <template>
+                            <gd-row>
+                                <gd-col span="12">col-12</gd-col>
+                                <gd-col span="12">col-12</gd-col>
+                            </gd-row>
+                            <br>
+                            <gd-row>
+                                <gd-col span="8">col-8</gd-col>
+                                <gd-col span="8">col-8</gd-col>
+                                <gd-col span="8">col-8</gd-col>
+                            </gd-row>
+                            <br>
+                            <gd-row>
+                                <Col span="6">col-6</Col>
+                                <Col span="6">col-6</Col>
+                                <Col span="6">col-6</Col>
+                                <Col span="6">col-6</Col>
+                            </gd-row>
+                        </template>
+                        <script>
+                            export default {
+
+                            }
+                        </script>
+                    </textarea>
+                        </div>
+                    </div>
+                    <div class="exp_more">
+                        <i class="icon-down"></i>
+                    </div>
+                </gd-col>
+            </gd-row>
+        </gd-card>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+
+            },
+            methods: {
+
+            }
+        });
+    </script>
+</body>
+
+</html>
