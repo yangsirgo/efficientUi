@@ -59,7 +59,7 @@
                         // this.date = `${year}-${month}-${day} ${hour}:${minute}:${second}`;
                         this.date = this.formatFn(this.format,year,month,day,hour,minute,second);
                     } else if (this.type === 'date') {
-                        this.date = this.formatFn(this.format,year,month,day);
+                        this.date = this.formatFn(this.format,year,month,day).split(' ')[0];
                         // this.date = `${year}-${month}-${day}`;
                     }
                 }

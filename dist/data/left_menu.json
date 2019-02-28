@@ -121,6 +121,10 @@
                 {
                     "name": "日期选择",
                     "href": "datepicker.html"
+                },
+                {
+                    "name": "相对时间",
+                    "href": "relativeTime.html"
                 }
             ]
         },
@@ -152,6 +156,9 @@
                     },{
                         "name": "Grid 栅格",
                         "href": "grid.html"
+                    },{
+                        "name": "Collapse 折叠面板",
+                        "href": "collapse.html"
                     }]
                 }
             ]

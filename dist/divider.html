@@ -15,7 +15,138 @@
         <gd-topbar :config="topbarConfig"></gd-topbar>
     </div>
     <div id="app" class="gd-right-content gd-padding-lg" v-cloak>
+        <gd-card class="demoExpWrap">
+            <gd-row>
+                <gd-col span="12" class="demoExp">
+                    <div class="rightPadding documentPartPaddingText">
+                        <p>Steven Paul Jobs was an American entrepreneur and business magnate. He was the chairman, chief executive officer, and a co-founder of Apple Inc.</p>
+                        <gd-divider></gd-divider>
+                        <p>Steven Paul Jobs was an American entrepreneur and business magnate. He was the chairman, chief executive officer, and a co-founder of Apple Inc.</p>
+                        <gd-divider>With Text</gd-divider>
+                        <p>Steven Paul Jobs was an American entrepreneur and business magnate. He was the chairman, chief executive officer, and a co-founder of Apple Inc.</p>
+                        <gd-divider dashed></gd-divider>
+                        <p>Steven Paul Jobs was an American entrepreneur and business magnate. He was the chairman, chief executive officer, and a co-founder of Apple Inc.</p>
+                    </div>
+                    <gd-divider orientation="left">水平分割线</gd-divider>
+                    <div class="demoExpText">
+                        <p>默认为水平分割线，可在中间加入文字。</p>
+                    </div>
+                </gd-col>
+                <div class="example-split"></div>
+                <gd-col span="12"  class="demoExp1">
+                    <div class="demoExp1Innner">
+                        <div style="padding-left: 20px">
+                    <textarea type="code">
+                        <template>
+                            <p>Steven Paul Jobs was an American entrepreneur and business magnate. He was the chairman, chief executive officer, and a co-founder of Apple Inc.</p>
+                            <gd-divider></gd-divider>
+                            <p>Steven Paul Jobs was an American entrepreneur and business magnate. He was the chairman, chief executive officer, and a co-founder of Apple Inc.</p>
+                            <gd-divider>With Text</gd-divider>
+                            <p>Steven Paul Jobs was an American entrepreneur and business magnate. He was the chairman, chief executive officer, and a co-founder of Apple Inc.</p>
+                            <gd-divider dashed></gd-divider>
+                            <p>Steven Paul Jobs was an American entrepreneur and business magnate. He was the chairman, chief executive officer, and a co-founder of Apple Inc.</p>
+                        </template>
+                        <script>
+                            export default {
 
+                            }
+                        </script>
+                    </textarea>
+                        </div>
+                    </div>
+                    <div class="exp_more">
+                        <i class="icon-down"></i>
+                    </div>
+                </gd-col>
+            </gd-row>
+        </gd-card>
+
+        <gd-card  class="demoExpWrap">
+            <gd-row>
+                <gd-col span="12" class="demoExp">
+                    <div class="rightPadding documentPartPaddingText">
+                        Text
+                        <gd-divider type="vertical"></gd-divider>
+                        <a href="#">Link</a>
+                        <gd-divider type="vertical"></gd-divider>
+                        <a href="#">Link</a>
+                    </div>
+                    <gd-divider orientation="left">垂直分割线</gd-divider>
+                    <div class="demoExpText">
+                        <p>使用 type="vertical" 设置为行内的垂直分割线。</p>
+                    </div>
+                </gd-col>
+                <div class="example-split"></div>
+                <gd-col span="12"  class="demoExp1">
+                    <div class="demoExp1Innner">
+                        <div class="leftPadding">
+                    <textarea type="code">
+                        <template>
+                            Text
+                            <gd-divider type="vertical"></gd-divider>
+                            <a href="#">Link</a>
+                            <gd-divider type="vertical"></gd-divider>
+                            <a href="#">Link</a>
+                        </template>
+                        <script>
+                            export default {
+
+                            }
+                        </script>
+                    </textarea>
+                        </div>
+                    </div>
+                    <div class="exp_more">
+                        <i class="icon-down"></i>
+                    </div>
+                </gd-col>
+            </gd-row>
+        </gd-card>
+
+        <gd-card  class="demoExpWrap">
+            <gd-row>
+                <gd-col span="12" class="demoExp">
+                    <div class="rightPadding documentPartPaddingText">
+                        <gd-divider orientation="left">Left Text</gd-divider>
+                        <p>Steven Paul Jobs was an American entrepreneur and business magnate. He was the chairman, chief executive officer, and a co-founder of Apple Inc.</p>
+                        <gd-divider orientation="right">Right Text</gd-divider>
+                        <p>Steven Paul Jobs was an American entrepreneur and business magnate. He was the chairman, chief executive officer, and a co-founder of Apple Inc.</p>
+                    </div>
+                    <gd-divider orientation="left">标题位置 </gd-divider>
+                    <div class="demoExpText">
+                        <p>修改分割线标题的位置。</p>
+                    </div>
+                </gd-col>
+                <div class="example-split"></div>
+                <gd-col span="12"  class="demoExp1">
+                    <div class="demoExp1Innner">
+                        <div class="leftPadding">
+                            <textarea type="code">
+                                <template>
+                                    <gd-divider orientation="left">Left Text</gd-divider>
+                                    <p>Steven Paul Jobs was an American entrepreneur and business magnate. He was the chairman, chief executive officer, and a co-founder of Apple Inc.</p>
+                                    <gd-divider orientation="right">Right Text</gd-divider>
+                                    <p>Steven Paul Jobs was an American entrepreneur and business magnate. He was the chairman, chief executive officer, and a co-founder of Apple Inc.</p>
+                                </template>
+                                <script>
+                                    export default {
+
+                                    }
+                                </script>
+                            </textarea>
+                        </div>
+                    </div>
+                    <div class="exp_more">
+                        <i class="icon-down"></i>
+                    </div>
+                </gd-col>
+            </gd-row>
+        </gd-card>
+        <textarea type="code">
+            <!--type	水平还是垂直类型，可选值为 horizontal 或 vertical	String	horizontal-->
+            <!--orientation	分割线标题的位置，可选值为 left、right 或 center	Number	center-->
+            <!--dashed	是否虚线	Boolean	false-->
+        </textarea>
     </div>
     <script>
         var app = new Vue({

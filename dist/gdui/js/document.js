@@ -1,5 +1,8 @@
 $(function(){
-    initCode($('.exp_more')[0],'init');
+    $('.exp_more').each(function (){
+        var _this = this;
+        initCode(_this,'init');
+    })
     //点击代码部分 展现
     $('.exp_more').click(function (event) {
         initCode(event.target);
@@ -10,8 +13,11 @@ function initCode(node,type) {
     var $parentNode = $(node).parents('.gd-row');
     var doucHeight = $parentNode.find('.demoExp').height();
     var codeHeight = $parentNode.find('.code-toolbar').height() + 20;
-
     if(type === 'init') {
+        if(doucHeight > codeHeight) {
+            $parentNode.find(".exp_more").hide();
+            return;
+        }
         $parentNode.find('.demoExp1').css({
             height:doucHeight
         });

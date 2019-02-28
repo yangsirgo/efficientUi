@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./js/resource.js"></script>
+</head>
+
+<body>
+    <!-- 此处是整体框架用，包括侧边栏和顶部 -->
+    <div id="framework" v-cloak>
+        <gd-leftmenu :config="leftMenuConfig"></gd-leftmenu>
+        <gd-topbar :config="topbarConfig"></gd-topbar>
+    </div>
+    <div id="app" class="gd-right-content gd-padding-lg" v-cloak>
+        <gd-card class="demoExpWrap">
+            <gd-row>
+                <gd-col span="12" class="demoExp">
+                    <div class="rightPadding documentPartPaddingText">
+                        <gd-time :time="time1"></gd-time>
+                        <br>
+                        <gd-time :time="time2"></gd-time>
+                    </div>
+                    <gd-divider orientation="left">基础用法</gd-divider>
+                    <div class="demoExpText">
+                        <p>设置一个时间戳或 Date，可自动转为相对于当前的时间。</p>
+                    </div>
+                </gd-col>
+                <div class="example-split"></div>
+                <gd-col span="12"  class="demoExp1">
+                    <div class="demoExp1Innner">
+                        <div style="padding-left: 20px">
+                    <textarea type="code">
+                        <template>
+                            <div>
+                                <gd-time :time="time1"></gd-time>
+                                    <br>
+                                <gd-time :time="time2"></gd-time>
+                            </div>
+                        </template>
+                        <script>
+                            export default {
+                                data () {
+                                    return {
+                                        time1: (new Date()).getTime() - 60 * 3 * 1000,
+                                        time2: (new Date()).getTime() - 86400 * 3 * 1000
+                                    }
+                                }
+                            }
+                        </script>
+                    </textarea>
+                        </div>
+                    </div>
+                    <div class="exp_more">
+                        <i class="icon-down"></i>
+                    </div>
+                </gd-col>
+            </gd-row>
+        </gd-card>
+
+        <gd-card  class="demoExpWrap">
+            <gd-row>
+                <gd-col span="12" class="demoExp">
+                    <div class="rightPadding documentPartPaddingText">
+                        <gd-time :time="time3" :interval="1" />
+                    </div>
+                    <gd-divider orientation="left">自动更新间隔</gd-divider>
+                    <div class="demoExpText">
+                        <p>设置自动更新间隔，默认为 60 秒。</p>
+                    </div>
+                </gd-col>
+                <div class="example-split"></div>
+                <gd-col span="12"  class="demoExp1">
+                    <div class="demoExp1Innner">
+                        <div class="leftPadding">
+                    <textarea type="code">
+                        <template>
+                            <gd-time :time="time3" :interval="1" />
+                        </template>
+                        <script>
+                            export default {
+                                data () {
+                                    return {
+                                        time3: new Date()
+                                    }
+                                }
+                            }
+                        </script>
+                    </textarea>
+                        </div>
+                    </div>
+                    <div class="exp_more">
+                        <i class="icon-down"></i>
+                    </div>
+                </gd-col>
+            </gd-row>
+        </gd-card>
+
+        <gd-card  class="demoExpWrap">
+            <gd-row>
+                <gd-col span="12" class="demoExp">
+                    <div class="rightPadding documentPartPaddingText">
+                        <gd-time :time="time2"></gd-time>
+                        <br>
+                        <gd-time :time="time2" type="date"></gd-time>
+                        <br>
+                        <gd-time :time="time2" type="datetime"></gd-time>
+                    </div>
+                    <gd-divider orientation="left">不同类型 </gd-divider>
+                    <div class="demoExpText">
+                        <p>可以根据情况，设置不同的显示类型。</p>
+                    </div>
+                </gd-col>
+                <div class="example-split"></div>
+                <gd-col span="12"  class="demoExp1">
+                    <div class="demoExp1Innner">
+                        <div class="leftPadding">
+                            <textarea type="code">
+                                <template>
+                                    <div>
+                                        <gd-time :time="time4"></gd-time>
+                                        <br>
+                                        <gd-time :time="time4" type="date"></gd-time>
+                                        <br>
+                                        <gd-time :time="time4" type="datetime"></gd-time>
+                                    </div>
+                                </template>
+                                <script>
+                                    export default {
+                                        data () {
+                                            return {
+                                                time4: (new Date()).getTime() - 86400 * 3 * 1000
+                                            }
+                                        }
+                                    }
+                                </script>
+                            </textarea>
+                        </div>
+                    </div>
+                    <div class="exp_more">
+                        <i class="icon-down"></i>
+                    </div>
+                </gd-col>
+            </gd-row>
+        </gd-card>
+
+        <gd-card  class="demoExpWrap">
+            <gd-row>
+                <gd-col span="12" class="demoExp">
+                    <div class="rightPadding documentPartPaddingText">
+                        <gd-time :time="time4" type="date" :format="format1"></gd-time>
+                        <br>
+                        <gd-time :time="runTime" type="datetime" :format="format1"></gd-time>
+                    </div>
+                    <gd-divider orientation="left">不同的日期格式 </gd-divider>
+                    <div class="demoExpText">
+                        <p>可以根据情况，设置不同的显示日期格式。</p>
+                    </div>
+                </gd-col>
+                <div class="example-split"></div>
+                <gd-col span="12"  class="demoExp1">
+                    <div class="demoExp1Innner">
+                        <div class="leftPadding">
+                            <textarea type="code">
+                                <template>
+                                    <div>
+                                        <gd-time :time="time4" type="date" :format="format1"></gd-time>
+                                        <br>
+                                        <gd-time :time="runTime" type="datetime" :format="format1"></gd-time>
+                                    </div>
+                                </template>
+                                <script>
+                                    export default {
+                                        data () {
+                                            return {
+                                                time4: (new Date()).getTime() - 86400 * 3 * 1000,
+                                                format1:'yyyy年MM月dd日 hh:mm:ss',
+                                                runTime:(new Date()).getTime() - 60*60*24 * 4 * 1000
+                                            }
+                                        },
+                                        amount () {
+                                            setInterval(function () {
+                                                app.runTime = +new Date();
+                                            },1000)
+                                        }
+                                    }
+
+
+                                </script>
+                            </textarea>
+                        </div>
+                    </div>
+                    <div class="exp_more">
+                        <i class="icon-down"></i>
+                    </div>
+                </gd-col>
+            </gd-row>
+        </gd-card>
+        <textarea type="code">
+            <!--time	需要对比的时间，可以是时间戳或 Date 类型	Number | Date | String	-->
+            <!--type	类型，可选值为 relative、date 或 datetime	String	relative-->
+            <!--interval	自动更新的间隔，单位：秒	Number	60 -->
+            <!--format	日期格式转换 默认是2019-02-25 10:52:30 -->
+        </textarea>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                time1: (new Date()).getTime() - 60 * 3 * 1000,
+                time2: (new Date()).getTime() - 86400 * 3 * 1000,
+                time3:new Date(),
+                time4:(new Date()).getTime() - 86400 * 3 * 1000,
+                runTime:(new Date()).getTime() - 60*60*24 * 4 * 1000,
+                format1:'yyyy年MM月dd日 hh:mm:ss'
+            },
+            methods: {
+
+            }
+        });
+
+        setInterval(function () {
+            app.runTime = +new Date();
+        },1000)
+    </script>
+</body>
+
+</html>
