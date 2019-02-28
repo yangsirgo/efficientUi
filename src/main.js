@@ -160,9 +160,11 @@ import Rate from './rate/rate.vue';
 Vue.component('rate', Rate);
 
 import Row from './grid/row.vue';
+log(Row);
 Vue.component('gd-row', Row);
 
 import Col from './grid/col.vue';
+log(Col);
 Vue.component('gd-col', Col);
 
 //货币验证
