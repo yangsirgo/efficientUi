@@ -46,9 +46,13 @@ GD.prototype.validate = validate;
 import { table } from './Table.vue';
 GD.prototype.table = table;
 
+//树组件
+import tree from './tree/tree.vue';
+Vue.component('gd-tree', tree);
+
 //树对象
-import { tree } from './tree/treeWrap.vue';
-GD.prototype.tree = tree;
+import { treeSetter } from './tree/treeWrap.vue';
+GD.prototype.tree = treeSetter;
 
 //根据地区代码获取地区数据
 import { getDistrictDetailByCode } from './District/District.vue';
@@ -111,6 +115,23 @@ import RecentPicker from './RecentPicker.vue';
 Vue.component('gd-recentpicker', RecentPicker);
 
 
+//showlayer
+import { showLayer } from './jscom/gd_layer';
+GD.prototype.showLayer = showLayer;
+
+
+//showlayer
+import { closeLayer } from './jscom/gd_layer';
+GD.prototype.closeLayer = closeLayer;
+
+//showConfirm
+import { showConfirm } from './jscom/gd_layer';
+GD.prototype.showConfirm = showConfirm;
+
+//closeConfirm
+import { closeConfirm } from './jscom/gd_layer';
+GD.prototype.closeConfirm = closeConfirm;
+
 //长传文件upload
 import uploadAction from './jscom/gd_upload';
 GD.prototype.upload = uploadAction;
@@ -160,11 +181,9 @@ import Rate from './rate/rate.vue';
 Vue.component('rate', Rate);
 
 import Row from './grid/row.vue';
-log(Row);
 Vue.component('gd-row', Row);
 
 import Col from './grid/col.vue';
-log(Col);
 Vue.component('gd-col', Col);
 
 //货币验证

@@ -156,7 +156,6 @@ GdValidate.prototype.validElem = function(el) {
  * 显示错误提示
  */
 GdValidate.prototype.showErrorTips = function(tips, el) {
-    debugger;
     gd.closeTip(this.errorTip);
     this.errorTip = gd.showTip(el, tips, { id: 'gdErrorTip', time: 5000 });
 };
