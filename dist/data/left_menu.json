@@ -42,20 +42,6 @@
             ]
         },
         {
-            "name": "列表",
-            "icon": "icon-archives",
-            "sub": [
-                {
-                    "name": "列表示例",
-                    "href": "table.html"
-                },
-                {
-                    "name": "列表文档",
-                    "href": "table_doc.html"
-                }
-            ]
-        },
-        {
             "name": "页签与标签",
             "icon": "icon-log",
             "sub": [
@@ -147,6 +133,20 @@
                         "name": "Collapse 折叠面板",
                         "href": "collapse.html"
                     }]
+                }
+            ]
+        },
+        {
+            "name": "列表",
+            "icon": "icon-archives",
+            "sub": [
+                {
+                    "name": "列表示例",
+                    "href": "table.html"
+                },
+                {
+                    "name": "列表文档",
+                    "href": "table_doc.html"
                 }
             ]
         }
