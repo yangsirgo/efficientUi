@@ -38,8 +38,8 @@
                         <tr v-for="row,rowIdx in rows">
                             <td v-for="cell,colIdx in row" :class="[columns[colIdx].class]" :style="{'text-align':columns[colIdx].align}" v-if="columns[colIdx].show !== false">
                                 <div v-if="columns[colIdx].operates" class="gd-table-operate">
-                                    <button type="button" class="gd-table-operate-item gd-btn-alone" :disabled="operateDisabled[rowIdx][colIdx][i]" :style="{visibility:operateShow[rowIdx][colIdx][i]?'':'hidden'}" :class="getOperateIcon(operate.icon,cell,row,rowIdx,colIdx)" :title="getOperateTitle(operate.title,cell,row,rowIdx,colIdx)" v-for="operate,i in columns[colIdx].operates" v-if="i <= 1" @click="operateAction(operate,rowIdx,colIdx)"></button>
-                                    <button type="button" class="gd-table-operate-item gd-btn-alone" :disabled="operateDisabled[rowIdx][colIdx][2]" :style="{visibility:operateShow[rowIdx][colIdx][2]?'':'hidden'}" :class="getOperateIcon(columns[colIdx].operates[2].icon,cell,row,rowIdx,colIdx)" :title="getOperateTitle(columns[colIdx].operates[2].title,cell,row,rowIdx,colIdx)" v-if="columns[colIdx].operates.length === 3" @click="operateAction(columns[colIdx].operates[2],rowIdx,colIdx)"></button>
+                                    <button type="button" class="gd-table-operate-item gd-btn-alone" :disabled="operateDisabled[rowIdx][colIdx][i]" :style="{visibility:operateShow[rowIdx][colIdx][i]?'':'hidden'}" :class="getOperateIcon(operate.icon,cell,row,rowIdx,colIdx)" :title="getOperateTitle(operate.title||operate.text,cell,row,rowIdx,colIdx)" v-for="operate,i in columns[colIdx].operates" v-if="i <= 1" @click="operateAction(operate,rowIdx,colIdx)"></button>
+                                    <button type="button" class="gd-table-operate-item gd-btn-alone" :disabled="operateDisabled[rowIdx][colIdx][2]" :style="{visibility:operateShow[rowIdx][colIdx][2]?'':'hidden'}" :class="getOperateIcon(columns[colIdx].operates[2].icon,cell,row,rowIdx,colIdx)" :title="getOperateTitle(columns[colIdx].operates[2].title||columns[colIdx].operates[2].text,cell,row,rowIdx,colIdx)" v-if="columns[colIdx].operates.length === 3" @click="operateAction(columns[colIdx].operates[2],rowIdx,colIdx)"></button>
                                     <button type="button" class="gd-table-operate-item icon-more gd-btn-alone" v-if="columns[colIdx].operates.length >= 4" @mouseenter="showMoreOperate($event,rowIdx,colIdx)"></button>
                                 </div>
                                 <label v-else-if="columns[colIdx].type==='checkbox'" class="gd-checkbox">
@@ -52,7 +52,10 @@
                         </tr>
                     </table>
                 </div>
-                <i class="gd-none-data" v-if="rows.length === 0"></i>
+                <div v-if="rows.length === 0" class="gd-table-placeholder">
+                    <i class="gd-none-search" v-if="hasSearchParam()"></i>
+                    <i class="gd-none-data" v-else></i>
+                </div>
             </div>
         </div>
         <div class="gd-table-scroll-hp" @scroll.passive="scrollH($event)" ref="tableScrollHP">
@@ -104,6 +107,7 @@ export default {
             loading: false, //显示loading
             filterImmediately: false, //高级查询勾选后立即触发
             fillBlank: "", //填充空数据
+            excludeSearchKey: [], //排除检索参数
             ajax: {
                 type: "get",
                 url: "",
@@ -629,7 +633,7 @@ export default {
                 items: $.map(_this.columns[colIdx].operates, (o, i) => {
                     if (i >= 2 && _this.operateShow[rowIdx][colIdx][i]) {
                         return {
-                            text: o.text,
+                            text: o.text || o.title,
                             icon: o.icon,
                             disabled: _this.operateDisabled[rowIdx][colIdx][i],
                             index: i
@@ -771,6 +775,23 @@ export default {
                 this.filterParam[filterName] !== undefined &&
                 this.filterParam[filterName] !== ""
             );
+        },
+        //是否有检索条件
+        hasSearchParam() {
+            let _this = this;
+            let param = $.extend({}, this.ajaxParam, this.filterParam);
+            let flag = false;
+            $.each(param, function(key, value) {
+                if (
+                    value !== "" &&
+                    value !== undefined &&
+                    _this.excludeSearchKey.indexOf(key) < 0
+                ) {
+                    flag = true;
+                    return false;
+                }
+            });
+            return flag;
         },
         //列表滚动
         bodyScroll(e) {

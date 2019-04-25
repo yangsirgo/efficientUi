@@ -35,7 +35,7 @@
         z-index: 101;
     }
     /********************* loading 样式 END  ********************/
-    .gd-none-data {
+    .gd-table-placeholder {
         position: absolute;
         top: 50%;
         left: 50%;
@@ -69,6 +69,7 @@
         bottom: 0;
         left: 0;
         right: 0;
+        background-color: @bgColor3;
     }
     .gd-table-head {
         background-color: @bgColor3;
@@ -196,8 +197,11 @@
             tr {
                 transition: all 0.3s;
                 height: 40px;
-                &:nth-child(odd) {
-                    background-color: @bgColor3;
+                // &:nth-child(odd) {
+                //     background-color: @bgColor3;
+                // }
+                &:nth-child(even) {
+                    background-color: @bgColor4;
                 }
                 &.gd-hover,
                 &:hover {

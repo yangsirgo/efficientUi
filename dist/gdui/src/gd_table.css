@@ -35,7 +35,7 @@
   visibility: visible;
   z-index: 101;
 }
-.gd-table-wrapper .gd-none-data {
+.gd-table-wrapper .gd-table-placeholder {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -69,6 +69,7 @@
   bottom: 0;
   left: 0;
   right: 0;
+  background-color: #F7F7F9;
 }
 .gd-table-wrapper .gd-table-head {
   background-color: #F7F7F9;
@@ -107,7 +108,7 @@
   text-align: left;
 }
 .gd-table-wrapper .gd-table-head .gd-table-filter.gd-table-filter-has .icon-down {
-  background-color: #59AEF0;
+  background-color: #6785cf;
   color: white;
 }
 .gd-table-wrapper .gd-table-head .gd-table-filter.gd-table-filter-has .icon-down::before {
@@ -116,7 +117,7 @@
 .gd-table-wrapper .gd-table-head .gd-table-filter.gd-table-filter-has .icon-down:hover,
 .gd-table-wrapper .gd-table-head .gd-table-filter.gd-table-filter-has .icon-down.gd-hover {
   color: white;
-  background-color: #50a9ef;
+  background-color: #5f7fcd;
 }
 .gd-table-wrapper .gd-table-head .gd-table-filter .icon-down {
   cursor: pointer;
@@ -130,7 +131,7 @@
 }
 .gd-table-wrapper .gd-table-head .gd-table-filter .icon-down:hover,
 .gd-table-wrapper .gd-table-head .gd-table-filter .icon-down.gd-hover {
-  color: #59AEF0;
+  color: #6785cf;
 }
 .gd-table-wrapper .gd-table-head .gd-table-resize-proxy {
   height: 40px;
@@ -193,8 +194,8 @@
   transition: all 0.3s;
   height: 40px;
 }
-.gd-table-wrapper .gd-table-body table tr:nth-child(odd) {
-  background-color: #F7F7F9;
+.gd-table-wrapper .gd-table-body table tr:nth-child(even) {
+  background-color: #FFFFFF;
 }
 .gd-table-wrapper .gd-table-body table tr.gd-hover,
 .gd-table-wrapper .gd-table-body table tr:hover {

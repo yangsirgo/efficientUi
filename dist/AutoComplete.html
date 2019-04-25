@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./js/resource.js"></script>
+</head>
+
+<body>
+<!-- 此处是整体框架用，包括侧边栏和顶部 -->
+<div id="framework" v-cloak>
+    <gd-leftmenu :config="leftMenuConfig"></gd-leftmenu>
+    <gd-topbar :config="topbarConfig"></gd-topbar>
+</div>
+<div id="app" class="gd-right-content gd-padding-lg" v-cloak>
+    <gd-card class="demoExpWrap">
+        <gd-row>
+            <gd-col span="12" class="demoExp">
+                <div class="rightPadding documentPartPaddingText">
+                    <auto-complete :config="config"></auto-complete>
+                </div>
+                <gd-divider orientation="left">基础用法</gd-divider>
+                <div class="demoExpText">
+                    <p>基本用法，通过 data 设置自动完成的数据源。</p>
+                </div>
+            </gd-col>
+            <div class="example-split"></div>
+            <gd-col span="12"  class="demoExp1">
+                <div class="demoExp1Innner">
+                    <div style="padding-left: 20px">
+                    <textarea type="code">
+                        <template>
+                            <auto-complete :config="config"></auto-complete>
+                        </template>
+                        <script>
+                            export default {
+                                data () {
+                                    return {
+                                        config: {
+                                            placeholder: 'inputThis',
+                                            icon: 'icon-search',
+                                            clearable: true,
+                                            size: '',
+                                            value: '',
+                                            data: [],
+                                            onSearch(value) {
+                                                app.config.data = !value ? [] : [
+                                                    value,
+                                                    value + value,
+                                                    value + value + value
+                                                ];
+                                            },
+                                            onSelect(selectData) {
+                                                log('确定后回调:', selectData)
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        </script>
+                    </textarea>
+                    </div>
+                </div>
+                <div class="exp_more">
+                    <i class="icon-down"></i>
+                </div>
+            </gd-col>
+        </gd-row>
+    </gd-card>
+
+    <textarea type="code">
+        <!--id 给表单元素设置 id	-->
+        <!--placeholder 默认的placeholder-->
+        <!--value 绑定的值 -->
+        <!--data 自动完成的数据源，如果是自定义的，不得写入config里面。>
+        <!-- clearable 是否可以清空选项，默认是false-->
+        <!-- disabled 是否禁用-->
+        <!--size 输入框尺寸，可选值为 large、small、default 或者不设置-->
+        <!--icon 输入框尾部图标	-->
+        <!--placement 弹窗的展开方向，可选值为 bottom 和 top	-->
+        <!--on-select 选中 option时调用，参数为选中项的 value 值-->
+        <!--on-search 搜索补全项的时候调用-->
+    </textarea>
+</div>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            config: {
+                placeholder: 'inputThis',
+                icon: 'icon-search',
+                clearable: true,
+                size: '',
+                value: '',
+                data: [],
+                onSearch(value) {
+                    app.config.data = !value ? [] : [
+                        value,
+                        value + value,
+                        value + value + value
+                    ];
+                },
+                onSelect(selectData) {
+                    log('确定后回调:', selectData)
+                }
+            }
+        },
+        methods: {
+
+        }
+    });
+</script>
+</body>
+</html>
