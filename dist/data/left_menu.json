@@ -11,6 +11,11 @@
             "icon": "icon-report",
             "sub": [
                 {
+                    "name": "顶部菜单",
+                    "icon": "icon-log",
+                    "href": "topBarMenu.html"
+                },
+                {
                     "name": "侧边栏",
                     "icon": "icon-report",
                     "href": "leftmenu.html"

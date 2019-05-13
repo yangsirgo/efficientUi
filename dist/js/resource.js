@@ -13,6 +13,7 @@ if (devMode) {
         './gdui/src/gd_common.css',
         './gdui/src/gd_login.css',
         './gdui/src/gd_left_menu.css',
+        './gdui/src/gd_topmenu.css',
         './gdui/src/gd_topbar.css',
         './gdui/src/gd_button.css',
         './gdui/src/gd_form.css',

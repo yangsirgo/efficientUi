@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./js/resource.js"></script>
+</head>
+
+<body  style="background-color: #0D1226">
+    <!-- 此处是整体框架用，包括侧边栏和顶部 -->
+    <div id="app" v-cloak>
+        <gd-topmenu :config="topMenuConfig"></gd-topmenu>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                topMenuConfig: {
+                    title: "新疆维吾尔族自治区乌鲁木齐市公安局",
+                    menus: [
+                        {
+                            name: "资产中心",
+                            href: "/"
+                        },
+                        {
+                            name: "监控中心",
+                            href: "",
+                            sub: [
+                                {
+                                    name: "网络中心",
+                                    href: "/"
+                                },
+                                {
+                                    name: "系统业务",
+                                    href: "/"
+                                },
+                                {
+                                    name: "前端设备",
+                                    href: "/"
+                                },
+                            ]
+                        },
+                        {
+                            name: "服务中心",
+                            href: "/"
+                        },
+                        {
+                            name: "安全中心",
+                            href: "/"
+                        },
+                        {
+                            name: "告警中心",
+                            href: "/"
+                        },
+                        {
+                            name: "应用中心",
+                            href: "/"
+                        }
+                    ]
+                },
+            }
+        });
+    </script>
+</body>
+
+</html>

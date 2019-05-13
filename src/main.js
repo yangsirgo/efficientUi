@@ -9,6 +9,11 @@ GD.prototype.successCode = 0; //resultCode===0表示成功
 import LeftMenu from './LeftMenu.vue';
 Vue.component('gd-leftmenu', LeftMenu);
 
+//顶部导航菜单
+import topMenu from './TopMenu.vue';
+Vue.component('gd-topmenu', topMenu);
+
+
 //侧边栏子项目
 import LeftMenuSub from './LeftMenuSub.vue';
 Vue.component('gd-leftmenu-sub', LeftMenuSub);

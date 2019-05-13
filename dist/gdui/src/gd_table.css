@@ -108,7 +108,7 @@
   text-align: left;
 }
 .gd-table-wrapper .gd-table-head .gd-table-filter.gd-table-filter-has .icon-down {
-  background-color: #6785cf;
+  background-color: #59AEF0;
   color: white;
 }
 .gd-table-wrapper .gd-table-head .gd-table-filter.gd-table-filter-has .icon-down::before {
@@ -117,7 +117,7 @@
 .gd-table-wrapper .gd-table-head .gd-table-filter.gd-table-filter-has .icon-down:hover,
 .gd-table-wrapper .gd-table-head .gd-table-filter.gd-table-filter-has .icon-down.gd-hover {
   color: white;
-  background-color: #5f7fcd;
+  background-color: #50a9ef;
 }
 .gd-table-wrapper .gd-table-head .gd-table-filter .icon-down {
   cursor: pointer;
@@ -131,7 +131,7 @@
 }
 .gd-table-wrapper .gd-table-head .gd-table-filter .icon-down:hover,
 .gd-table-wrapper .gd-table-head .gd-table-filter .icon-down.gd-hover {
-  color: #6785cf;
+  color: #59AEF0;
 }
 .gd-table-wrapper .gd-table-head .gd-table-resize-proxy {
   height: 40px;
