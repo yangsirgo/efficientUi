@@ -29,14 +29,14 @@
             let provinceData = getProvince();
             if (isDirectCity(provinceCode)) {
                 $.each(provinceData, (i, d) => {
-                    if (direct[0] === d.name.slice(0, -1)) {
+                    if (direct[0].slice(0,2) === d.name.slice(0,2)) {//修改直辖市 回显不显示的bug 判断条件更改， 原代码 if (direct[0] === d.name.slice(0, -1)) {  共修改两处
                         provinceCode = d.code;
                         return false;
                     }
                 });
             } else {
                 $.each(provinceData, (i, d) => {
-                    if (direct[0] === d.name) {
+                    if (direct[0].slice(0,2) === d.name.slice(0,2)) {//修改直辖市 回显不显示的bug 判断条件更改， 原代码 if (direct[0] === d.name) {  共修改两处
                         provinceCode = d.code;
                         return false;
                     }
@@ -281,6 +281,7 @@
             }
         },
         mounted() {
+
             this.update(true);
         }
     };
