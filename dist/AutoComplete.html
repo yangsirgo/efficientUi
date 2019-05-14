@@ -196,7 +196,7 @@
                 $.ajax({
                     type: 'GET',
                     dataType: 'jsonp',
-                    url: 'http://sou.xcar.com.cn/XcarSearch/rest/together/delhis/',
+                    url: 'https://sou.xcar.com.cn/XcarSearch/rest/together/delhis/',
                     jsonpCallback: 'delhis',
                     success: function () {
 
@@ -253,7 +253,7 @@
     function getHistory() {
         $.ajax({
             type: "get",
-            url: 'http://sou.xcar.com.cn/XcarSearch/rest/together/gethis/',
+            url: 'https://sou.xcar.com.cn/XcarSearch/rest/together/gethis/',
             dataType: "jsonp",
             jsonp: "callback",
             jsonpCallback: 'gethis',
@@ -268,7 +268,7 @@
     function getSearch(value) {
         $.ajax({
             type: "get",
-            url: 'http://sou.xcar.com.cn/XcarSearch/rest/together/search/' + value,
+            url: 'https://sou.xcar.com.cn/XcarSearch/rest/together/search/' + value,
             dataType: "jsonp",
             jsonp: "callback",
             jsonpCallback: 'search',
