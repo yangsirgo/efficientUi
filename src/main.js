@@ -52,11 +52,12 @@ import { table } from './Table.vue';
 GD.prototype.table = table;
 
 //树组件
-import tree from './tree/tree.vue';
-Vue.component('gd-tree', tree);
+import Vtree from './tree/treeWrap.vue';
+Vue.component('gd-tree', Vtree);
 
-//树对象
-import { treeSetter } from './tree/treeWrap.vue';
+//树组件挂在在树对象
+import { tree as treeSetter} from './tree/treeWrap.vue';
+log(treeSetter);
 GD.prototype.tree = treeSetter;
 
 //根据地区代码获取地区数据

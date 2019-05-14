@@ -49,6 +49,7 @@ export default {
     }
 };
 
+
 export function tree(id) {
     let treeApp;
     $.each(apps, (i, app) => {

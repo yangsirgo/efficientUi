@@ -154,6 +154,11 @@
                     "href": "table_doc.html"
                 }
             ]
+        },
+        {
+            "name": "树组件",
+            "icon": "icon-network",
+            "href": "tree.html"
         }
     ]
 }
