@@ -57,7 +57,6 @@ Vue.component('gd-tree', Vtree);
 
 //树组件挂在在树对象
 import { tree as treeSetter} from './tree/treeWrap.vue';
-log(treeSetter);
 GD.prototype.tree = treeSetter;
 
 //根据地区代码获取地区数据

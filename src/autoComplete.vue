@@ -199,6 +199,7 @@
             $(window).resize(e => {
                 this.isDroped = false;
             });
+
             //父元素滚动收起
             $(this.$refs.autocompleteBody)
                 .parents()
@@ -219,7 +220,7 @@
                 compositionend : function(e){
                     e.target.isNeedPrevent = false;
                 }
-            })
+            });
             this.childVueList = this.$children;
             if(this.config.value === undefined) {
                 Vue.set(this.config,'value','');

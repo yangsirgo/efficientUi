@@ -47,6 +47,30 @@
             ]
         },
         {
+            "name": "列表",
+            "icon": "icon-archives",
+            "sub": [
+                {
+                    "name": "列表示例",
+                    "href": "table.html"
+                },
+                {
+                    "name": "列表文档",
+                    "href": "table_doc.html"
+                }
+            ]
+        },
+        {
+            "name": "树组件",
+            "icon": "icon-network",
+            "href": "tree.html"
+        },
+        {
+            "name": "自动完成",
+            "icon": "icon-structure",
+            "href": "AutoComplete.html"
+        },
+        {
             "name": "页签与标签",
             "icon": "icon-log",
             "sub": [
@@ -140,25 +164,6 @@
                     }]
                 }
             ]
-        },
-        {
-            "name": "列表",
-            "icon": "icon-archives",
-            "sub": [
-                {
-                    "name": "列表示例",
-                    "href": "table.html"
-                },
-                {
-                    "name": "列表文档",
-                    "href": "table_doc.html"
-                }
-            ]
-        },
-        {
-            "name": "树组件",
-            "icon": "icon-network",
-            "href": "tree.html"
         }
     ]
 }

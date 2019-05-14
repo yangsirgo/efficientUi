@@ -6,6 +6,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="./js/resource.js"></script>
+    <style>
+
+        /*<!--  自动完成插件 用户自定义例子的样式 -->*/
+
+        .gd-select .gd-select-drop {
+            max-height: 200px;
+        }
+        .autoTitle {
+            padding: 8px 10px;
+            font-size: 14px;
+            line-height: 14px;
+            box-sizing: content-box;
+            margin: 0;
+            color: #ccc;
+            display: block;
+        }
+
+        .left {
+            float: left;
+        }
+
+        .bold {
+            font-weight: bolder;
+            color: #1a1a1a;
+        }
+
+        .right {
+            color: red;
+            text-align: right;
+            float: right;
+        }
+
+        .clearHistory {
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body>
@@ -14,22 +50,23 @@
     <gd-leftmenu :config="leftMenuConfig"></gd-leftmenu>
     <gd-topbar :config="topbarConfig"></gd-topbar>
 </div>
-<div id="app" class="gd-right-content gd-padding-lg" v-cloak>
-    <gd-card class="demoExpWrap">
-        <gd-row>
-            <gd-col span="12" class="demoExp">
-                <div class="rightPadding documentPartPaddingText">
-                    <auto-complete :config="config"></auto-complete>
-                </div>
-                <gd-divider orientation="left">基础用法</gd-divider>
-                <div class="demoExpText">
-                    <p>基本用法，通过 data 设置自动完成的数据源。</p>
-                </div>
-            </gd-col>
-            <div class="example-split"></div>
-            <gd-col span="12"  class="demoExp1">
-                <div class="demoExp1Innner">
-                    <div style="padding-left: 20px">
+<div class="gd-right-content gd-padding-lg">
+    <div id="app" v-cloak>
+        <gd-card class="demoExpWrap">
+            <gd-row>
+                <gd-col span="12" class="demoExp">
+                    <div class="rightPadding documentPartPaddingText">
+                        <auto-complete :config="config"></auto-complete>
+                    </div>
+                    <gd-divider orientation="left">基础用法</gd-divider>
+                    <div class="demoExpText">
+                        <p>基本用法，通过 data 设置自动完成的数据源。</p>
+                    </div>
+                </gd-col>
+                <div class="example-split"></div>
+                <gd-col span="12"  class="demoExp1">
+                    <div class="demoExp1Innner">
+                        <div style="padding-left: 20px">
                     <textarea type="code">
                         <template>
                             <auto-complete :config="config"></auto-complete>
@@ -61,28 +98,53 @@
                             }
                         </script>
                     </textarea>
+                        </div>
                     </div>
-                </div>
-                <div class="exp_more">
-                    <i class="icon-down"></i>
-                </div>
-            </gd-col>
-        </gd-row>
-    </gd-card>
-
-    <textarea type="code">
+                    <div class="exp_more">
+                        <i class="icon-down"></i>
+                    </div>
+                </gd-col>
+            </gd-row>
+        </gd-card>
+        <textarea type="code">
         <!--id 给表单元素设置 id	-->
-        <!--placeholder 默认的placeholder-->
-        <!--value 绑定的值 -->
-        <!--data 自动完成的数据源，如果是自定义的，不得写入config里面。>
-        <!-- clearable 是否可以清空选项，默认是false-->
-        <!-- disabled 是否禁用-->
-        <!--size 输入框尺寸，可选值为 large、small、default 或者不设置-->
-        <!--icon 输入框尾部图标	-->
-        <!--placement 弹窗的展开方向，可选值为 bottom 和 top	-->
-        <!--on-select 选中 option时调用，参数为选中项的 value 值-->
-        <!--on-search 搜索补全项的时候调用-->
+            <!--placeholder 默认的placeholder-->
+            <!--value 绑定的值 -->
+            <!--data 自动完成的数据源，如果是自定义的，不得写入config里面。>
+            <!-- clearable 是否可以清空选项，默认是false-->
+            <!-- disabled 是否禁用-->
+            <!--size 输入框尺寸，可选值为 large、small、default 或者不设置-->
+            <!--icon 输入框尾部图标	-->
+            <!--placement 弹窗的展开方向，可选值为 bottom 和 top	-->
+            <!--on-select 选中 option时调用，参数为选中项的 value 值-->
+            <!--on-search 搜索补全项的时候调用-->
     </textarea>
+    </div>
+    <div id="example">
+        <gd-divider orientation="left">自定义下拉框 例子</gd-divider>
+        <auto-complete :config="configCustom">
+            <div v-if="configCustom.jsonpType==='search'">
+                <span class="autoTitle" v-if="data.length">频道直达</span>
+                <gd-option v-for="item in data" :autocomplete-text="item.psname" :url="item.url" :key="item.psname">
+                    <span class="left">{{item.psname}}</span>
+                    <span class="right">{{item.price}}</span>
+                </gd-option>
+                <span class="autoTitle" v-if="associativeData.length">联想提示</span>
+                <gd-option v-for="item in associativeData" :autocomplete-text="item.words" :url="item | filterUrlThink"
+                           :key="item.words">
+                    <span class="left">{{item.words}}</span>
+                </gd-option>
+            </div>
+            <div v-if="isHistory">
+                <span class="autoTitle">历史记录</span>
+                <gd-option v-for="item in data" :autocomplete-text="item | filterSplit" :url="item | filterUrl">
+                    <span class="left bold">{{item | filterSplit}}</span>
+                </gd-option>
+                <span class="autoTitle clearHistory" @click="clearHistory">清除历史记录</span>
+            </div>
+        </auto-complete>
+    </div>
+
 </div>
 <script>
     var app = new Vue({
@@ -105,12 +167,128 @@
                 onSelect(selectData) {
                     log('确定后回调:', selectData)
                 }
-            }
+            },
         },
         methods: {
 
         }
     });
+
+    var exampleVue = new Vue({
+        el: '#example',
+        filters: {
+            filterSplit: function (value) {
+                if (typeof value === 'string') {
+                    return value.split(';')[0];
+                } else {
+                    return ''
+                }
+            },
+            filterUrl: function (value) {
+                return typeof value === 'string' && value.split(';')[1];
+            },
+            filterUrlThink(text) {
+                return 'https://www.google.co.jp/search?q=' + text;
+            }
+        },
+        methods : {
+            clearHistory() {
+                $.ajax({
+                    type: 'GET',
+                    dataType: 'jsonp',
+                    url: 'http://sou.xcar.com.cn/XcarSearch/rest/together/delhis/',
+                    jsonpCallback: 'delhis',
+                    success: function () {
+
+                    }
+                });
+                $('#xcarAuto').find('.gd-select-drop').hide();
+            }
+        },
+        computed: {
+            isHistory: function () {
+                var data = this.data;
+                if (this.configCustom.jsonpType === 'history' && data.length != 0 && (typeof data[0] === 'string')) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        },
+        data : {
+            data: [],
+            associativeData: [],
+            configCustom: {
+                id: 'xcarAuto',
+                data: [],
+                jsonpType: 'history',
+                onSearch(value) {
+                    if (value) {
+                        exampleVue.configCustom.jsonpType = 'search';
+                        getSearch(value);
+                    } else {
+                        exampleVue.configCustom.jsonpType = 'history';
+                        getHistory(value);
+                    }
+                },
+                onSelect(selectData, allData, e) {
+                    var goUrl = null;
+                    if (e !== undefined) {
+                        var $t = $(e.target);
+                    }
+                    if ($t.is('.gd-option')) {
+                        goUrl = $t.attr('url');
+                    } else if ($t.parent().is('.gd-option')) {
+                        goUrl = $t.parent().attr('url');
+                    }
+                    window.open(goUrl);
+                },
+                inputEnter(text, allData) {//针对 自动完成插件部分 回车 另外事件 执行 而不执行onSelect 事件
+                    window.open('https://www.google.co.jp/search?q=' + text);
+                }
+            }
+        }
+    });
+
+    function getHistory() {
+        $.ajax({
+            type: "get",
+            url: 'http://sou.xcar.com.cn/XcarSearch/rest/together/gethis/',
+            dataType: "jsonp",
+            jsonp: "callback",
+            jsonpCallback: 'gethis',
+            success: function (json) {
+                if (!$.isArray(json)) {
+                    exampleVue.data = json.shistory.items;
+                }
+            }
+        });
+    }
+
+    function getSearch(value) {
+        $.ajax({
+            type: "get",
+            url: 'http://sou.xcar.com.cn/XcarSearch/rest/together/search/' + value,
+            dataType: "jsonp",
+            jsonp: "callback",
+            jsonpCallback: 'search',
+            success: function (json) {
+                if (!$.isArray(json)) {
+                    exampleVue.data = (json.spser.items);
+                    exampleVue.associativeData = json.associative.items;
+                }
+            }
+        });
+    }
+
+
+    function search() {
+
+    }
+
+    function gethis() {
+
+    }
 </script>
 </body>
 </html>
