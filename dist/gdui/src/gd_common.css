@@ -633,4 +633,7 @@ textarea:-ms-input-placeholder {
 .gd-padding-xxxl {
   padding: 35px !important;
 }
+* {
+  backface-visibility: hidden;
+}
 /*# sourceMappingURL=gd_common.css.map */
